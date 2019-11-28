@@ -1,0 +1,23 @@
+<button nz-button [nzType]="'primary'" nzSize="large" (click)="onAdd()"><i nz-icon nzType="plus"></i>Add Revenue Head</button>
+<nz-table #editRowTable nzBordered [nzData]="revenueHeads">
+	<thead>
+		<tr>
+			<th nzWidth="100px">Code</th>
+			<th>Revenue Head</th>
+			<th nzWidth="120px">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let data of editRowTable.data">
+			<td>{{data.code}}</td>
+			<td>{{data.name}}</td>
+			<td>
+				<div class="table-last-column" fxLayout="row" fxLayoutAlign="space-around center">
+					<a (click)="onEdit(data)"><i class="table-icon" nz-icon nzType="edit"></i></a>
+					<nz-divider nzType="vertical"></nz-divider>
+					<a nz-popconfirm nzTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.code)" nz-tooltip><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</nz-table>

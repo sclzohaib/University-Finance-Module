@@ -1,0 +1,46 @@
+<div fxLayout fxLayoutGap="8px">
+	<div class="search">
+		<nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="searchButton">
+			<input type="text" nz-input placeholder="Search with CNIC" [(ngModel)]="criteria" (ngModelChange)="criteriaChange($event)" minlength="13" maxlength="13" pattern="[0-9]{13}"/>
+		</nz-input-group>
+		<ng-template #searchButton>
+			<button nz-button nzType="primary" nzSize="large" (click)="search()" nzSearch><i nz-icon nzType="search"></i></button>
+		</ng-template>
+	</div>
+	<div>
+		<nz-select nzPlaceHolder="Show By" style="width: 120px;" [(ngModel)]="showByType" nzSize="large">
+			<nz-option *ngFor="let s of showByData; let i = index" [nzValue]="i" [nzLabel]="s.name"></nz-option>
+		</nz-select>
+	</div>
+	<div *ngIf="showByType === 0">
+		<nz-month-picker nzSize="large" nzFormat="MMM yyyy" [(ngModel)]="selectedDate" (ngModelChange)="monthChange($event)" nzPlaceHolder="Select Month"></nz-month-picker>
+	</div>
+	<div *ngIf="showByType && showByType !== 0">
+		<nz-select style="width: 200px;" [nzPlaceHolder]="showByData[showByType].placeholder" [(ngModel)]="selection" (ngModelChange)="selectionChange($event)" nzSize="large">
+			<nz-option *ngFor="let s of selectionData[showByData[showByType].name]" [nzValue]="s" [nzLabel]="s"></nz-option>
+		</nz-select>
+	</div>
+	<div class="clear">
+		<button nz-button (click)="clearFilters()" nzSize="large" nzType="primary" [disabled]="showByType === null">Clear Filters</button>
+	</div>
+</div>
+<nz-table nzBordered #revenueTable [nzData]="revenueData">
+	<thead>
+		<tr>
+			<th nzWidth="50px">ID</th>
+			<th>Student CNIC</th>
+			<th>Revenue Head</th>
+			<th>Student Type</th>
+			<th nzWidth="100px">Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let data of revenueTable.data; let i = index">
+			<td>{{ i + 1 }}</td>
+			<td>{{ data.studentCnic | cnicFormatter }}</td>
+			<td>{{ data.revenueHead }}</td>
+			<td>{{ data.studentType }}</td>
+			<td>Rs. {{ data.amount }}</td>
+		</tr>
+	</tbody>
+</nz-table>

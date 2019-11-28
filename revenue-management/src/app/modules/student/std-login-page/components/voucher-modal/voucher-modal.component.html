@@ -1,0 +1,112 @@
+<nz-steps [nzCurrent]="index-1">
+	<nz-step nzTitle="Step1"></nz-step>
+	<nz-step nzTitle="Step2"></nz-step>
+</nz-steps>
+
+
+<form nz-form [formGroup]="voucherForm">
+
+	<div id="form-container">
+		<div id="step1" *ngIf="index===1">
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please enter your name">
+					<input nz-input nzSize="large" type="text" placeholder="Enter Your Name" formControlName="name">
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please enter your father's name">
+					<input nz-input nzSize="large" type="text" placeholder="Enter Father's Name" formControlName="fatherName">
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please enter your CNIC number">
+					<input nz-input nzSize="large" type="text" placeholder="Enter Your CNIC" formControlName="cnic">
+				</nz-form-control>
+			</nz-form-item>
+			
+				<nz-form-item>
+					<nz-form-control nzErrorTip="Please enter your enrolment number">
+						<input nz-input nzSize="large" type="text" placeholder="Enter Enrolment Number" formControlName="enrolNum">
+					</nz-form-control>
+				</nz-form-item>
+
+				<nz-form-item>
+					<nz-form-control nzErrorTip="Please enter your seat number">
+						<input nz-input nzSize="large" type="text" placeholder="Enter Seat Number" formControlName="seatNum">
+					</nz-form-control>
+				</nz-form-item>
+
+				<nz-form-item>
+					<nz-form-control nzErrorTip="Please enter your mobile number">
+						<input nz-input nzSize="large" type="text" placeholder="Enter Mobile Number" formControlName="mobileNum">
+					</nz-form-control>
+				</nz-form-item>
+		</div>
+		<div id="step2" *ngIf="index===2">
+			<nz-form-item>
+			<nz-form-control nzErrorTip="Please Select Revenue Head">
+				<nz-select formControlName="revenueHead" nzSize="large" nzPlaceHolder="Select Revenue Head" nzAllowClear>
+					<nz-option *ngFor="let item of revenueHeads" [nzLabel]="item.name" [nzValue]="item.code"></nz-option>
+				</nz-select>
+			</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please Select Student Type">
+					<nz-select formControlName="studentType" nzSize="large" nzPlaceHolder="Select Student Type" nzAllowClear>
+						<nz-option *ngFor="let item of studentTypes" [nzLabel]="item.name" [nzValue]="item.name"></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+
+			<!-- <nz-form-item>
+				<nz-form-control nzErrorTip="Please Select Shift">
+					<nz-select formControlName="shift" nzSize="large" nzPlaceHolder="Select Shift" nzAllowClear>
+						<nz-option [nzLabel]="Morning" [nzValue]="Morning"></nz-option>
+						<nz-option [nzLabel]="Evening" [nzValue]="Evening"></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item> -->
+
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please Select Department">
+					<nz-select formControlName="department" nzSize="large" nzPlaceHolder="Select Department" nzAllowClear>
+						<nz-option *ngFor="let item of departments" [nzLabel]="item.name" [nzValue]="item.name"></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please Select Class">
+					<nz-select formControlName="class" nzSize="large" nzPlaceHolder="Select Class" nzAllowClear>
+						<nz-option *ngFor="let item of classes" [nzLabel]="item.name" [nzValue]="item.name"></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+
+				<nz-form-item>
+					<nz-form-control nzErrorTip="Please Select Particular">
+						<nz-select formControlName="part" nzSize="large" nzPlaceHolder="Select Part" nzAllowClear>
+							<nz-option *ngFor="let item of parts" [nzLabel]="item.name" [nzValue]="item.name"></nz-option>
+						</nz-select>
+					</nz-form-control>
+				</nz-form-item>
+		</div>
+	</div>
+
+	<div id="button-container" fxLayout="row" fxLayoutGap="8px">
+		<button nz-button nzType="default" (click)="pre()" *ngIf="index > 1">
+			<span>Previous</span>
+		</button>
+		<button nz-button nzType="default" (click)="next()" *ngIf="index < 2">
+			<span>Next</span>
+		</button>
+		<button nz-button nzType="primary" (click)="done()" *ngIf="index === 2">
+			<span>Done</span>
+		</button>
+	</div>
+	<!-- 
+	<div class= fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+		<button type="button" nz-button (click)="onCancel()">Cancel</button>
+		<button nz-button nzType="primary" (click)="onOk()">OK</button>
+	</div> -->
+</form>
