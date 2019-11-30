@@ -1,24 +1,27 @@
 package com.erp.university.Purchase.Model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-public class University {
-
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "uni_seq")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "dept_seq")
     private Long id;
     private String name;
     private String location;
+    private Long telephone;
+    private Long extensionNo;
 
-    public University() {
+    public Department() {
     }
 
-    public University(Long id, String name, String location) {
-        this.id = id;
+    public Department(String name, String location, Long telephone, Long extensionNo) {
         this.name = name;
         this.location = location;
+        this.telephone = telephone;
+        this.extensionNo = extensionNo;
     }
 
     public Long getId() {
@@ -43,5 +46,21 @@ public class University {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Long getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(Long telephone) {
+        this.telephone = telephone;
+    }
+
+    public Long getExtensionNo() {
+        return extensionNo;
+    }
+
+    public void setExtensionNo(Long extensionNo) {
+        this.extensionNo = extensionNo;
     }
 }
