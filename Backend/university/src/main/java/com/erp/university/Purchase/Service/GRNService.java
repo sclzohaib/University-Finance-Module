@@ -61,7 +61,7 @@ public class GRNService {
         grn.setStatus(grndto.getStatus());
         grn.setTotalQuantity(grndto.getTotalQuantity());
         grnRepository.save(grn);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.OK);
+        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
     }
 
 
