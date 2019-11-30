@@ -1,14 +1,14 @@
 package com.erp.university.Purchase.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.util.Date;
 
-
+@Entity
 public class Quotation {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "quotation_seq")
     private Long id;
     private Long refNo;
     private Date date;
