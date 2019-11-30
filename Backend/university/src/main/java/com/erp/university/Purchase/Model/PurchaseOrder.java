@@ -1,9 +1,14 @@
 package com.erp.university.Purchase.Model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class PurchaseOrder {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "po_seq")
     private Long id;
     private Date date;
     private Long purchaseOrderNo;
