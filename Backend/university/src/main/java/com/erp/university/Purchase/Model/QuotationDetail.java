@@ -1,6 +1,12 @@
 package com.erp.university.Purchase.Model;
 
+import javax.persistence.*;
+
+@Entity
 public class QuotationDetail {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "qd_sequence")
     private Long id;
     private String description;
     private String Brand;
