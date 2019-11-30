@@ -1,4 +1,10 @@
 package com.erp.university.Purchase.Repository;
 
-public interface SummaryRepository {
+import com.erp.university.Purchase.Model.Summary;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface SummaryRepository extends JpaRepository<Summary, Long> {
+
 }
