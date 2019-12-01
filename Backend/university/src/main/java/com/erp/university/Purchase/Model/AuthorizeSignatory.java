@@ -1,23 +1,23 @@
 package com.erp.university.Purchase.Model;
 
 public class AuthorizeSignatory {
-    private Long aId;
+    private Long id;
     private Long lvlId;
 
     public AuthorizeSignatory() {
     }
 
-    public AuthorizeSignatory(Long aId, Long lvlId) {
-        this.aId = aId;
+    public AuthorizeSignatory(Long id, Long lvlId) {
+        this.id = id;
         this.lvlId = lvlId;
     }
 
-    public Long getaId() {
-        return aId;
+    public Long getId() {
+        return id;
     }
 
-    public void setaId(Long aId) {
-        this.aId = aId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getLvlId() {
