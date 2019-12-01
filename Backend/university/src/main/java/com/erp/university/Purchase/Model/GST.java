@@ -1,6 +1,12 @@
 package com.erp.university.Purchase.Model;
 
+import javax.persistence.*;
+
+@Entity
 public class GST {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "gst_seq")
     private Long id;
     private Double percent;
 
