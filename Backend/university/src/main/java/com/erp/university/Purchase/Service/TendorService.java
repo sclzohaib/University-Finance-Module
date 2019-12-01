@@ -8,10 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TendorService {
 @Autowired
     TendorRepository tendorRepository;
+
+//Save
 public ResponseEntity<String> saveTendor(TendorDTO tendorDTO)
 {
     Tendor tendor =new Tendor();
@@ -20,5 +24,26 @@ public ResponseEntity<String> saveTendor(TendorDTO tendorDTO)
     tendorRepository.save(tendor);
     return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
 }
+
+//Get all
+    public ResponseEntity<List<Tendor>> getAll(){
+    List<Tendor> tendors = tendorRepository.findAll();
+    return new ResponseEntity<List<Tendor>>(tendors, HttpStatus.FOUND);
+    }
+
+    //Get by id
+    public ResponseEntity<Tendor> getById(Long id){
+    Tendor tendor = tendorRepository.findById(id).get();
+    return new ResponseEntity<Tendor>(tendor,HttpStatus.FOUND);
+    }
+
+    //Update
+    public ResponseEntity<String> update(Long id, TendorDTO tendorDTO){
+    Tendor tendor = tendorRepository.findById(id).get();
+    tendor.settNo(tendorDTO.gettNo());
+    tendor.settStatus(tendorDTO.gettStatus());
+    tendorRepository.save(tendor);
+    return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+    }
 }
 
