@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping (value ="/api/quotationDeatil")
+@RequestMapping (value ="/api/quotationDetail")
 
 public class QuotationDetailController {
     @Autowired

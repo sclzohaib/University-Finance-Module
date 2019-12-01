@@ -5,10 +5,7 @@ import com.erp.university.Purchase.Model.Vendor;
 import com.erp.university.Purchase.Service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,13 +30,13 @@ public class VendorController {
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Vendor> getById(Long id){
+    public ResponseEntity<Vendor> getById(@PathVariable("id") Long id){
     return vendorService.getById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(Long id, VendorDTO vendorDTO){
+    public ResponseEntity<String> update(@PathVariable("id") Long id, @RequestBody VendorDTO vendorDTO){
     return vendorService.update(id, vendorDTO);
     }
 
