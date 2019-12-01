@@ -38,7 +38,7 @@ public class AuthorizelvlController {
 
     //Put call
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateAuthorizeLvl(Long id, AuthorizeLvlDTO authorizeLvlDTO){
+    public ResponseEntity<String> updateAuthorizeLvl(@PathVariable("id") Long id, @RequestBody AuthorizeLvlDTO authorizeLvlDTO){
         return authorizelvlService.updateAuthorizeLvl(id, authorizeLvlDTO);
     }
 

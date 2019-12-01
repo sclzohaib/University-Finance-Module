@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping (value = "/api/authozeSignatory")
+@RequestMapping (value = "/api/authorizeSignatory")
 public class AuthorizeSignatoryController {
     @Autowired
     AuthorizeSignatoryService authorizeSignatoryService;

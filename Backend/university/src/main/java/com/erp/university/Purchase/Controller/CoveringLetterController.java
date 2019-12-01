@@ -5,10 +5,7 @@ import com.erp.university.Purchase.Model.CoveringLetter;
 import com.erp.university.Purchase.Service.CoveringLetterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,13 +29,13 @@ public class CoveringLetterController {
     }
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<CoveringLetter> getCoveringLetterById(Long id){
+    public ResponseEntity<CoveringLetter> getCoveringLetterById(@PathVariable("id") Long id){
         return coveringLetterService.getCoveringLetterById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateCoveringLetter(Long id, CoveringLetterDTO coveringLetterDTO){
+    public ResponseEntity<String> updateCoveringLetter(@PathVariable("id") Long id, @RequestBody CoveringLetterDTO coveringLetterDTO){
         return coveringLetterService.updateCoveringLetter(id, coveringLetterDTO);
     }
 }

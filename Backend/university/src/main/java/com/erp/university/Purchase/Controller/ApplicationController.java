@@ -5,10 +5,7 @@ import com.erp.university.Purchase.Model.Application;
 import com.erp.university.Purchase.Service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,13 +30,13 @@ public class ApplicationController {
 
     //Get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Application> getApplicationById(Long id){
+    public ResponseEntity<Application> getApplicationById(@PathVariable("id") Long id){
     return applicationService.getApplicationById(id);
     }
 
     //Update Application
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateApplication(Long id, ApplicationDTO applicationDTO){
+    public ResponseEntity<String> updateApplication(@PathVariable("id") Long id,@RequestBody ApplicationDTO applicationDTO){
     return applicationService.updateApplication(id, applicationDTO);
     }
 }
