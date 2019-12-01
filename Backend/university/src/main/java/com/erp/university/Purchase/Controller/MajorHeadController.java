@@ -5,10 +5,7 @@ import com.erp.university.Purchase.Model.MajorHead;
 import com.erp.university.Purchase.Service.MajorHeadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,13 +30,13 @@ public class MajorHeadController {
 
     //get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<MajorHead> getById(Long id){
+    public ResponseEntity<MajorHead> getById(@PathVariable("id") Long id){
     return majorHeadService.getById(id);
     }
 
     //Update
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(Long id, MajorHeadDTO majorHeadDTO){
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<String> update(@PathVariable("id") Long id, @RequestBody MajorHeadDTO majorHeadDTO){
     return majorHeadService.update(id, majorHeadDTO);
     }
 }
