@@ -1,6 +1,12 @@
 package com.erp.university.Purchase.Model;
 
+import javax.persistence.*;
+
+@Entity
 public class Tendor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "tendor_seq")
     private Long id;
     private Long tNo;
     private String tStatus;
