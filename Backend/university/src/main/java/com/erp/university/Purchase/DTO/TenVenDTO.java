@@ -1,6 +1,7 @@
 package com.erp.university.Purchase.DTO;
 
 public class TenVenDTO {
+    private Long id;
     private String quotation;
     private String vendorEmail;
     private String vendorAddress;
@@ -16,6 +17,23 @@ public class TenVenDTO {
         this.vendorAddress = vendorAddress;
         this.venNtn = venNtn;
         this.vendorNic = vendorNic;
+    }
+
+    public TenVenDTO(Long id, String quotation, String vendorEmail, String vendorAddress, String venNtn, Long vendorNic) {
+        this.id = id;
+        this.quotation = quotation;
+        this.vendorEmail = vendorEmail;
+        this.vendorAddress = vendorAddress;
+        this.venNtn = venNtn;
+        this.vendorNic = vendorNic;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getQuotation() {
