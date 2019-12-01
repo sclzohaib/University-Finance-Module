@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping  (value= "/api/ledgerOfExpenditue")
 public class LedgerOfExpenditureController {
 @Autowired
     LedgerOfExpenditureService ledgerOfExpenditureService;
