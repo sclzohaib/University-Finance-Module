@@ -1,8 +1,13 @@
 package com.erp.university.Purchase.Model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Application {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "app_seq")
     private Long id;
     private String subject;
     private Date date;
