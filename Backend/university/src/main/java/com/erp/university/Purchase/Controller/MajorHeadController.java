@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping  (value= "/api/majorHead")
 public class MajorHeadController {
 @Autowired
     MajorHeadService majorHeadService;
