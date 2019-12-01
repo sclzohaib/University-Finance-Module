@@ -1,6 +1,12 @@
 package com.erp.university.Purchase.Model;
 
+import javax.persistence.*;
+
+@Entity
 public class MajorHead {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "major_head_seq")
     private Long id;
     private String name;
 
