@@ -26,16 +26,19 @@ public class ApplicationController {
 }
 
     //Get all call
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<Application>> getApplication(){
     return applicationService.getApplication();
     }
 
     //Get by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Application> getApplicationById(Long id){
     return applicationService.getApplicationById(id);
     }
 
     //Update Application
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateApplication(Long id, ApplicationDTO applicationDTO){
     return applicationService.updateApplication(id, applicationDTO);
     }
