@@ -6,23 +6,23 @@ public class BudgetSheetDTO {
     private Long id;
     private Date date;
     private Double budgetAllocation;
-    private Double upToDateExp;
+    private Double uptoDateExp;
     private Double billAmount;
     private Double totalExpense;
-    private Double blnceAvail;
+    private Double balanceAvailable;
     private Double overExp;
 
     public BudgetSheetDTO() {
     }
 
-    public BudgetSheetDTO(Long id, Date date, Double budgetAllocation, Double upToDateExp, Double billAmount, Double totalExpense, Double blnceAvail, Double overExp) {
+    public BudgetSheetDTO(Long id, Date date, Double budgetAllocation, Double uptoDateExp, Double billAmount, Double totalExpense, Double balanceAvailable, Double overExp) {
         this.id = id;
         this.date = date;
         this.budgetAllocation = budgetAllocation;
-        this.upToDateExp = upToDateExp;
+        this.uptoDateExp = uptoDateExp;
         this.billAmount = billAmount;
         this.totalExpense = totalExpense;
-        this.blnceAvail = blnceAvail;
+        this.balanceAvailable = balanceAvailable;
         this.overExp = overExp;
     }
 
@@ -50,12 +50,12 @@ public class BudgetSheetDTO {
         this.budgetAllocation = budgetAllocation;
     }
 
-    public Double getUpToDateExp() {
-        return upToDateExp;
+    public Double getUptoDateExp() {
+        return uptoDateExp;
     }
 
-    public void setUpToDateExp(Double upToDateExp) {
-        this.upToDateExp = upToDateExp;
+    public void setUptoDateExp(Double uptoDateExp) {
+        this.uptoDateExp = uptoDateExp;
     }
 
     public Double getBillAmount() {
@@ -74,12 +74,12 @@ public class BudgetSheetDTO {
         this.totalExpense = totalExpense;
     }
 
-    public Double getBlnceAvail() {
-        return blnceAvail;
+    public Double getBalanceAvailable() {
+        return balanceAvailable;
     }
 
-    public void setBlnceAvail(Double blnceAvail) {
-        this.blnceAvail = blnceAvail;
+    public void setBalanceAvailable(Double balanceAvailable) {
+        this.balanceAvailable = balanceAvailable;
     }
 
     public Double getOverExp() {

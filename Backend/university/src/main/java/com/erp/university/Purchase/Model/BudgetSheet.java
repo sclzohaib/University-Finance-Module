@@ -1,28 +1,31 @@
 package com.erp.university.Purchase.Model;
 
+import javax.persistence.*;
 import java.util.Date;
-
+@Entity
 public class BudgetSheet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "bs_seq")
     private Long id;
     private Date date;
     private Double budgetAllocation;
-    private Double upToDateExp;
+    private Double uptoDateExp;
     private Double billAmount;
     private Double totalExpense;
-    private Double blnceAvail;
+    private Double balanceAvailable;
     private Double overExp;
 
     public BudgetSheet() {
     }
 
-    public BudgetSheet(Long id, Date date, Double budgetAllocation, Double upToDateExp, Double billAmount, Double totalExpense, Double blnceAvail, Double overExp) {
-        this.id = id;
+    public BudgetSheet(Date date, Double budgetAllocation, Double uptoDateExp, Double billAmount, Double totalExpense, Double balanceAvailable, Double overExp) {
         this.date = date;
         this.budgetAllocation = budgetAllocation;
-        this.upToDateExp = upToDateExp;
+        this.uptoDateExp = uptoDateExp;
         this.billAmount = billAmount;
         this.totalExpense = totalExpense;
-        this.blnceAvail = blnceAvail;
+        this.balanceAvailable = balanceAvailable;
         this.overExp = overExp;
     }
 
@@ -50,12 +53,12 @@ public class BudgetSheet {
         this.budgetAllocation = budgetAllocation;
     }
 
-    public Double getUpToDateExp() {
-        return upToDateExp;
+    public Double getUptoDateExp() {
+        return uptoDateExp;
     }
 
-    public void setUpToDateExp(Double upToDateExp) {
-        this.upToDateExp = upToDateExp;
+    public void setUptoDateExp(Double uptoDateExp) {
+        this.uptoDateExp = uptoDateExp;
     }
 
     public Double getBillAmount() {
@@ -74,12 +77,12 @@ public class BudgetSheet {
         this.totalExpense = totalExpense;
     }
 
-    public Double getBlnceAvail() {
-        return blnceAvail;
+    public Double getBalanceAvailable() {
+        return balanceAvailable;
     }
 
-    public void setBlnceAvail(Double blnceAvail) {
-        this.blnceAvail = blnceAvail;
+    public void setBalanceAvailable(Double balanceAvailable) {
+        this.balanceAvailable = balanceAvailable;
     }
 
     public Double getOverExp() {
