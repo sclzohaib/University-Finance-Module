@@ -1,6 +1,14 @@
 package com.erp.university.Purchase.Model;
 
+
+import javax.persistence.*;
+
+@Entity
 public class TenVenDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
+    @SequenceGenerator(name = "id_sequence", sequenceName = "ten_ven_details_seq")
+    private Long id;
     private String quotation;
     private String vendorEmail;
     private String vendorAddress;
@@ -16,6 +24,23 @@ public class TenVenDetails {
         this.vendorAddress = vendorAddress;
         this.venNtn = venNtn;
         this.vendorNic = vendorNic;
+    }
+
+    public TenVenDetails(Long id, String quotation, String vendorEmail, String vendorAddress, String venNtn, Long vendorNic) {
+        this.id = id;
+        this.quotation = quotation;
+        this.vendorEmail = vendorEmail;
+        this.vendorAddress = vendorAddress;
+        this.venNtn = venNtn;
+        this.vendorNic = vendorNic;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getQuotation() {
