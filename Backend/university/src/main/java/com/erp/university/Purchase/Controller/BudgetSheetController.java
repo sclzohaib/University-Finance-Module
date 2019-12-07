@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -29,12 +31,12 @@ public class BudgetSheetController {
     }
     //Get By id
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<BudgetSheet> getBudgetSheetById(@PathVariable("id") Long id){
+    public ResponseEntity<BudgetSheet> getBudgetSheetById(@PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id){
         return budgetSheetService.getBudgetSheetById(id);
     }
     //Update
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateBudgetSheet(@PathVariable("id") Long id, @RequestBody BudgetSheetDTO budgetSheetDTO){
+    public ResponseEntity<String> updateBudgetSheet(@PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id, @Valid  @RequestBody BudgetSheetDTO budgetSheetDTO){
         return budgetSheetService.updateBudgetSheet(id, budgetSheetDTO);
     }
 }

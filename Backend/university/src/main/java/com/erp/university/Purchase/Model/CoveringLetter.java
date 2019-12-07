@@ -1,12 +1,18 @@
 package com.erp.university.Purchase.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table (name = "covering_letter")
 public class CoveringLetter {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
     @SequenceGenerator(name = "id_sequence", sequenceName = "cl_seq")
+    @NotNull (message = "ID can not be null")
+    @NotEmpty(message = "ID can not be empty")
+    @Column (name = "id", unique = true, nullable = false)
     private Long id;
 
     public CoveringLetter() {

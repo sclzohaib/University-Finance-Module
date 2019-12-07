@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -17,7 +19,7 @@ public class QuotationController {
 
  //Post Call
     @RequestMapping(value = "/" ,method = RequestMethod.POST)
-    public ResponseEntity<String> saveQuotation(@RequestBody QuotationDTO quotationDTO){
+    public ResponseEntity<String> saveQuotation(@Valid @RequestBody QuotationDTO quotationDTO){
 
    return quotationService.saveQuotation(quotationDTO);
     }
@@ -30,13 +32,13 @@ public class QuotationController {
 
     //Get call for Single Quotation
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Quotation> getQuotationById(@PathVariable("id") Long id){
+    public ResponseEntity<Quotation> getQuotationById(@PathVariable("id") @Min(value = 1, message ="ID must be greater than 1") Long id){
         return quotationService.getQuotationById(id);
     }
 
     //Put call for Update Quotation
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateQuotation(@PathVariable("id") Long id, @RequestBody QuotationDTO quotationDTO){
+    public ResponseEntity<String> updateQuotation(@PathVariable("id") @Min(value = 1, message ="ID must be greater than 1") Long id, @Valid @RequestBody QuotationDTO quotationDTO){
         return quotationService.updateQuotation(id, quotationDTO);
     }
 }
