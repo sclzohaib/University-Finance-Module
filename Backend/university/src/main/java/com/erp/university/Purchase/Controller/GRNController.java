@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -17,7 +19,7 @@ public class GRNController {
 
     //Save GRN (POST Call)
     @RequestMapping(value = "/" ,method = RequestMethod.POST)
-    public ResponseEntity<String> saveGRN(@RequestBody GRNDTO grndto)
+    public ResponseEntity<String> saveGRN(@Valid @RequestBody GRNDTO grndto)
             {
                 return grnService.saveGRN(grndto);
             }
@@ -32,13 +34,13 @@ public class GRNController {
 
     //Get GRN By ID
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<GRN> getGRNById(@PathVariable("id") Long id){
+    public ResponseEntity<GRN> getGRNById(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1") Long id){
         return grnService.getGRNById(id);
     }
 
     //Update GRN By ID
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
-    public ResponseEntity<String> updateGRN(@PathVariable("id") Long id, @RequestBody GRNDTO grndto){
+    public ResponseEntity<String> updateGRN(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1") Long id, @RequestBody GRNDTO grndto){
         return grnService.updateGRN(id, grndto);
     }
 
