@@ -38,7 +38,7 @@ public class SummaryController {
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1")Long id,@RequestBody SummaryDTO summaryDTO){
+    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1")Long id,@Valid @RequestBody SummaryDTO summaryDTO){
         return summaryService.update(id, summaryDTO);
     }
 }
