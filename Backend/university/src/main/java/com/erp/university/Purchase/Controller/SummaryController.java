@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -17,7 +19,7 @@ public class SummaryController {
 
     //Post
     @RequestMapping (value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveSummary(@RequestBody SummaryDTO summaryDTO)
+    public ResponseEntity<String> saveSummary(@Valid @RequestBody SummaryDTO summaryDTO)
     {
         return summaryService.saveSummary(summaryDTO);
     }
@@ -30,13 +32,13 @@ public class SummaryController {
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Summary> getById(@PathVariable("id") Long id){
+    public ResponseEntity<Summary> getById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id){
         return summaryService.getById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") Long id,@RequestBody SummaryDTO summaryDTO){
+    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1")Long id,@RequestBody SummaryDTO summaryDTO){
         return summaryService.update(id, summaryDTO);
     }
 }
