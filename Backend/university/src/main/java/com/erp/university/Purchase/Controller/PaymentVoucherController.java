@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -17,7 +19,7 @@ public class PaymentVoucherController {
 
 //Post
 @RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> savePaymentVoucher(@RequestBody PaymentVoucherDTO paymentVoucherDTO)
+    public ResponseEntity<String> savePaymentVoucher(@Valid @RequestBody PaymentVoucherDTO paymentVoucherDTO)
 {
     return paymentVoucherService.savePaymentVoucher(paymentVoucherDTO);
 }
@@ -30,13 +32,13 @@ public class PaymentVoucherController {
 
     //Get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<PaymentVoucher> getById(@PathVariable("id") Long id){
+    public ResponseEntity<PaymentVoucher> getById(@PathVariable("id") @Min(value = 1, message ="ID must be greater than 1")Long id){
     return paymentVoucherService.getById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") Long id, @RequestBody PaymentVoucherDTO paymentVoucherDTO){
+    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1, message ="ID must be greater than 1")Long id,@Valid @RequestBody PaymentVoucherDTO paymentVoucherDTO){
     return paymentVoucherService.update(id, paymentVoucherDTO);
     }
 }
