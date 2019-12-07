@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -17,7 +19,7 @@ public class AuthorizelvlController {
 
     //Post call
     @RequestMapping(value = "/n", method = RequestMethod.POST)
-    public ResponseEntity<String> saveAuthorizeLvl(@RequestBody AuthorizeLvlDTO authorizeLvlDTO)
+    public ResponseEntity<String> saveAuthorizeLvl( @Valid @RequestBody AuthorizeLvlDTO authorizeLvlDTO)
     {
         return authorizelvlService.saveAuthorizeLvl(authorizeLvlDTO);
     }
@@ -32,13 +34,13 @@ public class AuthorizelvlController {
 
     //Get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<AuthorizeLvl> getAuthorizeLvlById(@PathVariable("id") Long id){
+    public ResponseEntity<AuthorizeLvl> getAuthorizeLvlById( @PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id){
         return authorizelvlService.getAuthorizeLvlById(id);
     }
 
     //Put call
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateAuthorizeLvl(@PathVariable("id") Long id, @RequestBody AuthorizeLvlDTO authorizeLvlDTO){
+    public ResponseEntity<String> updateAuthorizeLvl(@PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id, @RequestBody AuthorizeLvlDTO authorizeLvlDTO){
         return authorizelvlService.updateAuthorizeLvl(id, authorizeLvlDTO);
     }
 
