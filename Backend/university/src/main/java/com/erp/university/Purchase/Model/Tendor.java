@@ -6,20 +6,16 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="tendor")
+@Table(name = "tendor")
 public class Tendor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tendor_id_sequence_g")
     @SequenceGenerator(name = "tendor_id_sequence_g", sequenceName = "tendor_seq")
     @NotNull(message = "Tendor ID cannot be null")
-    @NotEmpty(message = "Tendor ID cannot be empty")
-    @NotBlank(message = "Tendor ID cannot be blank !!")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     @NotNull(message = "Tendor No. cannot be null")
-    @NotEmpty(message = "Tendor No. cannot be empty")
-    @NotBlank(message = "Tendor No. cannot be blank !!")
     @Column(name = "t_no", unique = true, nullable = false)
     private Long tNo;
 

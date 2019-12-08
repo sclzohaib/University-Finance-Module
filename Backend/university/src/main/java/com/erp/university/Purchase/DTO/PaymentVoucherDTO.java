@@ -5,7 +5,7 @@ import java.util.Date;
 public class PaymentVoucherDTO {
     private Long id;
     private String payeeName;
-    private  Long payeeCode;
+    private Long payeeCode;
     private Long paymentVoucherNo;
     private Date date;
     private Long accountCode;

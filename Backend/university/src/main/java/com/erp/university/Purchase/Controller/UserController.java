@@ -12,33 +12,32 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping (value = "/api/user")
+@RequestMapping(value = "/api/user")
 public class UserController {
     @Autowired
     UserService userService;
 
     //Post
     @RequestMapping(value = "/", method = RequestMethod.POST)
-            public ResponseEntity<String> saveUser(@Valid @RequestBody UserDTO userDTO)
-    {
+    public ResponseEntity<String> saveUser(@Valid @RequestBody UserDTO userDTO) {
         return userService.saveUser(userDTO);
     }
 
     //Get All
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> getAll(){
-        return userService.getAll();
+    public ResponseEntity<List<User>> getAllUser() {
+        return userService.getAllUser();
     }
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<User> getById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id){
-        return userService.getById(id);
+    public ResponseEntity<User> getUserById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return userService.getUserById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id ,@Valid @RequestBody UserDTO userDTO){
-        return userService.update(id, userDTO);
+    public ResponseEntity<String> updateUser(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody UserDTO userDTO) {
+        return userService.updateUser(id, userDTO);
     }
 }

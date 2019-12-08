@@ -8,48 +8,47 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class ApplicationService {
-@Autowired
+    @Autowired
     ApplicationRepository applicationRepository;
 
     //Save Application
-public ResponseEntity<String> saveApplication(ApplicationDTO applicationDTO)
-{
-    Application application = new Application();
-    application.setAssociatePerson(applicationDTO.getAssociatePerson());
-    application.setDate(applicationDTO.getDate());
-    application.setStatus(applicationDTO.getStatus());
-    application.setSubject(applicationDTO.getSubject());
-    application.setStatus(applicationDTO.getStatus());
-    applicationRepository.save(application);
-    return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+    public ResponseEntity<String> saveApplication(ApplicationDTO applicationDTO) {
+        Application application = new Application();
+        application.setAssociatePerson(applicationDTO.getAssociatePerson());
+        application.setDate(new Date());
+        application.setStatus(applicationDTO.getStatus());
+        application.setSubject(applicationDTO.getSubject());
+        applicationRepository.save(application);
+        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
 
-}
+    }
 
     //Get all Applications
     public ResponseEntity<List<Application>> getApplication() {
-    List<Application> applications = applicationRepository.findAll();
-    return new ResponseEntity<List<Application>>(applications, HttpStatus.FOUND);
+        List<Application> applications = applicationRepository.findAll();
+        return new ResponseEntity<List<Application>>(applications, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<Application> getApplicationById(Long id){
-    Application application = applicationRepository.findById(id).get();
-    return new ResponseEntity<Application>(application, HttpStatus.FOUND);
+    public ResponseEntity<Application> getApplicationById(Long id) {
+        Application application = applicationRepository.findById(id).get();
+        return new ResponseEntity<Application>(application, HttpStatus.FOUND);
     }
 
     //Update Application
-    public ResponseEntity<String> updateApplication(Long id, ApplicationDTO applicationDTO){
-    Application application = applicationRepository.findById(id).get();
-    application.setAssociatePerson(applicationDTO.getAssociatePerson());
-    application.setDate(applicationDTO.getDate());
-    application.setStatus(applicationDTO.getStatus());
-    application.setSubject(applicationDTO.getSubject());
-    applicationRepository.save(application);
-    return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+    public ResponseEntity<String> updateApplication(Long id, ApplicationDTO applicationDTO) {
+        Application application = applicationRepository.findById(id).get();
+        application.setAssociatePerson(applicationDTO.getAssociatePerson());
+        application.setDate(applicationDTO.getDate());
+        application.setStatus(applicationDTO.getStatus());
+        application.setSubject(applicationDTO.getSubject());
+        applicationRepository.save(application);
+        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
     }
 
 }

@@ -25,19 +25,19 @@ public class UserTypeService {
     }
 
     //Get All
-    public ResponseEntity<List<UserType>> getAll(){
+    public ResponseEntity<List<UserType>> getAllUserType() {
         List<UserType> userTypes = userTypeRepository.findAll();
         return new ResponseEntity<List<UserType>>(userTypes, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<UserType> getById(Long id){
+    public ResponseEntity<UserType> getUserTypeById(Long id) {
         UserType userType = userTypeRepository.findById(id).get();
         return new ResponseEntity<UserType>(userType, HttpStatus.FOUND);
     }
 
     //Update
-    public ResponseEntity<String> update(Long id, UserTypeDTO userTypeDTO){
+    public ResponseEntity<String> updateUserType(Long id, UserTypeDTO userTypeDTO) {
         UserType userType = userTypeRepository.findById(id).get();
         userType.setUserType(userTypeDTO.getUserType());
         return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);

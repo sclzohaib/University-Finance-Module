@@ -14,7 +14,6 @@ public class University {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uni_id_sequence_g")
     @SequenceGenerator(name = "uni_id_sequence_g", sequenceName = "uni_seq")
     @NotNull(message = "University ID cannot be null")
-    @NotEmpty(message = "University ID cannot be blank")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
@@ -26,8 +25,9 @@ public class University {
     private String name;
 
     @NotNull(message = "Location cannot be null")
+    @NotBlank(message = "Location cannot be blank !!")
     @NotEmpty(message = "Location cannot be empty")
-    @Size(min = 30, max = 100, message ="Location must be between 30 to 100 characters")
+    @Size(min = 30, max = 100, message = "Location must be between 30 to 100 characters")
     @Column(name = "location", unique = true, nullable = false)
     private String location;
 

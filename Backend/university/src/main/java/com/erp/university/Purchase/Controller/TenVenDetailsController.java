@@ -12,33 +12,32 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/api/tenVenDetails")
+@RequestMapping(value = "/api/tenVenDetails")
 public class TenVenDetailsController {
-@Autowired
+    @Autowired
     TenVenDetailService tenVenDetailService;
 
-//Post
-@RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<String> saveTenVenDetails(@Valid @RequestBody TenVenDTO tenVenDTO)
-{
-    return tenVenDetailService.saveTenVenDetail(tenVenDTO);
-}
+    //Post
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveTenVenDetails(@Valid @RequestBody TenVenDTO tenVenDTO) {
+        return tenVenDetailService.saveTenVenDetail(tenVenDTO);
+    }
 
-//Get All
+    //Get All
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<TenVenDetails>> getAll(){
-    return tenVenDetailService.getAll();
+    public ResponseEntity<List<TenVenDetails>> getAllTenVenDetail() {
+        return tenVenDetailService.getAllTenVenDetail();
     }
 
     //Get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<TenVenDetails> getById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id){
-    return tenVenDetailService.getById(id);
+    public ResponseEntity<TenVenDetails> getTenVenDetailById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return tenVenDetailService.getTenVenDetailById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id,@Valid @RequestBody TenVenDTO tenVenDTO){
-    return tenVenDetailService.update(id, tenVenDTO);
+    public ResponseEntity<String> updateTenVenDetail(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody TenVenDTO tenVenDTO) {
+        return tenVenDetailService.updateTenVenDetail(id, tenVenDTO);
     }
 }

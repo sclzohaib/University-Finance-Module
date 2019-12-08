@@ -30,24 +30,24 @@ public class GRNService {
         grn.setStatus(grndto.getStatus());
         grnRepository.save(grn);
         return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
-}
+    }
 
-        //GET ALL GRN
+    //GET ALL GRN
 
-    public ResponseEntity<List<GRN>> getGRN(){
+    public ResponseEntity<List<GRN>> getGRN() {
         List<GRN> grns = grnRepository.findAll();
         return new ResponseEntity<List<GRN>>(grns, HttpStatus.FOUND);
     }
 
     //GET Single GRN by ID
 
-    public ResponseEntity<GRN> getGRNById(Long id){
+    public ResponseEntity<GRN> getGRNById(Long id) {
         GRN grn = grnRepository.findById(id).get();
         return new ResponseEntity<GRN>(grn, HttpStatus.FOUND);
-        }
+    }
 
-        //Update GRN By Id
-    public ResponseEntity<String> updateGRN(Long id, GRNDTO grndto){
+    //Update GRN By Id
+    public ResponseEntity<String> updateGRN(Long id, GRNDTO grndto) {
         GRN grn = grnRepository.findById(id).get();
         grn.setDate(grndto.getDate());
         grn.setDepartmentHead(grndto.getDepartmentHead());

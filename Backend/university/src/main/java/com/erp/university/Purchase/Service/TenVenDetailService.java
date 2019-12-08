@@ -16,9 +16,8 @@ public class TenVenDetailService {
     TenVenRepository tenVenRepository;
 
     //Save
-    public ResponseEntity<String > saveTenVenDetail(TenVenDTO tenVenDTO)
-    {
-        TenVenDetails tenVenDetails=new TenVenDetails();
+    public ResponseEntity<String> saveTenVenDetail(TenVenDTO tenVenDTO) {
+        TenVenDetails tenVenDetails = new TenVenDetails();
         tenVenDetails.setVendorAddress(tenVenDetails.getVendorAddress());
         tenVenDetails.setQuotation(tenVenDTO.getQuotation());
         tenVenDetails.setVendorEmail(tenVenDTO.getVendorEmail());
@@ -30,21 +29,20 @@ public class TenVenDetailService {
     }
 
     //Get all
-    public ResponseEntity<List<TenVenDetails>> getAll(){
+    public ResponseEntity<List<TenVenDetails>> getAllTenVenDetail() {
         List<TenVenDetails> tenVenDetails = tenVenRepository.findAll();
         return new ResponseEntity<List<TenVenDetails>>(tenVenDetails, HttpStatus.FOUND);
     }
 
 
-
     //Get by id
-    public ResponseEntity<TenVenDetails> getById(Long id){
+    public ResponseEntity<TenVenDetails> getTenVenDetailById(Long id) {
         TenVenDetails tenVenDetails = tenVenRepository.findById(id).get();
-        return new ResponseEntity<TenVenDetails>(tenVenDetails,HttpStatus.FOUND);
+        return new ResponseEntity<TenVenDetails>(tenVenDetails, HttpStatus.FOUND);
     }
 
     //update
-    public ResponseEntity<String> update(Long id, TenVenDTO tenVenDTO){
+    public ResponseEntity<String> updateTenVenDetail(Long id, TenVenDTO tenVenDTO) {
         TenVenDetails tenVenDetails = tenVenRepository.findById(id).get();
         tenVenDetails.setQuotation(tenVenDTO.getQuotation());
         tenVenDetails.setVendorAddress(tenVenDTO.getVendorAddress());

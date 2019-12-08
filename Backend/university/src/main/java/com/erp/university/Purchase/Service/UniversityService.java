@@ -15,7 +15,7 @@ public class UniversityService {
     @Autowired
     UniversityRepository universityRepository;
 
-    public ResponseEntity<String> saveUniversity(UniversityDTO universityDTO){
+    public ResponseEntity<String> saveUniversity(UniversityDTO universityDTO) {
         University university = new University();
         university.setName(universityDTO.getName());
         university.setLocation(universityDTO.getLocation());
@@ -23,24 +23,25 @@ public class UniversityService {
         return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
     }
 
-    public ResponseEntity<List<University>> getUniversity(){
+    public ResponseEntity<List<University>> getAllUniversity() {
         List<University> universityList = universityRepository.findAll();
-        return new ResponseEntity<List<University>>(universityList,HttpStatus.FOUND);
+        return new ResponseEntity<List<University>>(universityList, HttpStatus.FOUND);
     }
 
-    public Object getUniversityById(Long id){
+    public Object getUniversityById(Long id) {
         University university;
         try {
-             university = universityRepository.findById(id).get();
+            university = universityRepository.findById(id).get();
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             return new ResponseEntity<String>("No University Found", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<University>(university, HttpStatus.FOUND);
 
     }
-    public ResponseEntity<String> updateUniversity(Long id, UniversityDTO universityDTO){
+
+    public ResponseEntity<String> updateUniversity(Long id, UniversityDTO universityDTO) {
 
         University university = universityRepository.findById(id).get();
         university.setName(universityDTO.getName());

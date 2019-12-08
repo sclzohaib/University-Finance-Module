@@ -12,35 +12,34 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping (value = "/api/authorizeLvl")
+@RequestMapping(value = "/api/authorizeLvl")
 public class AuthorizelvlController {
     @Autowired
     AuthorizelvlService authorizelvlService;
 
     //Post call
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<String> saveAuthorizeLvl( @Valid @RequestBody AuthorizeLvlDTO authorizeLvlDTO)
-    {
+    public ResponseEntity<String> saveAuthorizeLvl(@Valid @RequestBody AuthorizeLvlDTO authorizeLvlDTO) {
         return authorizelvlService.saveAuthorizeLvl(authorizeLvlDTO);
     }
 
 
     //Get all Call
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<AuthorizeLvl>> getAuthorizeLvl(){
+    public ResponseEntity<List<AuthorizeLvl>> getAuthorizeLvl() {
         return authorizelvlService.getAuthorizeLvl();
 
     }
 
     //Get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<AuthorizeLvl> getAuthorizeLvlById( @PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id){
+    public ResponseEntity<AuthorizeLvl> getAuthorizeLvlById(@PathVariable("id") @Min(value = 1, message = "Id must be greater than 1") Long id) {
         return authorizelvlService.getAuthorizeLvlById(id);
     }
 
     //Put call
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateAuthorizeLvl(@PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id, @Valid @RequestBody AuthorizeLvlDTO authorizeLvlDTO){
+    public ResponseEntity<String> updateAuthorizeLvl(@PathVariable("id") @Min(value = 1, message = "Id must be greater than 1") Long id, @Valid @RequestBody AuthorizeLvlDTO authorizeLvlDTO) {
         return authorizelvlService.updateAuthorizeLvl(id, authorizeLvlDTO);
     }
 

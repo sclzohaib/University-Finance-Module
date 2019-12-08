@@ -1,9 +1,5 @@
 package com.erp.university.Purchase.DTO;
 
-import com.erp.university.Purchase.Model.University;
-
-import java.util.List;
-
 public class DepartmentDTO {
     private Long id;
     private String name;

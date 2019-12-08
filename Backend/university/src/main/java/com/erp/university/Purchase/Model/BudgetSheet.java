@@ -1,63 +1,57 @@
 package com.erp.university.Purchase.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.Date;
+
 @Entity
-@Table (name = "budget_sheet")
+@Table(name = "budget_sheet")
 public class BudgetSheet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bs_id_sequence_g")
     @SequenceGenerator(name = "bs_id_sequence_g", sequenceName = "bs_seq")
-    @NotNull (message = "ID can not be null")
-    @NotEmpty (message = "ID can not be empty")
-    @Column (name = "id", unique = true, nullable = false)
+    @NotNull(message = "ID can not be null")
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @NotNull (message = "date can not be null")
-    @NotEmpty (message = "date can not be empty")
-    @NotBlank(message = "date cannot be blank")
-    @PastOrPresent (message = "date can not be of future")
-    @Column (name = "date", nullable = false)
+    @NotNull(message = "date can not be null")
+    @PastOrPresent(message = "date can not be of future")
+    @Column(name = "bs_date", nullable = false)
     private Date date;
 
-    @NotNull (message = "budget allocation  can not be null")
-    @NotEmpty (message = "budget allocation can not be empty")
-    @Positive (message= "budget allocated can neither be zero nor negative")
-    @Column (name = "budget_allocation", nullable = false)
+    @NotNull(message = "budget allocation  can not be null")
+    @Positive(message = "budget allocated can neither be zero nor negative")
+    @Column(name = "budget_allocation", nullable = false)
     private Double budgetAllocation;
 
 
-    @NotNull (message = "upto date expenditure  can not be null")
-    @NotEmpty (message = " upto date expenditure can not be empty")
-    @PositiveOrZero (message= "upto date expenditure can not be negative")
-    @Column (name = "upto_date_exp", nullable = false)
+    @NotNull(message = "upto date expenditure  can not be null")
+    @PositiveOrZero(message = "upto date expenditure can not be negative")
+    @Column(name = "upto_date_exp", nullable = false)
     private Double uptoDateExp;
 
 
-
-    @NotNull (message = "bill amount  can not be null")
-    @NotEmpty (message = " bill amount can not be empty")
-    @Positive (message= "bill amount can neither be zero nor negative")
-    @Column (name = "bill_amount", nullable = false)
+    @NotNull(message = "bill amount  can not be null")
+    @Positive(message = "bill amount can neither be zero nor negative")
+    @Column(name = "bill_amount", nullable = false)
     private Double billAmount;
 
-    @NotNull (message = "total expense  can not be null")
-    @NotEmpty (message = " total expense can not be empty")
-    @PositiveOrZero (message= "total expense can not be negative")
-    @Column (name = "total_exp", nullable = false)
+    @NotNull(message = "total expense  can not be null")
+    @PositiveOrZero(message = "total expense can not be negative")
+    @Column(name = "total_exp", nullable = false)
     private Double totalExpense;
 
     @NotNull(message = "balance available  can not be null")
-    @NotEmpty(message = "balance available  can not be empty")
-    @PositiveOrZero (message= "balance available can not be negative")
-    @Column (name = "balance_available")
+    @PositiveOrZero(message = "balance available can not be negative")
+    @Column(name = "balance_available")
     private Double balanceAvailable;
 
     @NotNull(message = "over expenditure  can not be null")
-    @NotEmpty(message = "over expenditure  can not be empty")
-    @PositiveOrZero (message= "over expenditure can not be negative")
-    @Column (name = "over_exp")
+    @PositiveOrZero(message = "over expenditure can not be negative")
+    @Column(name = "over_exp")
     private Double overExp;
 
     public BudgetSheet() {

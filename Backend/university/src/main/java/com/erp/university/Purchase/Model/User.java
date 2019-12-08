@@ -4,13 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
-@Table (name = "user")
+@Table(name = "app_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_sequence_g")
     @SequenceGenerator(name = "user_id_sequence_g", sequenceName = "user_sequence")
     @NotNull(message = "ID cannot be null")
-    @NotEmpty(message = "ID cannot be empty")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
@@ -49,7 +48,6 @@ public class User {
     private String address;
 
     @NotNull(message = "Contact no  cannot be null")
-    @NotEmpty(message = "Contact no cannot be empty")
     @Size(min = 6, max = 14, message = "Contact Number must be between 12 to 14 characters")
     @Column(name = "contact_no", unique = true, nullable = false)
     private Long contactNo;
