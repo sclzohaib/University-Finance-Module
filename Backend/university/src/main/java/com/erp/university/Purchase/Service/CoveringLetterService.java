@@ -17,26 +17,44 @@ public class CoveringLetterService {
 
     //Save
     public ResponseEntity<String> saveCoveringLetter(CoveringLetterDTO coveringLetterDTO) {
-        CoveringLetter coveringLetter = new CoveringLetter();
-        coveringLetterRepository.save(coveringLetter);
+        try {
+            CoveringLetter coveringLetter = new CoveringLetter();
+            coveringLetterRepository.save(coveringLetter);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
     }
 
     //Get All
-    public ResponseEntity<List<CoveringLetter>> getCoveringLetter() {
-        List<CoveringLetter> coveringLetters = coveringLetterRepository.findAll();
+    public ResponseEntity<?> getCoveringLetter() {
+        List<CoveringLetter> coveringLetters;
+        try {
+            coveringLetters = coveringLetterRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(coveringLetters, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<CoveringLetter> getCoveringLetterById(Long id) {
-        CoveringLetter coveringLetter = coveringLetterRepository.findById(id).get();
+    public ResponseEntity<?> getCoveringLetterById(Long id) {
+        CoveringLetter coveringLetter = null;
+        try {
+            coveringLetter = coveringLetterRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Covering Letter Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(coveringLetter, HttpStatus.FOUND);
     }
 
     //Update
     public ResponseEntity<String> updateCoveringLetter(Long id, CoveringLetterDTO coveringLetterDTO) {
-        CoveringLetter coveringLetter = coveringLetterRepository.findById(id).get();
+        try {
+            CoveringLetter coveringLetter = coveringLetterRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Covering Letter Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 

@@ -17,42 +17,64 @@ public class QuotationDetailService {
 
     //Save Quotation Detail
     public ResponseEntity<String> saveQuotationDetail(QuotationDetailDTO quotationDetailDTO) {
-        QuotationDetail quotationDetail = new QuotationDetail();
-        quotationDetail.setDescription(quotationDetailDTO.getDescription());
-        quotationDetail.setBrand(quotationDetailDTO.getBrand());
-        quotationDetail.setPriceWithGst(quotationDetailDTO.getPriceWithGst());
-        quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
-        quotationDetail.setTotal(quotationDetailDTO.getTotal());
-        quotationDetail.setUnitPrice(quotationDetailDTO.getUnitPrice());
-        quotationDetailRepository.save(quotationDetail);
+        try {
+            QuotationDetail quotationDetail = new QuotationDetail();
+            quotationDetail.setDescription(quotationDetailDTO.getDescription());
+            quotationDetail.setBrand(quotationDetailDTO.getBrand());
+            quotationDetail.setPriceWithGst(quotationDetailDTO.getPriceWithGst());
+            quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
+            quotationDetail.setTotal(quotationDetailDTO.getTotal());
+            quotationDetail.setUnitPrice(quotationDetailDTO.getUnitPrice());
+            quotationDetailRepository.save(quotationDetail);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
 
 
     }
 
     //Get all quotation details
-    public ResponseEntity<List<QuotationDetail>> getAllQuotationDetail() {
-        List<QuotationDetail> quotationDetails = quotationDetailRepository.findAll();
+    public ResponseEntity<?> getAllQuotationDetail() {
+        List<QuotationDetail> quotationDetails;
+        try {
+            quotationDetails = quotationDetailRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(quotationDetails, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<QuotationDetail> getQuotationDetailById(Long id) {
-        QuotationDetail quotationDetail = quotationDetailRepository.findById(id).get();
+    public ResponseEntity<?> getQuotationDetailById(Long id) {
+        QuotationDetail quotationDetail;
+        try {
+            quotationDetail = quotationDetailRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Quotation Detail Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(quotationDetail, HttpStatus.FOUND);
 
     }
 
     //Update Quotation Detail
     public ResponseEntity<String> updateQuotationDetail(Long id, QuotationDetailDTO quotationDetailDTO) {
-        QuotationDetail quotationDetail = quotationDetailRepository.findById(id).get();
-        quotationDetail.setBrand(quotationDetailDTO.getBrand());
-        quotationDetail.setDescription(quotationDetailDTO.getDescription());
-        quotationDetail.setPriceWithGst(quotationDetailDTO.getPriceWithGst());
-        quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
-        quotationDetail.setTotal(quotationDetail.getTotal());
-        quotationDetail.setUnitPrice(quotationDetail.getUnitPrice());
-        quotationDetailRepository.save(quotationDetail);
+        try {
+            QuotationDetail quotationDetail = quotationDetailRepository.findById(id).get();
+            quotationDetail.setBrand(quotationDetailDTO.getBrand());
+            quotationDetail.setDescription(quotationDetailDTO.getDescription());
+            quotationDetail.setPriceWithGst(quotationDetailDTO.getPriceWithGst());
+            quotationDetail.setQuantity(quotationDetailDTO.getQuantity());
+            quotationDetail.setTotal(quotationDetail.getTotal());
+            quotationDetail.setUnitPrice(quotationDetail.getUnitPrice());
+            try {
+                quotationDetailRepository.save(quotationDetail);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Quotation Detail Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

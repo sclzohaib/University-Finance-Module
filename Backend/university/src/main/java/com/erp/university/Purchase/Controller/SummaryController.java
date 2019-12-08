@@ -1,7 +1,6 @@
 package com.erp.university.Purchase.Controller;
 
 import com.erp.university.Purchase.DTO.SummaryDTO;
-import com.erp.university.Purchase.Model.Summary;
 import com.erp.university.Purchase.Service.SummaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/summary")
@@ -25,13 +23,13 @@ public class SummaryController {
 
     //Get all
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<Summary>> getAllSummary() {
+    public ResponseEntity<?> getAllSummary() {
         return summaryService.getAllSummary();
     }
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Summary> getSummaryById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+    public ResponseEntity<?> getSummaryById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
         return summaryService.getSummaryById(id);
     }
 

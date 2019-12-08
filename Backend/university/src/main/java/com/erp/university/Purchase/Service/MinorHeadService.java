@@ -17,33 +17,55 @@ public class MinorHeadService {
 
     //Save
     public ResponseEntity<String> saveMinorHead(MinorHeadDTO minorHeadDTO) {
-        MinorHead minorHead = new MinorHead();
-        minorHead.setCodeNo(minorHeadDTO.getCodeNo());
-        minorHead.setName(minorHeadDTO.getName());
-        minorHeadRepository.save(minorHead);
+        try {
+            MinorHead minorHead = new MinorHead();
+            minorHead.setCodeNo(minorHeadDTO.getCodeNo());
+            minorHead.setName(minorHeadDTO.getName());
+            minorHeadRepository.save(minorHead);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Succesfully", HttpStatus.CREATED);
 
     }
 
     //Get all
-    public ResponseEntity<List<MinorHead>> getAllMinorHead() {
-        List<MinorHead> minorHeads = minorHeadRepository.findAll();
+    public ResponseEntity<?> getAllMinorHead() {
+        List<MinorHead> minorHeads;
+        try {
+            minorHeads = minorHeadRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(minorHeads, HttpStatus.FOUND);
     }
 
     //Get by id
-    public ResponseEntity<MinorHead> getMinorHeadById(Long id) {
-        MinorHead minorHead = minorHeadRepository.findById(id).get();
+    public ResponseEntity<?> getMinorHeadById(Long id) {
+        MinorHead minorHead;
+        try {
+            minorHead = minorHeadRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Minor Head Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(minorHead, HttpStatus.FOUND);
 
     }
 
     //Update
     public ResponseEntity<String> updateMinorHead(Long id, MinorHeadDTO minorHeadDTO) {
-        MinorHead minorHead = minorHeadRepository.findById(id).get();
-        minorHead.setCodeNo(minorHeadDTO.getCodeNo());
-        minorHead.setName(minorHeadDTO.getName());
-        minorHeadRepository.save(minorHead);
+        try {
+            MinorHead minorHead = minorHeadRepository.findById(id).get();
+            minorHead.setCodeNo(minorHeadDTO.getCodeNo());
+            minorHead.setName(minorHeadDTO.getName());
+            try {
+                minorHeadRepository.save(minorHead);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Minor Head Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.FOUND);
     }
 }

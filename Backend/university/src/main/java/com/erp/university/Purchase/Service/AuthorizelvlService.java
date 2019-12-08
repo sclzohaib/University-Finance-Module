@@ -18,29 +18,51 @@ public class AuthorizelvlService {
 
     //Save Authorize Level
     public ResponseEntity<String> saveAuthorizeLvl(AuthorizeLvlDTO authorizeLvlDTO) {
-        AuthorizeLvl authorizeLvl = new AuthorizeLvl();
-        authorizeLvl.setLvlNo(authorizeLvlDTO.getLvlNo());
-        authorizeLvlRepository.save(authorizeLvl);
+        try {
+            AuthorizeLvl authorizeLvl = new AuthorizeLvl();
+            authorizeLvl.setLvlNo(authorizeLvlDTO.getLvlNo());
+            authorizeLvlRepository.save(authorizeLvl);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Succesfully", HttpStatus.CREATED);
     }
 
     //Get all authorize level
-    public ResponseEntity<List<AuthorizeLvl>> getAuthorizeLvl() {
-        List<AuthorizeLvl> authorizeLvls = authorizeLvlRepository.findAll();
+    public ResponseEntity<?> getAuthorizeLvl() {
+        List<AuthorizeLvl> authorizeLvls;
+        try {
+            authorizeLvls = authorizeLvlRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(authorizeLvls, HttpStatus.FOUND);
     }
 
     //Get by id
-    public ResponseEntity<AuthorizeLvl> getAuthorizeLvlById(Long id) {
-        AuthorizeLvl authorizeLvl = authorizeLvlRepository.findById(id).get();
+    public ResponseEntity<?> getAuthorizeLvlById(Long id) {
+        AuthorizeLvl authorizeLvl;
+        try {
+            authorizeLvl = authorizeLvlRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Authorize Level not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(authorizeLvl, HttpStatus.FOUND);
     }
 
     //Update Authorized Level
     public ResponseEntity<String> updateAuthorizeLvl(Long id, AuthorizeLvlDTO authorizeLvlDTO) {
-        AuthorizeLvl authorizeLvl = authorizeLvlRepository.findById(id).get();
-        authorizeLvl.setLvlNo(authorizeLvlDTO.getLvlNo());
-        authorizeLvlRepository.save(authorizeLvl);
+        try {
+            AuthorizeLvl authorizeLvl = authorizeLvlRepository.findById(id).get();
+            authorizeLvl.setLvlNo(authorizeLvlDTO.getLvlNo());
+            try {
+                authorizeLvlRepository.save(authorizeLvl);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Authorize Level not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 

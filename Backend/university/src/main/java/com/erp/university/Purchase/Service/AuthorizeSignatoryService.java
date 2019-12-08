@@ -18,29 +18,52 @@ public class AuthorizeSignatoryService {
     //Save
     public ResponseEntity<String> saveAuthorizedSignatory(AuthorizeSignatoryDTO authorizedSignatoryDTO) {
 
-        AuthorizeSignatory authorizeSignatory = new AuthorizeSignatory();
-        authorizeSignatory.setLvlId(authorizedSignatoryDTO.getLvlId());
-        authorizeSignatoryRepository.save(authorizeSignatory);
+        try {
+            AuthorizeSignatory authorizeSignatory = new AuthorizeSignatory();
+            authorizeSignatory.setLvlId(authorizedSignatoryDTO.getLvlId());
+            authorizeSignatoryRepository.save(authorizeSignatory);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
     }
 
     //Get all
-    public ResponseEntity<List<AuthorizeSignatory>> getAuthorizeSignatory() {
-        List<AuthorizeSignatory> authorizeSignatories = authorizeSignatoryRepository.findAll();
+    public ResponseEntity<?> getAuthorizeSignatory() {
+        List<AuthorizeSignatory> authorizeSignatories;
+        try {
+            authorizeSignatories = authorizeSignatoryRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(authorizeSignatories, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<AuthorizeSignatory> getAuthorizeSignatoryById(Long id) {
-        AuthorizeSignatory authorizeSignatory = authorizeSignatoryRepository.findById(id).get();
+    public ResponseEntity<?> getAuthorizeSignatoryById(Long id) {
+        AuthorizeSignatory authorizeSignatory;
+        try {
+            authorizeSignatory = authorizeSignatoryRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Authorize Signatory not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(authorizeSignatory, HttpStatus.FOUND);
 
     }
 
     //Update
     public ResponseEntity<String> updateAuthorizeSignatory(Long id, AuthorizeSignatoryDTO authorizeSignatoryDTO) {
-        AuthorizeSignatory authorizeSignatory = authorizeSignatoryRepository.findById(id).get();
-        authorizeSignatory.setLvlId(authorizeSignatoryDTO.getLvlId());
+        try {
+            AuthorizeSignatory authorizeSignatory = authorizeSignatoryRepository.findById(id).get();
+            authorizeSignatory.setLvlId(authorizeSignatoryDTO.getLvlId());
+            try {
+                authorizeSignatoryRepository.save(authorizeSignatory);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went worng", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Authorize Signatory not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 

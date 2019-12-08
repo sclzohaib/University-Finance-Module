@@ -1,7 +1,6 @@
 package com.erp.university.Purchase.Controller;
 
 import com.erp.university.Purchase.DTO.QuotationDetailDTO;
-import com.erp.university.Purchase.Model.QuotationDetail;
 import com.erp.university.Purchase.Service.QuotationDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/quotationDetail")
@@ -26,13 +24,13 @@ public class QuotationDetailController {
 
     //Get Call for all Quotation Detail
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<QuotationDetail>> getAllQuotationDetail() {
+    public ResponseEntity<?> getAllQuotationDetail() {
         return quotationDetailService.getAllQuotationDetail();
     }
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<QuotationDetail> getQuotationDetailById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+    public ResponseEntity<?> getQuotationDetailById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
         return quotationDetailService.getQuotationDetailById(id);
     }
 

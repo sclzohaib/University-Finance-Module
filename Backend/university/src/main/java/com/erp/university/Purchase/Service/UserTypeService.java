@@ -17,29 +17,52 @@ public class UserTypeService {
 
     //Save
     public ResponseEntity<String> saveUserType(UserTypeDTO userTypeDTO) {
-        UserType userType = new UserType();
-        userType.setUserType(userTypeDTO.getUserType());
-        userTypeRepository.save(userType);
+        try {
+            UserType userType = new UserType();
+            userType.setUserType(userTypeDTO.getUserType());
+            userTypeRepository.save(userType);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get All
-    public ResponseEntity<List<UserType>> getAllUserType() {
-        List<UserType> userTypes = userTypeRepository.findAll();
+    public ResponseEntity<?> getAllUserType() {
+        List<UserType> userTypes;
+        try {
+            userTypes = userTypeRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(userTypes, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<UserType> getUserTypeById(Long id) {
-        UserType userType = userTypeRepository.findById(id).get();
+    public ResponseEntity<?> getUserTypeById(Long id) {
+        UserType userType;
+        try {
+            userType = userTypeRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("User Type not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(userType, HttpStatus.FOUND);
     }
 
     //Update
     public ResponseEntity<String> updateUserType(Long id, UserTypeDTO userTypeDTO) {
-        UserType userType = userTypeRepository.findById(id).get();
-        userType.setUserType(userTypeDTO.getUserType());
+        try {
+            UserType userType = userTypeRepository.findById(id).get();
+            userType.setUserType(userTypeDTO.getUserType());
+            try {
+                userTypeRepository.save(userType);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("User Type not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

@@ -17,39 +17,61 @@ public class VendorService {
 
     //Save
     public ResponseEntity<String> saveVendor(VendorDTO vendorDTO) {
-        Vendor vendor = new Vendor();
-        vendor.settDate(vendorDTO.gettDate());
-        vendor.setTel(vendorDTO.getTel());
-        vendor.settLastDate(vendorDTO.gettLastDate());
-        vendor.settQuotationAmount(vendorDTO.gettQuotationAmount());
-        vendor.setvName(vendorDTO.getvName());
-        vendorRepository.save(vendor);
+        try {
+            Vendor vendor = new Vendor();
+            vendor.settDate(vendorDTO.gettDate());
+            vendor.setTel(vendorDTO.getTel());
+            vendor.settLastDate(vendorDTO.gettLastDate());
+            vendor.settQuotationAmount(vendorDTO.gettQuotationAmount());
+            vendor.setvName(vendorDTO.getvName());
+            vendorRepository.save(vendor);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get All
-    public ResponseEntity<List<Vendor>> getAllVendor() {
-        List<Vendor> vendors = vendorRepository.findAll();
+    public ResponseEntity<?> getAllVendor() {
+        List<Vendor> vendors;
+        try {
+            vendors = vendorRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(vendors, HttpStatus.FOUND);
 
     }
 
     //Get By id
-    public ResponseEntity<Vendor> getVendorById(Long id) {
-        Vendor vendor = vendorRepository.findById(id).get();
+    public ResponseEntity<?> getVendorById(Long id) {
+        Vendor vendor;
+        try {
+            vendor = vendorRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Vendor Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(vendor, HttpStatus.FOUND);
     }
 
     //Update
     public ResponseEntity<String> updateVendor(Long id, VendorDTO vendorDTO) {
-        Vendor vendor = vendorRepository.findById(id).get();
-        vendor.settDate(vendorDTO.gettDate());
-        vendor.setTel(vendorDTO.getTel());
-        vendor.settLastDate(vendorDTO.gettLastDate());
-        vendor.settQuotationAmount(vendorDTO.gettQuotationAmount());
-        vendor.setvName(vendorDTO.getvName());
-        vendorRepository.save(vendor);
+        try {
+            Vendor vendor = vendorRepository.findById(id).get();
+            vendor.settDate(vendorDTO.gettDate());
+            vendor.setTel(vendorDTO.getTel());
+            vendor.settLastDate(vendorDTO.gettLastDate());
+            vendor.settQuotationAmount(vendorDTO.gettQuotationAmount());
+            vendor.setvName(vendorDTO.getvName());
+            try {
+                vendorRepository.save(vendor);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Vendor Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

@@ -1,7 +1,6 @@
 package com.erp.university.Purchase.Controller;
 
 import com.erp.university.Purchase.DTO.GRNDTO;
-import com.erp.university.Purchase.Model.GRN;
 import com.erp.university.Purchase.Service.GRNService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/grn")
@@ -26,14 +24,14 @@ public class GRNController {
 
     //GET GRN (GET CALL)
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<GRN>> getGRN() {
+    public ResponseEntity<?> getGRN() {
         return grnService.getGRN();
     }
 
 
     //Get GRN By ID
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<GRN> getGRNById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+    public ResponseEntity<?> getGRNById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
         return grnService.getGRNById(id);
     }
 

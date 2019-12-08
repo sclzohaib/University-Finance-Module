@@ -1,7 +1,6 @@
 package com.erp.university.Purchase.Controller;
 
 import com.erp.university.Purchase.DTO.TenVenDTO;
-import com.erp.university.Purchase.Model.TenVenDetails;
 import com.erp.university.Purchase.Service.TenVenDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/tenVenDetails")
@@ -25,13 +23,13 @@ public class TenVenDetailsController {
 
     //Get All
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<TenVenDetails>> getAllTenVenDetail() {
+    public ResponseEntity<?> getAllTenVenDetail() {
         return tenVenDetailService.getAllTenVenDetail();
     }
 
     //Get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<TenVenDetails> getTenVenDetailById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+    public ResponseEntity<?> getTenVenDetailById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
         return tenVenDetailService.getTenVenDetailById(id);
     }
 

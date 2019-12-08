@@ -1,7 +1,6 @@
 package com.erp.university.Purchase.Controller;
 
 import com.erp.university.Purchase.DTO.UserTypeDTO;
-import com.erp.university.Purchase.Model.UserType;
 import com.erp.university.Purchase.Service.UserTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/userType")
@@ -25,13 +23,13 @@ public class UserTypeController {
 
     //Get All
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<UserType>> getAllUserType() {
+    public ResponseEntity<?> getAllUserType() {
         return userTypeService.getAllUserType();
     }
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<UserType> getUserTypeById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+    public ResponseEntity<?> getUserTypeById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
         return userTypeService.getUserTypeById(id);
     }
 

@@ -18,36 +18,60 @@ public class ApplicationService {
 
     //Save Application
     public ResponseEntity<String> saveApplication(ApplicationDTO applicationDTO) {
-        Application application = new Application();
-        application.setAssociatePerson(applicationDTO.getAssociatePerson());
-        application.setDate(new Date());
-        application.setStatus(applicationDTO.getStatus());
-        application.setSubject(applicationDTO.getSubject());
-        applicationRepository.save(application);
+
+        try {
+            Application application = new Application();
+            application.setAssociatePerson(applicationDTO.getAssociatePerson());
+            application.setDate(new Date());
+            application.setStatus(applicationDTO.getStatus());
+            application.setSubject(applicationDTO.getSubject());
+            applicationRepository.save(application);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
         return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get all Applications
-    public ResponseEntity<List<Application>> getApplication() {
-        List<Application> applications = applicationRepository.findAll();
+    public ResponseEntity<?> getApplication() {
+        List<Application> applications;
+        try {
+            applications = applicationRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(applications, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<Application> getApplicationById(Long id) {
-        Application application = applicationRepository.findById(id).get();
+    public ResponseEntity<?> getApplicationById(Long id) {
+        Application application;
+        try {
+            application = applicationRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Application not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(application, HttpStatus.FOUND);
     }
 
     //Update Application
     public ResponseEntity<String> updateApplication(Long id, ApplicationDTO applicationDTO) {
-        Application application = applicationRepository.findById(id).get();
-        application.setAssociatePerson(applicationDTO.getAssociatePerson());
-        application.setDate(applicationDTO.getDate());
-        application.setStatus(applicationDTO.getStatus());
-        application.setSubject(applicationDTO.getSubject());
-        applicationRepository.save(application);
+        try {
+            Application application = applicationRepository.findById(id).get();
+            application.setAssociatePerson(applicationDTO.getAssociatePerson());
+            application.setDate(applicationDTO.getDate());
+            application.setStatus(applicationDTO.getStatus());
+            application.setSubject(applicationDTO.getSubject());
+            try {
+                applicationRepository.save(application);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Application not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 
