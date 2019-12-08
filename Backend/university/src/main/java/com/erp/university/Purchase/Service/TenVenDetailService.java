@@ -24,21 +24,21 @@ public class TenVenDetailService {
         tenVenDetails.setVendorNic(tenVenDTO.getVendorNic());
         tenVenDetails.setVenNtn(tenVenDTO.getVenNtn());
         tenVenRepository.save(tenVenDetails);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get all
     public ResponseEntity<List<TenVenDetails>> getAllTenVenDetail() {
         List<TenVenDetails> tenVenDetails = tenVenRepository.findAll();
-        return new ResponseEntity<List<TenVenDetails>>(tenVenDetails, HttpStatus.FOUND);
+        return new ResponseEntity<>(tenVenDetails, HttpStatus.FOUND);
     }
 
 
     //Get by id
     public ResponseEntity<TenVenDetails> getTenVenDetailById(Long id) {
         TenVenDetails tenVenDetails = tenVenRepository.findById(id).get();
-        return new ResponseEntity<TenVenDetails>(tenVenDetails, HttpStatus.FOUND);
+        return new ResponseEntity<>(tenVenDetails, HttpStatus.FOUND);
     }
 
     //update
@@ -50,6 +50,6 @@ public class TenVenDetailService {
         tenVenDetails.setVendorNic(tenVenDTO.getVendorNic());
         tenVenDetails.setVenNtn(tenVenDTO.getVenNtn());
         tenVenRepository.save(tenVenDetails);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

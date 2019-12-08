@@ -25,20 +25,20 @@ public class PaymentVoucherService {
         paymentVoucher.setPaymentVoucherNo(paymentVoucherDTO.getPaymentVoucherNo());
         paymentVoucher.setPayeeName(paymentVoucherDTO.getPayeeName());
         paymentVoucherRepository.save(paymentVoucher);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get All
     public ResponseEntity<List<PaymentVoucher>> getAllPaymentVoucher() {
         List<PaymentVoucher> paymentVouchers = paymentVoucherRepository.findAll();
-        return new ResponseEntity<List<PaymentVoucher>>(paymentVouchers, HttpStatus.FOUND);
+        return new ResponseEntity<>(paymentVouchers, HttpStatus.FOUND);
     }
 
     //Get by id
     public ResponseEntity<PaymentVoucher> getPaymentVoucherById(Long id) {
         PaymentVoucher paymentVoucher = paymentVoucherRepository.findById(id).get();
-        return new ResponseEntity<PaymentVoucher>(paymentVoucher, HttpStatus.FOUND);
+        return new ResponseEntity<>(paymentVoucher, HttpStatus.FOUND);
 
     }
 
@@ -52,6 +52,6 @@ public class PaymentVoucherService {
         paymentVoucher.setPayeeName(paymentVoucherDTO.getPayeeName());
         paymentVoucher.setPaymentVoucherNo(paymentVoucherDTO.getPaymentVoucherNo());
         paymentVoucherRepository.save(paymentVoucher);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

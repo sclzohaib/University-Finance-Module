@@ -25,7 +25,7 @@ public class QuotationDetailService {
         quotationDetail.setTotal(quotationDetailDTO.getTotal());
         quotationDetail.setUnitPrice(quotationDetailDTO.getUnitPrice());
         quotationDetailRepository.save(quotationDetail);
-        return new ResponseEntity<String>("Added successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
 
 
     }
@@ -33,13 +33,13 @@ public class QuotationDetailService {
     //Get all quotation details
     public ResponseEntity<List<QuotationDetail>> getAllQuotationDetail() {
         List<QuotationDetail> quotationDetails = quotationDetailRepository.findAll();
-        return new ResponseEntity<List<QuotationDetail>>(quotationDetails, HttpStatus.FOUND);
+        return new ResponseEntity<>(quotationDetails, HttpStatus.FOUND);
     }
 
     //Get By id
     public ResponseEntity<QuotationDetail> getQuotationDetailById(Long id) {
         QuotationDetail quotationDetail = quotationDetailRepository.findById(id).get();
-        return new ResponseEntity<QuotationDetail>(quotationDetail, HttpStatus.FOUND);
+        return new ResponseEntity<>(quotationDetail, HttpStatus.FOUND);
 
     }
 
@@ -53,6 +53,6 @@ public class QuotationDetailService {
         quotationDetail.setTotal(quotationDetail.getTotal());
         quotationDetail.setUnitPrice(quotationDetail.getUnitPrice());
         quotationDetailRepository.save(quotationDetail);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

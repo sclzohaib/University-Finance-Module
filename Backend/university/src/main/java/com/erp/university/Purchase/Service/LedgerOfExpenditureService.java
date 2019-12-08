@@ -24,19 +24,19 @@ public class LedgerOfExpenditureService {
         ledgerOfExpenditure.setDebitAmount(ledgerOfExpenditureDTO.getDebitAmount());
         ledgerOfExpenditure.setParticulars(ledgerOfExpenditureDTO.getParticulars());
         ledgerOfExpenditureRepository.save(ledgerOfExpenditure);
-        return new ResponseEntity<String>("Added Succesfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Succesfully", HttpStatus.CREATED);
     }
 
     //Get All
     public ResponseEntity<List<LedgerOfExpenditure>> getLOE() {
         List<LedgerOfExpenditure> ledgerOfExpenditures = ledgerOfExpenditureRepository.findAll();
-        return new ResponseEntity<List<LedgerOfExpenditure>>(ledgerOfExpenditures, HttpStatus.FOUND);
+        return new ResponseEntity<>(ledgerOfExpenditures, HttpStatus.FOUND);
     }
 
     //Get By id
     public ResponseEntity<LedgerOfExpenditure> getLOEById(Long id) {
         LedgerOfExpenditure ledgerOfExpenditure = ledgerOfExpenditureRepository.findById(id).get();
-        return new ResponseEntity<LedgerOfExpenditure>(ledgerOfExpenditure, HttpStatus.FOUND);
+        return new ResponseEntity<>(ledgerOfExpenditure, HttpStatus.FOUND);
     }
 
     //Update

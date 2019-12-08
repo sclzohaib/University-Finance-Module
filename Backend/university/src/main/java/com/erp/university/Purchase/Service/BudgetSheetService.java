@@ -26,19 +26,19 @@ public class BudgetSheetService {
         budgetSheet.setUptoDateExp(budgetSheetDTO.getUptoDateExp());
         budgetSheet.setDate(budgetSheetDTO.getDate());
         budgetSheetRepository.save(budgetSheet);
-        return new ResponseEntity<String>("Addded Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Addded Successfully", HttpStatus.CREATED);
     }
 
     //Get All
     public ResponseEntity<List<BudgetSheet>> getBudgetSheet() {
         List<BudgetSheet> budgetSheets = budgetSheetRepository.findAll();
-        return new ResponseEntity<List<BudgetSheet>>(budgetSheets, HttpStatus.FOUND);
+        return new ResponseEntity<>(budgetSheets, HttpStatus.FOUND);
     }
 
     //Get by id
     public ResponseEntity<BudgetSheet> getBudgetSheetById(Long id) {
         BudgetSheet budgetSheet = budgetSheetRepository.findById(id).get();
-        return new ResponseEntity<BudgetSheet>(budgetSheet, HttpStatus.FOUND);
+        return new ResponseEntity<>(budgetSheet, HttpStatus.FOUND);
     }
 
     //Update

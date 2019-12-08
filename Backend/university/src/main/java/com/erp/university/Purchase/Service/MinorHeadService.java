@@ -21,20 +21,20 @@ public class MinorHeadService {
         minorHead.setCodeNo(minorHeadDTO.getCodeNo());
         minorHead.setName(minorHeadDTO.getName());
         minorHeadRepository.save(minorHead);
-        return new ResponseEntity<String>("Added Succesfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Succesfully", HttpStatus.CREATED);
 
     }
 
     //Get all
     public ResponseEntity<List<MinorHead>> getAllMinorHead() {
         List<MinorHead> minorHeads = minorHeadRepository.findAll();
-        return new ResponseEntity<List<MinorHead>>(minorHeads, HttpStatus.FOUND);
+        return new ResponseEntity<>(minorHeads, HttpStatus.FOUND);
     }
 
     //Get by id
     public ResponseEntity<MinorHead> getMinorHeadById(Long id) {
         MinorHead minorHead = minorHeadRepository.findById(id).get();
-        return new ResponseEntity<MinorHead>(minorHead, HttpStatus.FOUND);
+        return new ResponseEntity<>(minorHead, HttpStatus.FOUND);
 
     }
 
@@ -44,6 +44,6 @@ public class MinorHeadService {
         minorHead.setCodeNo(minorHeadDTO.getCodeNo());
         minorHead.setName(minorHeadDTO.getName());
         minorHeadRepository.save(minorHead);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.FOUND);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.FOUND);
     }
 }
