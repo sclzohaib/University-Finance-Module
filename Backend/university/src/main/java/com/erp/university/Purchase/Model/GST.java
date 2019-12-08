@@ -9,9 +9,8 @@ import javax.validation.constraints.NotNull;
 @Table (name = "gst")
 public class GST {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "gst_seq")
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gst_id_sequence_g")
+    @SequenceGenerator(name = "gst_id_sequence_g", sequenceName = "gst_seq")
     @NotNull(message = "GST ID cannot be null")
     @NotEmpty(message = "GST ID cannot be empty")
     @Column (name = "id",unique = true,nullable = false)
@@ -20,7 +19,7 @@ public class GST {
     @NotNull(message = "Percent cannot be null")
     @NotEmpty(message = "Percent cannot be empty")
     @NotBlank(message = "Percent cannot be blank")
-    @Column (name = "id",unique = false,nullable = false)
+    @Column (name = "id",nullable = false)
     private Double percent;
 
     public GST() {

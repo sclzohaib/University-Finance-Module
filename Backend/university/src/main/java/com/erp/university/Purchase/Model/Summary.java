@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 @Table(name="Summary")
 public class Summary {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "summary_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "summary_id_sequence_g")
+    @SequenceGenerator(name = "summary_id_sequence_g", sequenceName = "summary_seq")
     @NotNull(message = "Summary ID cannot be null")
     @NotEmpty(message = "Summary ID cannot be empty")
     @NotBlank(message = "Summary ID cannot be blank")

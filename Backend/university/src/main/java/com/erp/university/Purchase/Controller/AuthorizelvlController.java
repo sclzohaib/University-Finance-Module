@@ -18,7 +18,7 @@ public class AuthorizelvlController {
     AuthorizelvlService authorizelvlService;
 
     //Post call
-    @RequestMapping(value = "/n", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<String> saveAuthorizeLvl( @Valid @RequestBody AuthorizeLvlDTO authorizeLvlDTO)
     {
         return authorizelvlService.saveAuthorizeLvl(authorizeLvlDTO);
@@ -40,7 +40,7 @@ public class AuthorizelvlController {
 
     //Put call
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateAuthorizeLvl(@PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id, @RequestBody AuthorizeLvlDTO authorizeLvlDTO){
+    public ResponseEntity<String> updateAuthorizeLvl(@PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id, @Valid @RequestBody AuthorizeLvlDTO authorizeLvlDTO){
         return authorizelvlService.updateAuthorizeLvl(id, authorizeLvlDTO);
     }
 

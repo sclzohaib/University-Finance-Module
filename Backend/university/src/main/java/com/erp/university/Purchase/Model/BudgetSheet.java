@@ -4,11 +4,11 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 @Entity
-@Table (name = "BudgetSheet")
+@Table (name = "budget_sheet")
 public class BudgetSheet {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "bs_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bs_id_sequence_g")
+    @SequenceGenerator(name = "bs_id_sequence_g", sequenceName = "bs_seq")
     @NotNull (message = "ID can not be null")
     @NotEmpty (message = "ID can not be empty")
     @Column (name = "id", unique = true, nullable = false)
@@ -16,6 +16,7 @@ public class BudgetSheet {
 
     @NotNull (message = "date can not be null")
     @NotEmpty (message = "date can not be empty")
+    @NotBlank(message = "date cannot be blank")
     @PastOrPresent (message = "date can not be of future")
     @Column (name = "date", nullable = false)
     private Date date;
@@ -47,13 +48,16 @@ public class BudgetSheet {
     @Column (name = "total_exp", nullable = false)
     private Double totalExpense;
 
-
+    @NotNull(message = "balance available  can not be null")
+    @NotEmpty(message = "balance available  can not be empty")
     @PositiveOrZero (message= "balance available can not be negative")
-    @Column (name = "balance_available", nullable = true)
+    @Column (name = "balance_available")
     private Double balanceAvailable;
 
+    @NotNull(message = "over expenditure  can not be null")
+    @NotEmpty(message = "over expenditure  can not be empty")
     @PositiveOrZero (message= "over expenditure can not be negative")
-    @Column (name = "over_exp", nullable = true)
+    @Column (name = "over_exp")
     private Double overExp;
 
     public BudgetSheet() {

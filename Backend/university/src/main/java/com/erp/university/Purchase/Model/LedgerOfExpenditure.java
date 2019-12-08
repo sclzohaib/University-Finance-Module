@@ -10,9 +10,8 @@ import java.util.Date;
 @Table (name = "ledger_of_expenditure")
 public class LedgerOfExpenditure {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "loe_seq")
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loe_id_sequence_g")
+    @SequenceGenerator(name = "loe_id_sequence_g", sequenceName = "loe_seq")
     @NotNull(message = "Ledger of expendidure ID cannot be null")
     @NotEmpty(message = "Ledger of expendidure ID cannot be empty")
     @Column(name = "id",unique = true,nullable = false)
@@ -21,25 +20,25 @@ public class LedgerOfExpenditure {
     @NotNull(message = "Particulars cannot be null")
     @NotEmpty(message = "Particulars cannot be empty")
     @NotBlank(message = "Particulars cannot be blank")
-    @Column(name = "particulars",unique = false,nullable = false)
+    @Column(name = "particulars",nullable = false)
     private  String particulars;
 
     @NotNull(message = "Debit amount cannot be null")
     @NotEmpty(message = "Debit amount cannot be empty")
     @NotBlank(message = "Debit amount cannot be blank")
-    @Column(name = "debit_amount",unique = false, nullable = false)
+    @Column(name = "debit_amount", nullable = false)
     private Double debitAmount;
 
     @NotNull(message = "Balance cannot be null")
     @NotEmpty(message = "Balance cannot be empty")
     @NotBlank(message = "Balance cannot be blank")
-    @Column(name = "balance",unique = false,nullable = false)
+    @Column(name = "balance",nullable = false)
     private Double balance;
 
     @NotNull(message = "Date cannot be null")
     @NotEmpty(message = "Date cannot be empty")
     @NotBlank(message = "Date cannot be blank")
-    @Column(name = "date",unique = false,nullable = false)
+    @Column(name = "date",nullable = false)
     private Date date;
 
     public LedgerOfExpenditure() {

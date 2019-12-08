@@ -5,7 +5,6 @@ import com.erp.university.Purchase.Model.BudgetSheet;
 import com.erp.university.Purchase.Service.BudgetSheetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,7 +19,7 @@ public class BudgetSheetController {
 
     //Post
     @RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveBudgetSheet(BudgetSheetDTO budgetSheetDTO)
+    public ResponseEntity<String> saveBudgetSheet(@Valid @RequestBody BudgetSheetDTO budgetSheetDTO)
     {
         return budgetSheetService.savebudgetSheet(budgetSheetDTO);
     }
@@ -30,12 +29,12 @@ public class BudgetSheetController {
         return budgetSheetService.getBudgetSheet();
     }
     //Get By id
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<BudgetSheet> getBudgetSheetById(@PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id){
         return budgetSheetService.getBudgetSheetById(id);
     }
     //Update
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateBudgetSheet(@PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id, @Valid  @RequestBody BudgetSheetDTO budgetSheetDTO){
         return budgetSheetService.updateBudgetSheet(id, budgetSheetDTO);
     }

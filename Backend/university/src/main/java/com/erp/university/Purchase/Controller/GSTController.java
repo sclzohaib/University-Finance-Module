@@ -37,8 +37,8 @@ public class GSTController {
     }
 
     //Update
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateGst(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1")  Long id, @RequestBody GSTDTO gstdto){
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<String> updateGst(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1")  Long id,@Valid @RequestBody GSTDTO gstdto){
         return gstService.updateGst(id,gstdto);
     }
 }

@@ -5,11 +5,11 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
-@Table(name = "tenvendetails")
+@Table(name = "ten_ven_details")
 public class TenVenDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "ten_ven_details_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tv_id_sequence_g")
+    @SequenceGenerator(name = "tv_id_sequence_g", sequenceName = "ten_ven_details_seq")
     @NotNull(message = "ID cannot be null")
     @NotEmpty(message = "ID cannot be empty")
     @Column(name = "id", unique = true, nullable = false)

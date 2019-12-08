@@ -19,7 +19,7 @@ public class UserController {
 
     //Post
     @RequestMapping(value = "/", method = RequestMethod.POST)
-            public ResponseEntity<String> saveUser(UserDTO userDTO)
+            public ResponseEntity<String> saveUser(@Valid @RequestBody UserDTO userDTO)
     {
         return userService.saveUser(userDTO);
     }

@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
 @Table (name = "covering_letter")
 public class CoveringLetter {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "cl_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cl_id_sequence_g")
+    @SequenceGenerator(name = "cl_id_sequence_g", sequenceName = "cl_seq")
     @NotNull (message = "ID can not be null")
     @NotEmpty(message = "ID can not be empty")
     @Column (name = "id", unique = true, nullable = false)

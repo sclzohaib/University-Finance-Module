@@ -5,7 +5,6 @@ import com.erp.university.Purchase.Model.LedgerOfExpenditure;
 import com.erp.university.Purchase.Service.LedgerOfExpenditureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -39,7 +38,7 @@ public class LedgerOfExpenditureController {
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1") Long id, @RequestBody LedgerOfExpenditureDTO ledgerOfExpenditureDTO){
+    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1") Long id,@Valid @RequestBody LedgerOfExpenditureDTO ledgerOfExpenditureDTO){
     return ledgerOfExpenditureService.update(id, ledgerOfExpenditureDTO);
     }
  }

@@ -11,19 +11,18 @@ import java.util.Date;
 @Table (name = "vendor")
 public class Vendor {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "vendor_seq")
-
-    @NotNull(message = "Vendor ID cannot be null")
-    @NotEmpty(message = "Vendor ID cannot be empty")
-    @Column(name = "vendor_id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vendor_id_sequence_g")
+    @SequenceGenerator(name = "vendor_id_sequence_g", sequenceName = "vendor_seq")
+    @NotNull(message = "ID cannot be null")
+    @NotEmpty(message = "ID cannot be empty")
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     @NotNull(message = "Vendor Name cannot be null")
     @NotEmpty(message = "Vendor Name cannot be empty")
     @NotBlank(message = "Vendor Name cannot be blank")
     @Size(min = 5, max = 30, message = "Name must be between 5 to 30 characters")
-    @Column(name = "vendor_name", nullable = false)
+    @Column(name = "v_name", nullable = false)
     private String vName;
 
     @NotNull(message = "Phone no cannot be null")
