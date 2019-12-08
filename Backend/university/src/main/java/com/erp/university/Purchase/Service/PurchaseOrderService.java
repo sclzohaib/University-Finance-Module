@@ -21,14 +21,14 @@ public class PurchaseOrderService {
         purchaseOrder.setDate(purchaseOrderDTO.getDate());
         purchaseOrder.setPurchaseOrderNo(purchaseOrderDTO.getPurchaseOrderNo());
         purchaseOrderRepository.save(purchaseOrder);
-        return new ResponseEntity<String>("Added Succesfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Succesfully", HttpStatus.CREATED);
 
     }
 
     //Get all Purchase order
     public ResponseEntity<List<PurchaseOrder>> getAllPurchaseOrder() {
         List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findAll();
-        return new ResponseEntity<List<PurchaseOrder>>(purchaseOrders, HttpStatus.FOUND);
+        return new ResponseEntity<>(purchaseOrders, HttpStatus.FOUND);
     }
 
 
@@ -44,7 +44,7 @@ public class PurchaseOrderService {
         purchaseOrder.setDate(purchaseOrderDTO.getDate());
         purchaseOrder.setPurchaseOrderNo(purchaseOrderDTO.getPurchaseOrderNo());
         purchaseOrderRepository.save(purchaseOrder);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 
 }

@@ -21,19 +21,19 @@ public class TendorService {
         tendor.settNo(tendorDTO.gettNo());
         tendor.settStatus(tendor.gettStatus());
         tendorRepository.save(tendor);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
     }
 
     //Get all
     public ResponseEntity<List<Tendor>> getAllTendor() {
         List<Tendor> tendors = tendorRepository.findAll();
-        return new ResponseEntity<List<Tendor>>(tendors, HttpStatus.FOUND);
+        return new ResponseEntity<>(tendors, HttpStatus.FOUND);
     }
 
     //Get by id
     public ResponseEntity<Tendor> getTendorById(Long id) {
         Tendor tendor = tendorRepository.findById(id).get();
-        return new ResponseEntity<Tendor>(tendor, HttpStatus.FOUND);
+        return new ResponseEntity<>(tendor, HttpStatus.FOUND);
     }
 
     //Update
@@ -42,7 +42,7 @@ public class TendorService {
         tendor.settNo(tendorDTO.gettNo());
         tendor.settStatus(tendorDTO.gettStatus());
         tendorRepository.save(tendor);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }
 

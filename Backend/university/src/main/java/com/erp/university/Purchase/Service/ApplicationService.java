@@ -24,20 +24,20 @@ public class ApplicationService {
         application.setStatus(applicationDTO.getStatus());
         application.setSubject(applicationDTO.getSubject());
         applicationRepository.save(application);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get all Applications
     public ResponseEntity<List<Application>> getApplication() {
         List<Application> applications = applicationRepository.findAll();
-        return new ResponseEntity<List<Application>>(applications, HttpStatus.FOUND);
+        return new ResponseEntity<>(applications, HttpStatus.FOUND);
     }
 
     //Get By id
     public ResponseEntity<Application> getApplicationById(Long id) {
         Application application = applicationRepository.findById(id).get();
-        return new ResponseEntity<Application>(application, HttpStatus.FOUND);
+        return new ResponseEntity<>(application, HttpStatus.FOUND);
     }
 
     //Update Application
@@ -48,7 +48,7 @@ public class ApplicationService {
         application.setStatus(applicationDTO.getStatus());
         application.setSubject(applicationDTO.getSubject());
         applicationRepository.save(application);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 
 }

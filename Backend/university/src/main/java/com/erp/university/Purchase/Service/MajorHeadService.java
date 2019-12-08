@@ -20,19 +20,19 @@ public class MajorHeadService {
         MajorHead majorHead = new MajorHead();
         majorHead.setName(majorHeadDTO.getName());
         majorHeadRepository.save(majorHead);
-        return new ResponseEntity<String>("Added Succesfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Succesfully", HttpStatus.CREATED);
     }
 
     //Get all
     public ResponseEntity<List<MajorHead>> getAllMajorHead() {
         List<MajorHead> majorHeads = majorHeadRepository.findAll();
-        return new ResponseEntity<List<MajorHead>>(majorHeads, HttpStatus.FOUND);
+        return new ResponseEntity<>(majorHeads, HttpStatus.FOUND);
     }
 
     //Get by id
     public ResponseEntity<MajorHead> getMajorHeadById(Long id) {
         MajorHead majorHead = majorHeadRepository.findById(id).get();
-        return new ResponseEntity<MajorHead>(majorHead, HttpStatus.FOUND);
+        return new ResponseEntity<>(majorHead, HttpStatus.FOUND);
     }
 
     //Update
@@ -40,6 +40,6 @@ public class MajorHeadService {
         MajorHead majorHead = majorHeadRepository.findById(id).get();
         majorHead.setName(majorHeadDTO.getName());
         majorHeadRepository.save(majorHead);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

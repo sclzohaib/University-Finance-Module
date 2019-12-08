@@ -20,20 +20,20 @@ public class GSTService {
         GST gst = new GST();
         gst.setPercent(gstdto.getPercent());
         gstRepository.save(gst);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get All
     public ResponseEntity<List<GST>> getGst() {
         List<GST> gsts = gstRepository.findAll();
-        return new ResponseEntity<List<GST>>(gsts, HttpStatus.FOUND);
+        return new ResponseEntity<>(gsts, HttpStatus.FOUND);
     }
 
     //Get By id
     public ResponseEntity<GST> getGstById(Long id) {
         GST gst = gstRepository.findById(id).get();
-        return new ResponseEntity<GST>(gst, HttpStatus.FOUND);
+        return new ResponseEntity<>(gst, HttpStatus.FOUND);
     }
 
     //Update

@@ -29,21 +29,21 @@ public class GRNService {
         grn.setTotalQuantity(grndto.getTotalQuantity());
         grn.setStatus(grndto.getStatus());
         grnRepository.save(grn);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
     }
 
     //GET ALL GRN
 
     public ResponseEntity<List<GRN>> getGRN() {
         List<GRN> grns = grnRepository.findAll();
-        return new ResponseEntity<List<GRN>>(grns, HttpStatus.FOUND);
+        return new ResponseEntity<>(grns, HttpStatus.FOUND);
     }
 
     //GET Single GRN by ID
 
     public ResponseEntity<GRN> getGRNById(Long id) {
         GRN grn = grnRepository.findById(id).get();
-        return new ResponseEntity<GRN>(grn, HttpStatus.FOUND);
+        return new ResponseEntity<>(grn, HttpStatus.FOUND);
     }
 
     //Update GRN By Id
@@ -61,7 +61,7 @@ public class GRNService {
         grn.setStatus(grndto.getStatus());
         grn.setTotalQuantity(grndto.getTotalQuantity());
         grnRepository.save(grn);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 
 

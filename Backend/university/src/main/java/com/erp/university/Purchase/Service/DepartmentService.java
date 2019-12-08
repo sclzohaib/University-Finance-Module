@@ -24,20 +24,20 @@ public class DepartmentService {
         department.setExtensionNo(departmentDTO.getExtensionNo());
         department.setTelephone(departmentDTO.getTelephone());
         departmentRepository.save(department);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
     }
 
     //Get all department
     public ResponseEntity<List<Department>> getDepartment() {
         List<Department> departments = departmentRepository.findAll();
-        return new ResponseEntity<List<Department>>(departments, HttpStatus.FOUND);
+        return new ResponseEntity<>(departments, HttpStatus.FOUND);
 
     }
 
     //Get department By id
     public ResponseEntity<Department> getDepartmentById(Long id) {
         Department department = departmentRepository.findById(id).get();
-        return new ResponseEntity<Department>(department, HttpStatus.FOUND);
+        return new ResponseEntity<>(department, HttpStatus.FOUND);
     }
 
     //Update Department
@@ -48,7 +48,7 @@ public class DepartmentService {
         department.setExtensionNo(departmentDTO.getExtensionNo());
         department.setLocation(departmentDTO.getLocation());
         departmentRepository.save(department);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
 
     }
 }

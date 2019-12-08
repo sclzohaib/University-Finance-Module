@@ -24,21 +24,21 @@ public class VendorService {
         vendor.settQuotationAmount(vendorDTO.gettQuotationAmount());
         vendor.setvName(vendorDTO.getvName());
         vendorRepository.save(vendor);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get All
     public ResponseEntity<List<Vendor>> getAllVendor() {
         List<Vendor> vendors = vendorRepository.findAll();
-        return new ResponseEntity<List<Vendor>>(vendors, HttpStatus.FOUND);
+        return new ResponseEntity<>(vendors, HttpStatus.FOUND);
 
     }
 
     //Get By id
     public ResponseEntity<Vendor> getVendorById(Long id) {
         Vendor vendor = vendorRepository.findById(id).get();
-        return new ResponseEntity<Vendor>(vendor, HttpStatus.FOUND);
+        return new ResponseEntity<>(vendor, HttpStatus.FOUND);
     }
 
     //Update
@@ -50,6 +50,6 @@ public class VendorService {
         vendor.settQuotationAmount(vendorDTO.gettQuotationAmount());
         vendor.setvName(vendorDTO.getvName());
         vendorRepository.save(vendor);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

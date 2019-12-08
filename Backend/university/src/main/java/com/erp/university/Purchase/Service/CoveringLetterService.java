@@ -19,13 +19,13 @@ public class CoveringLetterService {
     public ResponseEntity<String> saveCoveringLetter(CoveringLetterDTO coveringLetterDTO) {
         CoveringLetter coveringLetter = new CoveringLetter();
         coveringLetterRepository.save(coveringLetter);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
     }
 
     //Get All
     public ResponseEntity<List<CoveringLetter>> getCoveringLetter() {
         List<CoveringLetter> coveringLetters = coveringLetterRepository.findAll();
-        return new ResponseEntity<List<CoveringLetter>>(coveringLetters, HttpStatus.FOUND);
+        return new ResponseEntity<>(coveringLetters, HttpStatus.FOUND);
     }
 
     //Get By id

@@ -20,12 +20,12 @@ public class UniversityService {
         university.setName(universityDTO.getName());
         university.setLocation(universityDTO.getLocation());
         universityRepository.save(university);
-        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
     }
 
     public ResponseEntity<List<University>> getAllUniversity() {
         List<University> universityList = universityRepository.findAll();
-        return new ResponseEntity<List<University>>(universityList, HttpStatus.FOUND);
+        return new ResponseEntity<>(universityList, HttpStatus.FOUND);
     }
 
     public Object getUniversityById(Long id) {
@@ -35,9 +35,9 @@ public class UniversityService {
 
         } catch (Exception e) {
 
-            return new ResponseEntity<String>("No University Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No University Found", HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<University>(university, HttpStatus.FOUND);
+        return new ResponseEntity<>(university, HttpStatus.FOUND);
 
     }
 
@@ -47,6 +47,6 @@ public class UniversityService {
         university.setName(universityDTO.getName());
         university.setLocation(universityDTO.getLocation());
         universityRepository.save(university);
-        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }
