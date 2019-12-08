@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -17,7 +19,7 @@ public class VendorController {
 
 //Post
 @RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveVendor (@RequestBody VendorDTO vendorDTO)
+    public ResponseEntity<String> saveVendor (@Valid @RequestBody VendorDTO vendorDTO)
 {
     return vendorService.saveVendor(vendorDTO);
 }
@@ -30,13 +32,13 @@ public class VendorController {
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Vendor> getById(@PathVariable("id") Long id){
+    public ResponseEntity<Vendor> getById(@PathVariable("id") @Min(value=1 , message = "ID must be greater than 1") Long id){
     return vendorService.getById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") Long id, @RequestBody VendorDTO vendorDTO){
+    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @RequestBody VendorDTO vendorDTO){
     return vendorService.update(id, vendorDTO);
     }
 
