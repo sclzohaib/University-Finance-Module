@@ -8,8 +8,8 @@ import java.util.Date;
 @Table(name = "application")
 public class Application {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "app_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "app_id_sequence_g")
+    @SequenceGenerator(name = "app_id_sequence_g", sequenceName = "app_seq")
     @NotNull(message = "Application ID cannot be null")
     @NotEmpty(message = "Application ID cannot be empty")
     @Column(name = "id", unique = true, nullable = false)

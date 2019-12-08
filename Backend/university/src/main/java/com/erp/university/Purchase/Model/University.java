@@ -11,8 +11,8 @@ import javax.validation.constraints.Size;
 public class University {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "uni_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uni_id_sequence_g")
+    @SequenceGenerator(name = "uni_id_sequence_g", sequenceName = "uni_seq")
     @NotNull(message = "University ID cannot be null")
     @NotEmpty(message = "University ID cannot be blank")
     @Column(name = "id", unique = true, nullable = false)

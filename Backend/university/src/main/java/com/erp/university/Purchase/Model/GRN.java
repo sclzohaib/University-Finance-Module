@@ -10,9 +10,8 @@ import java.util.Date;
 @Table (name = "grn")
 public class GRN {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "grn_seq")
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "grn_id_sequence_g")
+    @SequenceGenerator(name = "grn_id_sequence_g", sequenceName = "grn_seq")
     @NotNull(message = "GRN id cannot be null")
     @NotEmpty(message = "GRN id cannot be empty")
     @Column(name = "id", unique = true ,nullable = false)
@@ -27,59 +26,61 @@ public class GRN {
     @NotNull(message = "Date cannot be null")
     @NotEmpty(message = "Date cannot be empty")
     @NotBlank(message = "Date cannot be blank")
-    @Column(name = "date", unique = false ,nullable = false)
+    @Column(name = "date" ,nullable = false)
     private Date date;
 
     @NotNull(message = "Date cannot be null")
     @NotEmpty(message = "Date cannot be empty")
     @NotBlank(message = "Date cannot be blank")
-    @Column(name = "purchase_date", unique = false ,nullable = false)
+    @Column(name = "purchase_date" ,nullable = false)
     private Date purchaseDate;
 
     @NotNull(message = "Status cannot be null")
     @NotEmpty(message = "Status cannot be empty")
     @NotBlank(message = "Status cannot be blank")
-    @Column(name = "status", unique = false ,nullable = false)
+    @Column(name = "status" ,nullable = false)
     private String status;
 
     @NotNull(message = "Recieved quantity cannot be null")
     @NotEmpty(message = "Recieved quantity cannot be empty")
     @NotBlank(message = "Recieved quantity cannot be blank")
-    @Column(name = "recieved_quantity", unique = false ,nullable = false)
+    @Column(name = "recieved_quantity" ,nullable = false)
     private Long recievedQuantity;
 
     @NotNull(message = "Total quantity cannot be null")
     @NotEmpty(message = "Total quantity cannot be empty")
     @NotBlank(message = "Total quantity cannot be blank")
-    @Column(name = "total_quantity", unique = false ,nullable = false)
+    @Column(name = "total_quantity",nullable = false)
     private Long totalQuantity;
 
     @NotBlank(message = "Reason for rejection cannot be blank")
-    @Column(name = "reason_for_rejection", unique = false ,nullable = true)
+    @NotNull(message = "Reason for rejection cannot be Null")
+    @NotEmpty(message = "Reason for rejection cannot be Empty")
+    @Column(name = "reason_for_rejection")
     private String reasonForRejection;
 
     @NotNull(message = "Recieved by cannot be null")
     @NotEmpty(message = "Recieved by cannot be empty")
     @NotBlank(message = "Recieved by cannot be blank")
-    @Column(name = "recieved_by", unique = false ,nullable = false)
+    @Column(name = "recieved_by",nullable = false)
     private String recievedBy;
 
     @NotNull(message = "Posted by cannot be null")
     @NotEmpty(message = "Posted by cannot be empty")
     @NotBlank(message = "Posted by cannot be blank")
-    @Column(name = "posted_by", unique = false ,nullable = false)
+    @Column(name = "posted_by" ,nullable = false)
     private String postedBy;
 
     @NotNull(message = "Inspected by cannot be null")
     @NotEmpty(message = "Inspected by cannot be empty")
     @NotBlank(message = "Inspected by cannot be blank")
-    @Column(name = "inspected_by", unique = false ,nullable = false)
+    @Column(name = "inspected_by" ,nullable = false)
     private String inspectedBy;
 
     @NotNull(message = "Department head cannot be null")
     @NotEmpty(message = "Department head cannot be empty")
     @NotBlank(message = "Department head cannot be blank")
-    @Column(name = "department_head", unique = false ,nullable = false)
+    @Column(name = "department_head" ,nullable = false)
     private String departmentHead;
 
     public GRN() {

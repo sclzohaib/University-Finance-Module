@@ -38,7 +38,7 @@ public class DepartmentController {
 
     //Update Department via Id
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateDepartment(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @RequestBody DepartmentDTO departmentDTO){
+    public ResponseEntity<String> updateDepartment(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id,@Valid @RequestBody DepartmentDTO departmentDTO){
         return departmentService.updateDepartment(id, departmentDTO);
     }
 

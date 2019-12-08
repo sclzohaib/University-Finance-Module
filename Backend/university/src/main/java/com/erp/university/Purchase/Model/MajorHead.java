@@ -10,9 +10,8 @@ import javax.validation.constraints.Size;
 @Table (name = "major_head")
 public class MajorHead {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "major_head_seq")
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mh_id_sequence_g")
+    @SequenceGenerator(name = "mh_id_sequence_g", sequenceName = "major_head_seq")
     @NotNull(message = "Major head ID cannot be null")
     @NotEmpty(message = "Major head ID cannot be empty")
     @Column(name = "id" ,unique = true,nullable = false)
@@ -21,7 +20,7 @@ public class MajorHead {
     @NotNull(message = "Name cannot be null")
     @NotEmpty(message = "Name cannot be empty")
     @NotBlank(message = "Name cannot be blank")
-    @Column(name = "name",unique = false,nullable = false)
+    @Column(name = "name",nullable = false)
     @Size(min = 4 ,max = 50 ,message = "Major head name must be in between 11 and 13")
     private String name;
 

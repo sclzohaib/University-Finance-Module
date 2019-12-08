@@ -19,7 +19,7 @@ public class UserTypeController {
 
     //Post
     @RequestMapping (value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveUserType(UserTypeDTO userTypeDTO){
+    public ResponseEntity<String> saveUserType(@Valid @RequestBody UserTypeDTO userTypeDTO){
         return userTypeService.saveUserType(userTypeDTO);
     }
 

@@ -5,17 +5,17 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "lvl_auth")
+@Table (name = "auth_lvl")
 public class AuthorizeLvl {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence",sequenceName = "auth_lvl_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "al_id_sequence_g")
+    @SequenceGenerator(name = "al_id_sequence_g",sequenceName = "auth_lvl_seq")
     @NotNull (message= "ID can not be null")
     @NotEmpty (message = "ID can not be empty")
-    @Column (name= "lvl_id", nullable = false)
+    @Column (name= "id", unique = true, nullable = false)
     private Long id;
 
-    @Column (name= "lvl_priority" , nullable = false)
+    @Column (name= "lvl_no" , unique = true, nullable = false)
     @NotNull (message= "Level No. can not be null")
     @NotEmpty (message = "Level No. can not be empty")
     private Long lvlNo;

@@ -18,7 +18,7 @@ public class CoveringLetterController {
     CoveringLetterService coveringLetterService;
 
 //Post
-    @RequestMapping(value = "/n",method = RequestMethod.POST)
+    @RequestMapping(value = "/",method = RequestMethod.POST)
     public ResponseEntity<String> saveCoveringLetter (@Valid @RequestBody CoveringLetterDTO coveringLetterDTO)
     {
         return coveringLetterService.saveCoveringLetter(coveringLetterDTO);

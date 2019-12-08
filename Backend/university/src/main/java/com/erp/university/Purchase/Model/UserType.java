@@ -9,12 +9,11 @@ import javax.validation.constraints.NotNull;
 @Table (name = "user_type")
 public class UserType {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    @SequenceGenerator(name = "id_sequence", sequenceName = "user_type_seq")
-
-    @NotNull(message = "User Role ID cannot be null")
-    @NotEmpty(message = "User Role ID cannot be empty")
-    @Column(name = "user_role_id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_type_id_sequence_g")
+    @SequenceGenerator(name = "user_type_id_sequence_g", sequenceName = "user_type_seq")
+    @NotNull(message = "ID cannot be null")
+    @NotEmpty(message = "ID cannot be empty")
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     @NotNull(message = "User Type cannot be null")

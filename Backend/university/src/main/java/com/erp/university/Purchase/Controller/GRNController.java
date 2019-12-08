@@ -40,7 +40,7 @@ public class GRNController {
 
     //Update GRN By ID
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
-    public ResponseEntity<String> updateGRN(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1") Long id, @RequestBody GRNDTO grndto){
+    public ResponseEntity<String> updateGRN(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1") Long id,@Valid @RequestBody GRNDTO grndto){
         return grnService.updateGRN(id, grndto);
     }
 
