@@ -17,27 +17,49 @@ public class SummaryService {
 
     //Save
     public ResponseEntity<String> saveSummary(SummaryDTO summaryDTO) {
-        Summary summary = new Summary();
-        summaryRepository.save(summary);
+        try {
+            Summary summary = new Summary();
+            summaryRepository.save(summary);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went Wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
     }
 
     //Get all
-    public ResponseEntity<List<Summary>> getAllSummary() {
-        List<Summary> summaries = summaryRepository.findAll();
+    public ResponseEntity<?> getAllSummary() {
+        List<Summary> summaries;
+        try {
+            summaries = summaryRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went Wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(summaries, HttpStatus.FOUND);
     }
 
     //Get by id
-    public ResponseEntity<Summary> getSummaryById(Long id) {
-        Summary summary = summaryRepository.findById(id).get();
+    public ResponseEntity<?> getSummaryById(Long id) {
+        Summary summary;
+        try {
+            summary = summaryRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Summary Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(summary, HttpStatus.FOUND);
     }
 
     //Update
     public ResponseEntity<String> updateSummary(Long id, SummaryDTO summaryDTO) {
-        Summary summary = summaryRepository.findById(id).get();
-        summaryRepository.save(summary);
+        try {
+            Summary summary = summaryRepository.findById(id).get();
+            try {
+                summaryRepository.save(summary);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went Wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Summary Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

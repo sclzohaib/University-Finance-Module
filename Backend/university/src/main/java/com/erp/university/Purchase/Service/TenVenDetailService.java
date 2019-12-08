@@ -17,39 +17,61 @@ public class TenVenDetailService {
 
     //Save
     public ResponseEntity<String> saveTenVenDetail(TenVenDTO tenVenDTO) {
-        TenVenDetails tenVenDetails = new TenVenDetails();
-        tenVenDetails.setVendorAddress(tenVenDetails.getVendorAddress());
-        tenVenDetails.setQuotation(tenVenDTO.getQuotation());
-        tenVenDetails.setVendorEmail(tenVenDTO.getVendorEmail());
-        tenVenDetails.setVendorNic(tenVenDTO.getVendorNic());
-        tenVenDetails.setVenNtn(tenVenDTO.getVenNtn());
-        tenVenRepository.save(tenVenDetails);
+        try {
+            TenVenDetails tenVenDetails = new TenVenDetails();
+            tenVenDetails.setVendorAddress(tenVenDetails.getVendorAddress());
+            tenVenDetails.setQuotation(tenVenDTO.getQuotation());
+            tenVenDetails.setVendorEmail(tenVenDTO.getVendorEmail());
+            tenVenDetails.setVendorNic(tenVenDTO.getVendorNic());
+            tenVenDetails.setVenNtn(tenVenDTO.getVenNtn());
+            tenVenRepository.save(tenVenDetails);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get all
-    public ResponseEntity<List<TenVenDetails>> getAllTenVenDetail() {
-        List<TenVenDetails> tenVenDetails = tenVenRepository.findAll();
+    public ResponseEntity<?> getAllTenVenDetail() {
+        List<TenVenDetails> tenVenDetails;
+        try {
+            tenVenDetails = tenVenRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(tenVenDetails, HttpStatus.FOUND);
     }
 
 
     //Get by id
-    public ResponseEntity<TenVenDetails> getTenVenDetailById(Long id) {
-        TenVenDetails tenVenDetails = tenVenRepository.findById(id).get();
+    public ResponseEntity<?> getTenVenDetailById(Long id) {
+        TenVenDetails tenVenDetails;
+        try {
+            tenVenDetails = tenVenRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Tendor Vendor Details not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(tenVenDetails, HttpStatus.FOUND);
     }
 
     //update
     public ResponseEntity<String> updateTenVenDetail(Long id, TenVenDTO tenVenDTO) {
-        TenVenDetails tenVenDetails = tenVenRepository.findById(id).get();
-        tenVenDetails.setQuotation(tenVenDTO.getQuotation());
-        tenVenDetails.setVendorAddress(tenVenDTO.getVendorAddress());
-        tenVenDetails.setVendorEmail(tenVenDTO.getVendorEmail());
-        tenVenDetails.setVendorNic(tenVenDTO.getVendorNic());
-        tenVenDetails.setVenNtn(tenVenDTO.getVenNtn());
-        tenVenRepository.save(tenVenDetails);
+        try {
+            TenVenDetails tenVenDetails = tenVenRepository.findById(id).get();
+            tenVenDetails.setQuotation(tenVenDTO.getQuotation());
+            tenVenDetails.setVendorAddress(tenVenDTO.getVendorAddress());
+            tenVenDetails.setVendorEmail(tenVenDTO.getVendorEmail());
+            tenVenDetails.setVendorNic(tenVenDTO.getVendorNic());
+            tenVenDetails.setVenNtn(tenVenDTO.getVenNtn());
+            try {
+                tenVenRepository.save(tenVenDetails);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Tendor Vendor Details not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

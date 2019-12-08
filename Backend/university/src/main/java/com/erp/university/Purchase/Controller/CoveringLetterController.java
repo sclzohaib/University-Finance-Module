@@ -1,7 +1,6 @@
 package com.erp.university.Purchase.Controller;
 
 import com.erp.university.Purchase.DTO.CoveringLetterDTO;
-import com.erp.university.Purchase.Model.CoveringLetter;
 import com.erp.university.Purchase.Service.CoveringLetterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/coveringLetter")
@@ -25,13 +23,13 @@ public class CoveringLetterController {
 
     //Get All
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<CoveringLetter>> getCoveringLetter() {
+    public ResponseEntity<?> getCoveringLetter() {
         return coveringLetterService.getCoveringLetter();
     }
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<CoveringLetter> getCoveringLetterById(@PathVariable("id") @Min(value = 1, message = "Id must be greater than 1") Long id) {
+    public ResponseEntity<?> getCoveringLetterById(@PathVariable("id") @Min(value = 1, message = "Id must be greater than 1") Long id) {
         return coveringLetterService.getCoveringLetterById(id);
     }
 

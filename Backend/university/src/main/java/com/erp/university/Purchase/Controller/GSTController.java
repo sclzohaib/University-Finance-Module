@@ -1,7 +1,6 @@
 package com.erp.university.Purchase.Controller;
 
 import com.erp.university.Purchase.DTO.GSTDTO;
-import com.erp.university.Purchase.Model.GST;
 import com.erp.university.Purchase.Service.GSTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/gst")
@@ -25,13 +23,13 @@ public class GSTController {
 
     //Get all
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<GST>> getGst() {
+    public ResponseEntity<?> getGst() {
         return gstService.getGst();
     }
 
     //Get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<GST> getGstById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+    public ResponseEntity<?> getGstById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
         return gstService.getGstById(id);
     }
 

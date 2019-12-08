@@ -17,40 +17,62 @@ public class UserService {
 
     //Save
     public ResponseEntity<String> saveUser(UserDTO userDTO) {
-        User user = new User();
-        user.setStatus("Active");
-        user.setPassword(userDTO.getPassword());
-        user.setName(userDTO.getName());
-        user.setEmail(userDTO.getEmail());
-        user.setContactNo(userDTO.getContactNo());
-        user.setAddress(userDTO.getAddress());
-        userRepository.save(user);
+        try {
+            User user = new User();
+            user.setStatus("Active");
+            user.setPassword(userDTO.getPassword());
+            user.setName(userDTO.getName());
+            user.setEmail(userDTO.getEmail());
+            user.setContactNo(userDTO.getContactNo());
+            user.setAddress(userDTO.getAddress());
+            userRepository.save(user);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get All
-    public ResponseEntity<List<User>> getAllUser() {
-        List<User> users = userRepository.findAll();
+    public ResponseEntity<?> getAllUser() {
+        List<User> users;
+        try {
+            users = userRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(users, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<User> getUserById(Long id) {
-        User user = userRepository.findById(id).get();
+    public ResponseEntity<?> getUserById(Long id) {
+        User user;
+        try {
+            user = userRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(user, HttpStatus.FOUND);
     }
 
     //Update
     public ResponseEntity<String> updateUser(Long id, UserDTO userDTO) {
-        User user = userRepository.findById(id).get();
-        user.setAddress(userDTO.getAddress());
-        user.setContactNo(userDTO.getContactNo());
-        user.setEmail(userDTO.getEmail());
-        user.setName(userDTO.getName());
-        user.setPassword(userDTO.getPassword());
-        user.setStatus(userDTO.getStatus());
-        userRepository.save(user);
+        try {
+            User user = userRepository.findById(id).get();
+            user.setAddress(userDTO.getAddress());
+            user.setContactNo(userDTO.getContactNo());
+            user.setEmail(userDTO.getEmail());
+            user.setName(userDTO.getName());
+            user.setPassword(userDTO.getPassword());
+            user.setStatus(userDTO.getStatus());
+            try {
+                userRepository.save(user);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.FOUND);
 
     }

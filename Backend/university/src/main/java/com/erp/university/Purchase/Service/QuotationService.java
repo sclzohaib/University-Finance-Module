@@ -19,35 +19,57 @@ public class QuotationService {
 
     //Save Quotation
     public ResponseEntity<String> saveQuotation(QuotationDTO quotationDTO) {
-        Quotation quotation = new Quotation();
-        quotation.setDate(quotationDTO.getDate());
-        quotation.setRefNo(quotationDTO.getRefNo());
-        quotation.setTermsCondition(quotationDTO.getTermsCondition());
-        quotation.setTotal(quotationDTO.getTotal());
-        quotationRepository.save(quotation);
+        try {
+            Quotation quotation = new Quotation();
+            quotation.setDate(quotationDTO.getDate());
+            quotation.setRefNo(quotationDTO.getRefNo());
+            quotation.setTermsCondition(quotationDTO.getTermsCondition());
+            quotation.setTotal(quotationDTO.getTotal());
+            quotationRepository.save(quotation);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
     }
 
     //Get all Quotations
-    public ResponseEntity<List<Quotation>> getAllQuotation() {
-        List<Quotation> quotations = quotationRepository.findAll();
+    public ResponseEntity<?> getAllQuotation() {
+        List<Quotation> quotations;
+        try {
+            quotations = quotationRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(quotations, HttpStatus.FOUND);
     }
 
     //Get Quotations By id
-    public ResponseEntity<Quotation> getQuotationById(Long id) {
-        Quotation quotation = quotationRepository.findById(id).get();
+    public ResponseEntity<?> getQuotationById(Long id) {
+        Quotation quotation;
+        try {
+            quotation = quotationRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Quotation Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(quotation, HttpStatus.FOUND);
     }
 
     //Update Quotation by Id
     public ResponseEntity<String> updateQuotation(Long id, QuotationDTO quotationDTO) {
-        Quotation quotation = quotationRepository.findById(id).get();
-        quotation.setDate(quotationDTO.getDate());
-        quotation.setRefNo(quotationDTO.getRefNo());
-        quotation.setTermsCondition(quotationDTO.getTermsCondition());
-        quotation.setTotal(quotationDTO.getTotal());
-        quotationRepository.save(quotation);
+        try {
+            Quotation quotation = quotationRepository.findById(id).get();
+            quotation.setDate(quotationDTO.getDate());
+            quotation.setRefNo(quotationDTO.getRefNo());
+            quotation.setTermsCondition(quotationDTO.getTermsCondition());
+            quotation.setTotal(quotationDTO.getTotal());
+            try {
+                quotationRepository.save(quotation);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Quotation Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }

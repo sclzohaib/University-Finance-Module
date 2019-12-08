@@ -17,30 +17,52 @@ public class GSTService {
 
     //Save
     public ResponseEntity<String> saveGST(GSTDTO gstdto) {
-        GST gst = new GST();
-        gst.setPercent(gstdto.getPercent());
-        gstRepository.save(gst);
+        try {
+            GST gst = new GST();
+            gst.setPercent(gstdto.getPercent());
+            gstRepository.save(gst);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
 
     }
 
     //Get All
-    public ResponseEntity<List<GST>> getGst() {
-        List<GST> gsts = gstRepository.findAll();
+    public ResponseEntity<?> getGst() {
+        List<GST> gsts;
+        try {
+            gsts = gstRepository.findAll();
+        } catch (Exception e) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(gsts, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<GST> getGstById(Long id) {
-        GST gst = gstRepository.findById(id).get();
+    public ResponseEntity<?> getGstById(Long id) {
+        GST gst;
+        try {
+            gst = gstRepository.findById(id).get();
+        } catch (Exception e) {
+            return new ResponseEntity<>("GST Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(gst, HttpStatus.FOUND);
     }
 
     //Update
     public ResponseEntity<String> updateGst(Long id, GSTDTO gstdto) {
-        GST gst = gstRepository.findById(id).get();
-        gst.setPercent(gstdto.getPercent());
-        gstRepository.save(gst);
+        try {
+            GST gst = gstRepository.findById(id).get();
+            gst.setPercent(gstdto.getPercent());
+            try {
+                gstRepository.save(gst);
+            } catch (Exception e) {
+                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("GST Not Found", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
     }
 }
