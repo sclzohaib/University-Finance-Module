@@ -1,19 +1,15 @@
 package com.erp.university.Purchase.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="Summary")
+@Table(name = "Summary")
 public class Summary {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "summary_id_sequence_g")
     @SequenceGenerator(name = "summary_id_sequence_g", sequenceName = "summary_seq")
     @NotNull(message = "Summary ID cannot be null")
-    @NotEmpty(message = "Summary ID cannot be empty")
-    @NotBlank(message = "Summary ID cannot be blank")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 

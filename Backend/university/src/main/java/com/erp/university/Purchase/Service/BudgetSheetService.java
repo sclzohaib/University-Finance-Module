@@ -14,10 +14,10 @@ import java.util.List;
 public class BudgetSheetService {
     @Autowired
     BudgetSheetRepository budgetSheetRepository;
+
     //Save
-    public ResponseEntity<String> savebudgetSheet(BudgetSheetDTO budgetSheetDTO)
-    {
-        BudgetSheet budgetSheet=new BudgetSheet();
+    public ResponseEntity<String> saveBudgetSheet(BudgetSheetDTO budgetSheetDTO) {
+        BudgetSheet budgetSheet = new BudgetSheet();
         budgetSheet.setBillAmount(budgetSheetDTO.getBillAmount());
         budgetSheet.setBalanceAvailable(budgetSheetDTO.getBalanceAvailable());
         budgetSheet.setBudgetAllocation(budgetSheetDTO.getBudgetAllocation());
@@ -30,18 +30,19 @@ public class BudgetSheetService {
     }
 
     //Get All
-    public ResponseEntity<List<BudgetSheet>> getBudgetSheet(){
+    public ResponseEntity<List<BudgetSheet>> getBudgetSheet() {
         List<BudgetSheet> budgetSheets = budgetSheetRepository.findAll();
         return new ResponseEntity<List<BudgetSheet>>(budgetSheets, HttpStatus.FOUND);
     }
 
     //Get by id
-    public ResponseEntity<BudgetSheet> getBudgetSheetById(Long id){
+    public ResponseEntity<BudgetSheet> getBudgetSheetById(Long id) {
         BudgetSheet budgetSheet = budgetSheetRepository.findById(id).get();
         return new ResponseEntity<BudgetSheet>(budgetSheet, HttpStatus.FOUND);
     }
+
     //Update
-    public ResponseEntity<String> updateBudgetSheet(Long id, BudgetSheetDTO budgetSheetDTO){
+    public ResponseEntity<String> updateBudgetSheet(Long id, BudgetSheetDTO budgetSheetDTO) {
         BudgetSheet budgetSheet = budgetSheetRepository.findById(id).get();
         budgetSheet.setUptoDateExp(budgetSheetDTO.getUptoDateExp());
         budgetSheet.setBalanceAvailable(budgetSheetDTO.getBalanceAvailable());

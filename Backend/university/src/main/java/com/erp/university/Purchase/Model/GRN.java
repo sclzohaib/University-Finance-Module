@@ -7,54 +7,43 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table (name = "grn")
+@Table(name = "grn")
 public class GRN {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "grn_id_sequence_g")
     @SequenceGenerator(name = "grn_id_sequence_g", sequenceName = "grn_seq")
     @NotNull(message = "GRN id cannot be null")
-    @NotEmpty(message = "GRN id cannot be empty")
-    @Column(name = "id", unique = true ,nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     @NotNull(message = "GRN No. cannot be null")
-    @NotEmpty(message = "GRN No. cannot be empty")
-    @NotBlank(message = "GRN No. cannot be blank")
-    @Column(name = "grn_no", unique = true ,nullable = false)
+    @Column(name = "grn_no", unique = true, nullable = false)
     private Long GrnNo;
 
     @NotNull(message = "Date cannot be null")
-    @NotEmpty(message = "Date cannot be empty")
-    @NotBlank(message = "Date cannot be blank")
-    @Column(name = "date" ,nullable = false)
+    @Column(name = "grn_date", nullable = false)
     private Date date;
 
     @NotNull(message = "Date cannot be null")
-    @NotEmpty(message = "Date cannot be empty")
-    @NotBlank(message = "Date cannot be blank")
-    @Column(name = "purchase_date" ,nullable = false)
+    @Column(name = "purchase_date", nullable = false)
     private Date purchaseDate;
 
     @NotNull(message = "Status cannot be null")
     @NotEmpty(message = "Status cannot be empty")
     @NotBlank(message = "Status cannot be blank")
-    @Column(name = "status" ,nullable = false)
+    @Column(name = "status", nullable = false)
     private String status;
 
     @NotNull(message = "Recieved quantity cannot be null")
-    @NotEmpty(message = "Recieved quantity cannot be empty")
-    @NotBlank(message = "Recieved quantity cannot be blank")
-    @Column(name = "recieved_quantity" ,nullable = false)
+    @Column(name = "recieved_quantity", nullable = false)
     private Long recievedQuantity;
 
     @NotNull(message = "Total quantity cannot be null")
-    @NotEmpty(message = "Total quantity cannot be empty")
-    @NotBlank(message = "Total quantity cannot be blank")
-    @Column(name = "total_quantity",nullable = false)
+    @Column(name = "total_quantity", nullable = false)
     private Long totalQuantity;
 
-    @NotBlank(message = "Reason for rejection cannot be blank")
     @NotNull(message = "Reason for rejection cannot be Null")
+    @NotBlank(message = "Reason for rejection cannot be blank")
     @NotEmpty(message = "Reason for rejection cannot be Empty")
     @Column(name = "reason_for_rejection")
     private String reasonForRejection;
@@ -62,25 +51,25 @@ public class GRN {
     @NotNull(message = "Recieved by cannot be null")
     @NotEmpty(message = "Recieved by cannot be empty")
     @NotBlank(message = "Recieved by cannot be blank")
-    @Column(name = "recieved_by",nullable = false)
+    @Column(name = "recieved_by", nullable = false)
     private String recievedBy;
 
     @NotNull(message = "Posted by cannot be null")
     @NotEmpty(message = "Posted by cannot be empty")
     @NotBlank(message = "Posted by cannot be blank")
-    @Column(name = "posted_by" ,nullable = false)
+    @Column(name = "posted_by", nullable = false)
     private String postedBy;
 
     @NotNull(message = "Inspected by cannot be null")
     @NotEmpty(message = "Inspected by cannot be empty")
     @NotBlank(message = "Inspected by cannot be blank")
-    @Column(name = "inspected_by" ,nullable = false)
+    @Column(name = "inspected_by", nullable = false)
     private String inspectedBy;
 
     @NotNull(message = "Department head cannot be null")
     @NotEmpty(message = "Department head cannot be empty")
     @NotBlank(message = "Department head cannot be blank")
-    @Column(name = "department_head" ,nullable = false)
+    @Column(name = "department_head", nullable = false)
     private String departmentHead;
 
     public GRN() {

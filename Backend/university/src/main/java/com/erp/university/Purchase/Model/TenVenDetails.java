@@ -2,7 +2,10 @@ package com.erp.university.Purchase.Model;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ten_ven_details")
@@ -11,7 +14,6 @@ public class TenVenDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tv_id_sequence_g")
     @SequenceGenerator(name = "tv_id_sequence_g", sequenceName = "ten_ven_details_seq")
     @NotNull(message = "ID cannot be null")
-    @NotEmpty(message = "ID cannot be empty")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
@@ -24,26 +26,24 @@ public class TenVenDetails {
     @NotNull(message = "Email address cannot be null !!")
     @NotBlank(message = "Email address cannot be blank !!")
     @NotEmpty(message = "Email address cannot be empty")
-    @Email(message ="Email should be valid")
+    @Email(message = "Email should be valid")
     @Column(name = "vendor_email", unique = true, nullable = false)
     private String vendorEmail;
 
     @NotNull(message = "Vendor Address cannot be null !!")
     @NotBlank(message = "Vendor Address cannot be blank !!")
     @NotEmpty(message = "Vendor Address cannot be empty")
-    @Column(name = "vendor_address" ,unique = true, nullable = false)
+    @Column(name = "vendor_address", unique = true, nullable = false)
     private String vendorAddress;
 
     @NotNull(message = "VenNtn cannot be null !!")
     @NotBlank(message = "VenNtn cannot be blank !!")
     @NotEmpty(message = "VenNtn cannot be empty")
-    @Column(name = "ven_ntn" ,unique = true, nullable = false)
+    @Column(name = "ven_ntn", unique = true, nullable = false)
     private String venNtn;
 
     @NotNull(message = "Vendor NIC cannot be null !!")
-    @NotBlank(message = "Vendor NIC cannot be blank !!")
-    @NotEmpty(message = "Vendor NIC cannot be empty")
-    @Column(name = "vendor_nic" ,unique = true, nullable = false)
+    @Column(name = "vendor_nic", unique = true, nullable = false)
     private Long vendorNic;
 
 

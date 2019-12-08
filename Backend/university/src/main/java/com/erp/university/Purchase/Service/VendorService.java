@@ -12,45 +12,44 @@ import java.util.List;
 
 @Service
 public class VendorService {
-@Autowired
+    @Autowired
     VendorRepository vendorRepository;
 
-//Save
-public ResponseEntity<String> saveVendor(VendorDTO vendorDTO)
-{
-    Vendor vendor=new Vendor();
-    vendor.settDate(vendorDTO.gettDate());
-    vendor.setTel(vendorDTO.getTel());
-    vendor.settLastDate(vendorDTO.gettLastDate());
-    vendor.settQuotationAmount(vendorDTO.gettQuotationAmount());
-    vendor.setvName(vendorDTO.getvName());
-    vendorRepository.save(vendor);
-    return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+    //Save
+    public ResponseEntity<String> saveVendor(VendorDTO vendorDTO) {
+        Vendor vendor = new Vendor();
+        vendor.settDate(vendorDTO.gettDate());
+        vendor.setTel(vendorDTO.getTel());
+        vendor.settLastDate(vendorDTO.gettLastDate());
+        vendor.settQuotationAmount(vendorDTO.gettQuotationAmount());
+        vendor.setvName(vendorDTO.getvName());
+        vendorRepository.save(vendor);
+        return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
 
-}
+    }
 
-//Get All
-    public ResponseEntity<List<Vendor>> getAll(){
-    List<Vendor> vendors = vendorRepository.findAll();
-    return new ResponseEntity<List<Vendor>>(vendors, HttpStatus.FOUND);
+    //Get All
+    public ResponseEntity<List<Vendor>> getAllVendor() {
+        List<Vendor> vendors = vendorRepository.findAll();
+        return new ResponseEntity<List<Vendor>>(vendors, HttpStatus.FOUND);
 
     }
 
     //Get By id
-    public ResponseEntity<Vendor> getById(Long id){
-    Vendor vendor = vendorRepository.findById(id).get();
-    return new ResponseEntity<Vendor>(vendor, HttpStatus.FOUND);
+    public ResponseEntity<Vendor> getVendorById(Long id) {
+        Vendor vendor = vendorRepository.findById(id).get();
+        return new ResponseEntity<Vendor>(vendor, HttpStatus.FOUND);
     }
 
     //Update
-    public ResponseEntity<String> update(Long id, VendorDTO vendorDTO){
-    Vendor vendor = vendorRepository.findById(id).get();
-    vendor.settDate(vendorDTO.gettDate());
-    vendor.setTel(vendorDTO.getTel());
-    vendor.settLastDate(vendorDTO.gettLastDate());
-    vendor.settQuotationAmount(vendorDTO.gettQuotationAmount());
-    vendor.setvName(vendorDTO.getvName());
-    vendorRepository.save(vendor);
-    return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
+    public ResponseEntity<String> updateVendor(Long id, VendorDTO vendorDTO) {
+        Vendor vendor = vendorRepository.findById(id).get();
+        vendor.settDate(vendorDTO.gettDate());
+        vendor.setTel(vendorDTO.getTel());
+        vendor.settLastDate(vendorDTO.gettLastDate());
+        vendor.settQuotationAmount(vendorDTO.gettQuotationAmount());
+        vendor.setvName(vendorDTO.getvName());
+        vendorRepository.save(vendor);
+        return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);
     }
 }

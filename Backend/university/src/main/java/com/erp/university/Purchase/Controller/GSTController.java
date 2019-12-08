@@ -12,33 +12,32 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping (value= "/api/gst")
+@RequestMapping(value = "/api/gst")
 public class GSTController {
     @Autowired
     GSTService gstService;
 
     //Post
-    @RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveGST(@Valid @RequestBody GSTDTO gstdto)
-    {
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveGST(@Valid @RequestBody GSTDTO gstdto) {
         return gstService.saveGST(gstdto);
     }
 
     //Get all
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<GST>> getGst(){
+    public ResponseEntity<List<GST>> getGst() {
         return gstService.getGst();
     }
 
     //Get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<GST> getGstById(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1") Long id){
-        return gstService.getGsyById(id);
+    public ResponseEntity<GST> getGstById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return gstService.getGstById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateGst(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1")  Long id,@Valid @RequestBody GSTDTO gstdto){
-        return gstService.updateGst(id,gstdto);
+    public ResponseEntity<String> updateGst(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody GSTDTO gstdto) {
+        return gstService.updateGst(id, gstdto);
     }
 }

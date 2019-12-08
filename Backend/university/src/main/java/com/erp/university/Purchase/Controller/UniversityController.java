@@ -19,13 +19,13 @@ public class UniversityController {
     UniversityService universityService;
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<String> saveUniversity(@Valid @RequestBody UniversityDTO universityDTO){
+    public ResponseEntity<String> saveUniversity(@Valid @RequestBody UniversityDTO universityDTO) {
         return universityService.saveUniversity(universityDTO);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<University>> getUniversity(){
-        return universityService.getUniversity();
+    public ResponseEntity<List<University>> getAllUniversity() {
+        return universityService.getAllUniversity();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -34,7 +34,7 @@ public class UniversityController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateUniveristy(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody UniversityDTO universityDTO){
+    public ResponseEntity<String> updateUniveristy(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody UniversityDTO universityDTO) {
 
         return universityService.updateUniversity(id, universityDTO);
     }

@@ -12,34 +12,33 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping (value = "/api/vendor")
+@RequestMapping(value = "/api/vendor")
 public class VendorController {
-@Autowired
+    @Autowired
     VendorService vendorService;
 
-//Post
-@RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveVendor (@Valid @RequestBody VendorDTO vendorDTO)
-{
-    return vendorService.saveVendor(vendorDTO);
-}
+    //Post
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveVendor(@Valid @RequestBody VendorDTO vendorDTO) {
+        return vendorService.saveVendor(vendorDTO);
+    }
 
-//Get All
+    //Get All
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<Vendor>> getAll(){
-    return vendorService.getAll();
+    public ResponseEntity<List<Vendor>> getAllVendor() {
+        return vendorService.getAllVendor();
     }
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Vendor> getById(@PathVariable("id") @Min(value=1 , message = "ID must be greater than 1") Long id){
-    return vendorService.getById(id);
+    public ResponseEntity<Vendor> getVendorById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return vendorService.getVendorById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id,@Valid @RequestBody VendorDTO vendorDTO){
-    return vendorService.update(id, vendorDTO);
+    public ResponseEntity<String> updateVendor(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody VendorDTO vendorDTO) {
+        return vendorService.updateVendor(id, vendorDTO);
     }
 
 }

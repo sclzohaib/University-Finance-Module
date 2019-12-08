@@ -16,8 +16,8 @@ public class QuotationDetailService {
     QuotationDetailRepository quotationDetailRepository;
 
     //Save Quotation Detail
-    public ResponseEntity<String> saveQuotationDetail(QuotationDetailDTO quotationDetailDTO){
-        QuotationDetail quotationDetail =new QuotationDetail();
+    public ResponseEntity<String> saveQuotationDetail(QuotationDetailDTO quotationDetailDTO) {
+        QuotationDetail quotationDetail = new QuotationDetail();
         quotationDetail.setDescription(quotationDetailDTO.getDescription());
         quotationDetail.setBrand(quotationDetailDTO.getBrand());
         quotationDetail.setPriceWithGst(quotationDetailDTO.getPriceWithGst());
@@ -31,20 +31,20 @@ public class QuotationDetailService {
     }
 
     //Get all quotation details
-    public ResponseEntity<List<QuotationDetail>> getQuotationDetail(){
+    public ResponseEntity<List<QuotationDetail>> getAllQuotationDetail() {
         List<QuotationDetail> quotationDetails = quotationDetailRepository.findAll();
         return new ResponseEntity<List<QuotationDetail>>(quotationDetails, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<QuotationDetail> getQuotationDetailById(Long id){
+    public ResponseEntity<QuotationDetail> getQuotationDetailById(Long id) {
         QuotationDetail quotationDetail = quotationDetailRepository.findById(id).get();
-        return new ResponseEntity<QuotationDetail>(quotationDetail,HttpStatus.FOUND);
+        return new ResponseEntity<QuotationDetail>(quotationDetail, HttpStatus.FOUND);
 
     }
 
     //Update Quotation Detail
-    public ResponseEntity<String> updateQuotationDetail(Long id, QuotationDetailDTO quotationDetailDTO){
+    public ResponseEntity<String> updateQuotationDetail(Long id, QuotationDetailDTO quotationDetailDTO) {
         QuotationDetail quotationDetail = quotationDetailRepository.findById(id).get();
         quotationDetail.setBrand(quotationDetailDTO.getBrand());
         quotationDetail.setDescription(quotationDetailDTO.getDescription());

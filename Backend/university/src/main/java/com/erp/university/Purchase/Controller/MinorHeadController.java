@@ -12,32 +12,32 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping  (value= "/api/minorHead")
+@RequestMapping(value = "/api/minorHead")
 public class MinorHeadController {
     @Autowired
     MinorHeadService minorHeadService;
 
     //Post
-   @RequestMapping(value = "/",method = RequestMethod.POST)
-public ResponseEntity<String> saveMinorHead(@Valid @RequestBody MinorHeadDTO minorHeadDTO)
-   {
-       return minorHeadService.saveMinorHead(minorHeadDTO);
-   }
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveMinorHead(@Valid @RequestBody MinorHeadDTO minorHeadDTO) {
+        return minorHeadService.saveMinorHead(minorHeadDTO);
+    }
 
-   //Get All
+    //Get All
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<MinorHead>> getAll(){
-       return minorHeadService.getAll();
+    public ResponseEntity<List<MinorHead>> getAllMinorHead() {
+        return minorHeadService.getAllMinorHead();
     }
 
     //Get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<MinorHead> getById(@PathVariable("id") @Min(value = 1, message ="ID must be greater than 1") Long id) {return minorHeadService.getById(id);
+    public ResponseEntity<MinorHead> getMinorHeadById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return minorHeadService.getMinorHeadById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id")@Min(value = 1, message ="ID must be greater than 1") Long id,@Valid @RequestBody MinorHeadDTO minorHeadDTO){
-       return minorHeadService.update(id, minorHeadDTO);
+    public ResponseEntity<String> updateMinorHead(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody MinorHeadDTO minorHeadDTO) {
+        return minorHeadService.updateMinorHead(id, minorHeadDTO);
     }
 }

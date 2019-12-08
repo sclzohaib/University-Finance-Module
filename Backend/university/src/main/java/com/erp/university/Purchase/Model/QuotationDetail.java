@@ -12,7 +12,6 @@ public class QuotationDetail {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "qd_id_sequence_g")
     @SequenceGenerator(name = "qd_id_sequence_g", sequenceName = "qd_sequence")
     @NotNull(message = "ID cannot be null")
-    @NotEmpty(message = "ID cannot be empty")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
@@ -29,26 +28,18 @@ public class QuotationDetail {
     private String Brand;
 
     @NotNull(message = "Quantity cannot be null !!")
-    @NotBlank(message = "Quantity  cannot be blank !!")
-    @NotEmpty(message = "Quantity cannot be empty")
     @Column(name = "quantity", unique = true, nullable = false)
     private Long quantity;
 
     @NotNull(message = "Price with GST cannot be null !!")
-    @NotBlank(message = "Price with GST cannot be blank !!")
-    @NotEmpty(message = "Price with GST cannot be empty")
     @Column(name = "price_with_gst", unique = true, nullable = false)
     private Long priceWithGst;
 
     @NotNull(message = "Total cannot be null !!")
-    @NotBlank(message = "Total cannot be blank !!")
-    @NotEmpty(message = "Total cannot be empty")
     @Column(name = "total", unique = true, nullable = false)
     private Long total;
 
     @NotNull(message = "Unit Price cannot be null !!")
-    @NotBlank(message = "Unit Price cannot be blank !!")
-    @NotEmpty(message = "Unit Price  cannot be empty")
     @Column(name = "unit_price", unique = true, nullable = false)
     private Long unitPrice;
 

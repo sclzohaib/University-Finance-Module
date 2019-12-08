@@ -14,31 +14,30 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/tendor")
 public class TendorController {
-@Autowired
+    @Autowired
     TendorService tendorService;
 
-//Post
-@RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveTendor(@Valid @RequestBody TendorDTO tendorDTO)
-{
-    return tendorService.saveTendor(tendorDTO);
-}
+    //Post
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveTendor(@Valid @RequestBody TendorDTO tendorDTO) {
+        return tendorService.saveTendor(tendorDTO);
+    }
 
-//Get all
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public ResponseEntity<List<Tendor>> getAll(){
-    return tendorService.getAll();
+    //Get all
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity<List<Tendor>> getAllTendor() {
+        return tendorService.getAllTendor();
     }
 
     //Get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Tendor> getById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id){
-    return tendorService.getById(id);
+    public ResponseEntity<Tendor> getTendorById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return tendorService.getTendorById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id")@Min(value = 1, message = "ID must be greater than 1") Long id,@Valid @RequestBody TendorDTO tendorDTO){
-    return tendorService.update(id, tendorDTO);
+    public ResponseEntity<String> updateTendor(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody TendorDTO tendorDTO) {
+        return tendorService.updateTendor(id, tendorDTO);
     }
 }

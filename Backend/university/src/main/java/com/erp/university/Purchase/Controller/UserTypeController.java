@@ -12,32 +12,32 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping (value ="/api/userType")
+@RequestMapping(value = "/api/userType")
 public class UserTypeController {
     @Autowired
     UserTypeService userTypeService;
 
     //Post
-    @RequestMapping (value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveUserType(@Valid @RequestBody UserTypeDTO userTypeDTO){
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveUserType(@Valid @RequestBody UserTypeDTO userTypeDTO) {
         return userTypeService.saveUserType(userTypeDTO);
     }
 
     //Get All
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<UserType>> getAll(){
-        return userTypeService.getAll();
+    public ResponseEntity<List<UserType>> getAllUserType() {
+        return userTypeService.getAllUserType();
     }
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<UserType> getById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id){
-        return userTypeService.getById(id);
+    public ResponseEntity<UserType> getUserTypeById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return userTypeService.getUserTypeById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") Long id, @Valid  @RequestBody UserTypeDTO userTypeDTO){
-        return userTypeService.update(id, userTypeDTO);
+    public ResponseEntity<String> updateUserType(@PathVariable("id") Long id, @Valid @RequestBody UserTypeDTO userTypeDTO) {
+        return userTypeService.updateUserType(id, userTypeDTO);
     }
 }

@@ -16,27 +16,27 @@ public class MajorHeadService {
     MajorHeadRepository majorHeadRepository;
 
     //Save
-    public ResponseEntity<String> saveMajorHead(MajorHeadDTO majorHeadDTO){
-        MajorHead majorHead=new MajorHead();
+    public ResponseEntity<String> saveMajorHead(MajorHeadDTO majorHeadDTO) {
+        MajorHead majorHead = new MajorHead();
         majorHead.setName(majorHeadDTO.getName());
         majorHeadRepository.save(majorHead);
         return new ResponseEntity<String>("Added Succesfully", HttpStatus.CREATED);
     }
 
     //Get all
-    public ResponseEntity<List<MajorHead>> getAll(){
+    public ResponseEntity<List<MajorHead>> getAllMajorHead() {
         List<MajorHead> majorHeads = majorHeadRepository.findAll();
-        return new ResponseEntity<List<MajorHead>>(majorHeads,HttpStatus.FOUND);
+        return new ResponseEntity<List<MajorHead>>(majorHeads, HttpStatus.FOUND);
     }
 
     //Get by id
-    public ResponseEntity<MajorHead> getById(Long id){
+    public ResponseEntity<MajorHead> getMajorHeadById(Long id) {
         MajorHead majorHead = majorHeadRepository.findById(id).get();
-        return new ResponseEntity<MajorHead>(majorHead,HttpStatus.FOUND);
+        return new ResponseEntity<MajorHead>(majorHead, HttpStatus.FOUND);
     }
 
     //Update
-    public ResponseEntity<String> update(Long id, MajorHeadDTO majorHeadDTO){
+    public ResponseEntity<String> updateMajorHead(Long id, MajorHeadDTO majorHeadDTO) {
         MajorHead majorHead = majorHeadRepository.findById(id).get();
         majorHead.setName(majorHeadDTO.getName());
         majorHeadRepository.save(majorHead);

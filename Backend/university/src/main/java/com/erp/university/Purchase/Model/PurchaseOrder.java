@@ -1,7 +1,6 @@
 package com.erp.university.Purchase.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.util.Date;
@@ -14,19 +13,16 @@ public class PurchaseOrder {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "po_id_sequence_g")
     @SequenceGenerator(name = "po_id_sequence_g", sequenceName = "po_seq")
     @NotNull(message = "Id cannot be null !!")
-    @NotEmpty(message= "Id cannot be empty")
-    @Column(name= "id", unique= true ,nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     @NotNull(message = "Date cannot be null !!")
-    @NotEmpty(message = "Date cannot be empty !!")
-    @Column(name= "date", nullable = false)
     @PastOrPresent(message = "date cannot be in future")
+    @Column(name = "po_date", nullable = false)
     private Date date;
 
     @NotNull(message = "Purchase Order No cannot be null")
-    @NotEmpty(message= "Purchase Order No cannot be empty")
-    @Column(name= "purchase_order_no",unique= true, nullable = false)
+    @Column(name = "purchase_order_no", unique = true, nullable = false)
     private Long purchaseOrderNo;
 
     public PurchaseOrder() {

@@ -8,7 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface QuotationRepository extends JpaRepository<Quotation, Long> {
 
 
-
-
-
 }

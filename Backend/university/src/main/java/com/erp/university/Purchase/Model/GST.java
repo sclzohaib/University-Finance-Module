@@ -1,25 +1,20 @@
 package com.erp.university.Purchase.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "gst")
+@Table(name = "gst")
 public class GST {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gst_id_sequence_g")
     @SequenceGenerator(name = "gst_id_sequence_g", sequenceName = "gst_seq")
     @NotNull(message = "GST ID cannot be null")
-    @NotEmpty(message = "GST ID cannot be empty")
-    @Column (name = "id",unique = true,nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     @NotNull(message = "Percent cannot be null")
-    @NotEmpty(message = "Percent cannot be empty")
-    @NotBlank(message = "Percent cannot be blank")
-    @Column (name = "id",nullable = false)
+    @Column(name = "percent", nullable = false)
     private Double percent;
 
     public GST() {

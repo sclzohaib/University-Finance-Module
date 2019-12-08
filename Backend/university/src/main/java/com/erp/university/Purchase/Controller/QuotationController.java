@@ -12,33 +12,33 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/api/quotation")
+@RequestMapping(value = "/api/quotation")
 public class QuotationController {
- @Autowired
- QuotationService quotationService;
+    @Autowired
+    QuotationService quotationService;
 
- //Post Call
-    @RequestMapping(value = "/" ,method = RequestMethod.POST)
-    public ResponseEntity<String> saveQuotation(@Valid @RequestBody QuotationDTO quotationDTO){
+    //Post Call
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveQuotation(@Valid @RequestBody QuotationDTO quotationDTO) {
 
-   return quotationService.saveQuotation(quotationDTO);
+        return quotationService.saveQuotation(quotationDTO);
     }
 
     //Get call for All Quotation
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<Quotation>> getQuotation(){
-        return quotationService.getQuotation();
+    public ResponseEntity<List<Quotation>> getAllQuotation() {
+        return quotationService.getAllQuotation();
     }
 
     //Get call for Single Quotation
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Quotation> getQuotationById(@PathVariable("id") @Min(value = 1, message ="ID must be greater than 1") Long id){
+    public ResponseEntity<Quotation> getQuotationById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
         return quotationService.getQuotationById(id);
     }
 
     //Put call for Update Quotation
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateQuotation(@PathVariable("id") @Min(value = 1, message ="ID must be greater than 1") Long id, @Valid @RequestBody QuotationDTO quotationDTO){
+    public ResponseEntity<String> updateQuotation(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody QuotationDTO quotationDTO) {
         return quotationService.updateQuotation(id, quotationDTO);
     }
 }

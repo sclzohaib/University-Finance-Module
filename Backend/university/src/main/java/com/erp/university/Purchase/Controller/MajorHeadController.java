@@ -26,19 +26,19 @@ public class MajorHeadController {
 
     //Get all
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<MajorHead>> getAll() {
-        return majorHeadService.getAll();
+    public ResponseEntity<List<MajorHead>> getAllMajorHead() {
+        return majorHeadService.getAllMajorHead();
     }
 
     //get by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<MajorHead> getById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
-        return majorHeadService.getById(id);
+    public ResponseEntity<MajorHead> getMajorHeadById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return majorHeadService.getMajorHeadById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id,@Valid @RequestBody MajorHeadDTO majorHeadDTO) {
-        return majorHeadService.update(id, majorHeadDTO);
+    public ResponseEntity<String> updateMajorHead(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody MajorHeadDTO majorHeadDTO) {
+        return majorHeadService.updateMajorHead(id, majorHeadDTO);
     }
 }

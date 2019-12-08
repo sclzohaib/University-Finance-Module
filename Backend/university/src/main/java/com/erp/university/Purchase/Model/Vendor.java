@@ -8,13 +8,12 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table (name = "vendor")
+@Table(name = "vendor")
 public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vendor_id_sequence_g")
     @SequenceGenerator(name = "vendor_id_sequence_g", sequenceName = "vendor_seq")
     @NotNull(message = "ID cannot be null")
-    @NotEmpty(message = "ID cannot be empty")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
@@ -26,24 +25,18 @@ public class Vendor {
     private String vName;
 
     @NotNull(message = "Phone no cannot be null")
-    @NotEmpty(message = "Phone no cannot be empty")
     @Column(name = "telephone_no", unique = true, nullable = false)
     private Long tel;
 
     @NotNull(message = "Tender Date cannot be null")
-    @NotEmpty(message = "Tender Date cannot be empty")
-    @NotBlank(message = "Tender Date cannot be blank")
     @Column(name = "t_date", nullable = false)
     private Date tDate;
 
     @NotNull(message = "Tender Last date cannot be null")
-    @NotEmpty(message = "Tender Last Date cannot be empty")
-    @NotBlank(message = "Tender Last Date cannot be blank")
     @Column(name = "t_last_date", nullable = false)
     private Date tLastDate;
 
     @NotNull(message = "Tender Quotation Amount cannot be null")
-    @NotEmpty(message = "Tender Quotation Amount cannot be empty")
     @Column(name = "t_quotation_amount", nullable = false)
     private Double tQuotationAmount;
 

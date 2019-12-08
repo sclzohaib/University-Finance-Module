@@ -1,23 +1,20 @@
 package com.erp.university.Purchase.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "auth_signatory")
+@Table(name = "auth_signatory")
 public class AuthorizeSignatory {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "as_id_sequence_g")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "as_id_sequence_g")
     @SequenceGenerator(name = "as_id_sequence_g", sequenceName = "auth_sign_seq")
     @NotNull(message = "Authorize signatory Id can not be null")
-    @NotEmpty(message = "Authorize signatory Id can not be empty")
-    @Column (name = "id", unique = true, nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     @NotNull(message = "Level Id can not be null")
-    @NotEmpty(message = "Level Id can not be empty")
-    @Column (name = "lvl_id", nullable = false)
+    @Column(name = "lvl_id", nullable = false)
     private Long lvlId;
 
     public AuthorizeSignatory() {

@@ -18,27 +18,26 @@ public class SummaryController {
     SummaryService summaryService;
 
     //Post
-    @RequestMapping (value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveSummary(@Valid @RequestBody SummaryDTO summaryDTO)
-    {
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveSummary(@Valid @RequestBody SummaryDTO summaryDTO) {
         return summaryService.saveSummary(summaryDTO);
     }
 
     //Get all
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<Summary>> getAll(){
-        return summaryService.getAll();
+    public ResponseEntity<List<Summary>> getAllSummary() {
+        return summaryService.getAllSummary();
     }
 
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Summary> getById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id){
-        return summaryService.getById(id);
+    public ResponseEntity<Summary> getSummaryById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return summaryService.getSummaryById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> update(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1")Long id,@Valid @RequestBody SummaryDTO summaryDTO){
-        return summaryService.update(id, summaryDTO);
+    public ResponseEntity<String> updateSummary(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody SummaryDTO summaryDTO) {
+        return summaryService.updateSummary(id, summaryDTO);
     }
 }

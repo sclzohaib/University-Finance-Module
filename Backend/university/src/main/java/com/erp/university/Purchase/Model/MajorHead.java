@@ -7,21 +7,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table (name = "major_head")
+@Table(name = "major_head")
 public class MajorHead {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mh_id_sequence_g")
     @SequenceGenerator(name = "mh_id_sequence_g", sequenceName = "major_head_seq")
     @NotNull(message = "Major head ID cannot be null")
-    @NotEmpty(message = "Major head ID cannot be empty")
-    @Column(name = "id" ,unique = true,nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     @NotNull(message = "Name cannot be null")
     @NotEmpty(message = "Name cannot be empty")
     @NotBlank(message = "Name cannot be blank")
-    @Column(name = "name",nullable = false)
-    @Size(min = 4 ,max = 50 ,message = "Major head name must be in between 11 and 13")
+    @Column(name = "name", nullable = false)
+    @Size(min = 4, max = 50, message = "Major head name must be in between 11 and 13")
     private String name;
 
     public MajorHead() {

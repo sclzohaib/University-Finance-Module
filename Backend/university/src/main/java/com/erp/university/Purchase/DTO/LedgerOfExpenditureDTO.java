@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class LedgerOfExpenditureDTO {
     private Long id;
-    private  String particulars;
+    private String particulars;
     private Double debitAmount;
     private Double balance;
     private Date date;

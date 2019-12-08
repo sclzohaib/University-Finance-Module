@@ -16,9 +16,8 @@ public class UserService {
     UserRepository userRepository;
 
     //Save
-    public ResponseEntity<String> saveUser(UserDTO userDTO)
-    {
-        User user=new User();
+    public ResponseEntity<String> saveUser(UserDTO userDTO) {
+        User user = new User();
         user.setStatus("Active");
         user.setPassword(userDTO.getPassword());
         user.setName(userDTO.getName());
@@ -31,19 +30,19 @@ public class UserService {
     }
 
     //Get All
-    public ResponseEntity<List<User>> getAll(){
+    public ResponseEntity<List<User>> getAllUser() {
         List<User> users = userRepository.findAll();
-        return new ResponseEntity<List<User>>(users,HttpStatus.FOUND);
+        return new ResponseEntity<List<User>>(users, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<User> getById(Long id){
+    public ResponseEntity<User> getUserById(Long id) {
         User user = userRepository.findById(id).get();
-        return new ResponseEntity<User>(user,HttpStatus.FOUND);
+        return new ResponseEntity<User>(user, HttpStatus.FOUND);
     }
 
     //Update
-    public ResponseEntity<String> update(Long id, UserDTO userDTO){
+    public ResponseEntity<String> updateUser(Long id, UserDTO userDTO) {
         User user = userRepository.findById(id).get();
         user.setAddress(userDTO.getAddress());
         user.setContactNo(userDTO.getContactNo());

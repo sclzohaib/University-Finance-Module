@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MajorHeadRepository extends JpaRepository<MajorHead,Long> {
+public interface MajorHeadRepository extends JpaRepository<MajorHead, Long> {
 }

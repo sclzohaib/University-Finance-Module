@@ -20,25 +20,25 @@ public class DepartmentController {
 
     //Post Call
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<String> saveDepartment(@Valid @RequestBody DepartmentDTO departmentDTO){
+    public ResponseEntity<String> saveDepartment(@Valid @RequestBody DepartmentDTO departmentDTO) {
         return departmentService.saveDepartment(departmentDTO);
     }
 
     //Get Call to Get all Departments
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<Department>> getDepartment(){
+    public ResponseEntity<List<Department>> getDepartment() {
         return departmentService.getDepartment();
     }
 
     //Get call to get single department by id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Department> getDepartmentById(@PathVariable("id") @Min(value = 1,message = "ID must be greater than 1") Long id){
+    public ResponseEntity<Department> getDepartmentById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
         return departmentService.getDepartmentById(id);
     }
 
     //Update Department via Id
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateDepartment(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id,@Valid @RequestBody DepartmentDTO departmentDTO){
+    public ResponseEntity<String> updateDepartment(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody DepartmentDTO departmentDTO) {
         return departmentService.updateDepartment(id, departmentDTO);
     }
 

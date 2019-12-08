@@ -12,32 +12,32 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping (value ="/api/coveringLetter")
+@RequestMapping(value = "/api/coveringLetter")
 public class CoveringLetterController {
-@Autowired
+    @Autowired
     CoveringLetterService coveringLetterService;
 
-//Post
-    @RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveCoveringLetter (@Valid @RequestBody CoveringLetterDTO coveringLetterDTO)
-    {
+    //Post
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveCoveringLetter(@Valid @RequestBody CoveringLetterDTO coveringLetterDTO) {
         return coveringLetterService.saveCoveringLetter(coveringLetterDTO);
     }
 
     //Get All
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<List<CoveringLetter>> getCoveringLetter(){
+    public ResponseEntity<List<CoveringLetter>> getCoveringLetter() {
         return coveringLetterService.getCoveringLetter();
     }
+
     //Get By id
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<CoveringLetter> getCoveringLetterById(@PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id){
+    public ResponseEntity<CoveringLetter> getCoveringLetterById(@PathVariable("id") @Min(value = 1, message = "Id must be greater than 1") Long id) {
         return coveringLetterService.getCoveringLetterById(id);
     }
 
     //Update
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateCoveringLetter(@PathVariable("id") @Min(value=1,message = "Id must be greater than 1") Long id, @Valid @RequestBody CoveringLetterDTO coveringLetterDTO){
+    public ResponseEntity<String> updateCoveringLetter(@PathVariable("id") @Min(value = 1, message = "Id must be greater than 1") Long id, @Valid @RequestBody CoveringLetterDTO coveringLetterDTO) {
         return coveringLetterService.updateCoveringLetter(id, coveringLetterDTO);
     }
 }

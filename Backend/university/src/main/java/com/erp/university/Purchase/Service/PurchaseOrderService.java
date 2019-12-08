@@ -18,28 +18,28 @@ public class PurchaseOrderService {
     //Save Purchase Order
     public ResponseEntity<String> savePurchaseOrder(PurchaseOrderDTO purchaseOrderDTO) {
         PurchaseOrder purchaseOrder = new PurchaseOrder();
-      purchaseOrder.setDate(purchaseOrderDTO.getDate());
-      purchaseOrder.setPurchaseOrderNo(purchaseOrderDTO.getPurchaseOrderNo());
-      purchaseOrderRepository.save(purchaseOrder);
-      return new ResponseEntity<String>("Added Succesfully", HttpStatus.CREATED);
+        purchaseOrder.setDate(purchaseOrderDTO.getDate());
+        purchaseOrder.setPurchaseOrderNo(purchaseOrderDTO.getPurchaseOrderNo());
+        purchaseOrderRepository.save(purchaseOrder);
+        return new ResponseEntity<String>("Added Succesfully", HttpStatus.CREATED);
 
     }
 
     //Get all Purchase order
-    public ResponseEntity<List<PurchaseOrder>> getPurchaseOrder(){
+    public ResponseEntity<List<PurchaseOrder>> getAllPurchaseOrder() {
         List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.findAll();
         return new ResponseEntity<List<PurchaseOrder>>(purchaseOrders, HttpStatus.FOUND);
     }
 
 
     //Get Single Purchase Order
-    public ResponseEntity<PurchaseOrder> getPurchaseOrderById(Long id){
+    public ResponseEntity<PurchaseOrder> getPurchaseOrderById(Long id) {
         PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(id).get();
         return new ResponseEntity<>(purchaseOrder, HttpStatus.FOUND);
     }
 
     //Update Purchase Order
-    public ResponseEntity<String> updatePurchaseOrder(Long id, PurchaseOrderDTO purchaseOrderDTO){
+    public ResponseEntity<String> updatePurchaseOrder(Long id, PurchaseOrderDTO purchaseOrderDTO) {
         PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(id).get();
         purchaseOrder.setDate(purchaseOrderDTO.getDate());
         purchaseOrder.setPurchaseOrderNo(purchaseOrderDTO.getPurchaseOrderNo());

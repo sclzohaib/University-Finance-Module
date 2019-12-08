@@ -1,23 +1,20 @@
 package com.erp.university.Purchase.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "auth_lvl")
+@Table(name = "auth_lvl")
 public class AuthorizeLvl {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "al_id_sequence_g")
-    @SequenceGenerator(name = "al_id_sequence_g",sequenceName = "auth_lvl_seq")
-    @NotNull (message= "ID can not be null")
-    @NotEmpty (message = "ID can not be empty")
-    @Column (name= "id", unique = true, nullable = false)
+    @SequenceGenerator(name = "al_id_sequence_g", sequenceName = "auth_lvl_seq")
+    @NotNull(message = "ID can not be null")
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @Column (name= "lvl_no" , unique = true, nullable = false)
-    @NotNull (message= "Level No. can not be null")
-    @NotEmpty (message = "Level No. can not be empty")
+    @NotNull(message = "Level No. can not be null")
+    @Column(name = "lvl_no", unique = true, nullable = false)
     private Long lvlNo;
 
     public AuthorizeLvl() {

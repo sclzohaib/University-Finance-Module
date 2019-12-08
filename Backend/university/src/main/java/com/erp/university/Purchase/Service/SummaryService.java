@@ -16,27 +16,26 @@ public class SummaryService {
     SummaryRepository summaryRepository;
 
     //Save
-    public ResponseEntity<String> saveSummary (SummaryDTO summaryDTO)
-    {
-        Summary summary=new Summary();
+    public ResponseEntity<String> saveSummary(SummaryDTO summaryDTO) {
+        Summary summary = new Summary();
         summaryRepository.save(summary);
         return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
     }
 
     //Get all
-    public ResponseEntity<List<Summary>> getAll(){
+    public ResponseEntity<List<Summary>> getAllSummary() {
         List<Summary> summaries = summaryRepository.findAll();
-        return new ResponseEntity<List<Summary>>(summaries,HttpStatus.FOUND);
+        return new ResponseEntity<List<Summary>>(summaries, HttpStatus.FOUND);
     }
 
     //Get by id
-    public ResponseEntity<Summary> getById(Long id){
+    public ResponseEntity<Summary> getSummaryById(Long id) {
         Summary summary = summaryRepository.findById(id).get();
         return new ResponseEntity<Summary>(summary, HttpStatus.FOUND);
     }
 
     //Update
-    public ResponseEntity<String> update(Long id, SummaryDTO summaryDTO){
+    public ResponseEntity<String> updateSummary(Long id, SummaryDTO summaryDTO) {
         Summary summary = summaryRepository.findById(id).get();
         summaryRepository.save(summary);
         return new ResponseEntity<String>("Updated Successfully", HttpStatus.OK);

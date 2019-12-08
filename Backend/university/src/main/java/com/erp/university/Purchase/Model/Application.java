@@ -1,7 +1,10 @@
 package com.erp.university.Purchase.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -11,7 +14,6 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "app_id_sequence_g")
     @SequenceGenerator(name = "app_id_sequence_g", sequenceName = "app_seq")
     @NotNull(message = "Application ID cannot be null")
-    @NotEmpty(message = "Application ID cannot be empty")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
@@ -23,9 +25,7 @@ public class Application {
     private String subject;
 
     @NotNull(message = "Date cannot be null")
-    @NotEmpty(message = "Date cannot be empty")
-    @NotBlank(message = "Date cannot be blank")
-    @Column(name = "date", nullable = false)
+    @Column(name = "app_date", nullable = false)
     private Date date;
 
     @NotNull(message = "Status cannot be null")

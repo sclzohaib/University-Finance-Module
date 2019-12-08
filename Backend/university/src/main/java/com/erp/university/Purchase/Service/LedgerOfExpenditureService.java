@@ -17,9 +17,8 @@ public class LedgerOfExpenditureService {
     LedgerOfExpenditureRepository ledgerOfExpenditureRepository;
 
     //Save
-    public ResponseEntity<String> saveLedgerOfExpenditure(LedgerOfExpenditureDTO ledgerOfExpenditureDTO)
-    {
-        LedgerOfExpenditure ledgerOfExpenditure=new LedgerOfExpenditure();
+    public ResponseEntity<String> saveLedgerOfExpenditure(LedgerOfExpenditureDTO ledgerOfExpenditureDTO) {
+        LedgerOfExpenditure ledgerOfExpenditure = new LedgerOfExpenditure();
         ledgerOfExpenditure.setBalance(ledgerOfExpenditureDTO.getBalance());
         ledgerOfExpenditure.setDate(ledgerOfExpenditureDTO.getDate());
         ledgerOfExpenditure.setDebitAmount(ledgerOfExpenditureDTO.getDebitAmount());
@@ -29,19 +28,19 @@ public class LedgerOfExpenditureService {
     }
 
     //Get All
-    public ResponseEntity<List<LedgerOfExpenditure>> getAll(){
+    public ResponseEntity<List<LedgerOfExpenditure>> getLOE() {
         List<LedgerOfExpenditure> ledgerOfExpenditures = ledgerOfExpenditureRepository.findAll();
         return new ResponseEntity<List<LedgerOfExpenditure>>(ledgerOfExpenditures, HttpStatus.FOUND);
     }
 
     //Get By id
-    public ResponseEntity<LedgerOfExpenditure> getById(Long id){
+    public ResponseEntity<LedgerOfExpenditure> getLOEById(Long id) {
         LedgerOfExpenditure ledgerOfExpenditure = ledgerOfExpenditureRepository.findById(id).get();
-        return new ResponseEntity<LedgerOfExpenditure>(ledgerOfExpenditure,HttpStatus.FOUND);
+        return new ResponseEntity<LedgerOfExpenditure>(ledgerOfExpenditure, HttpStatus.FOUND);
     }
 
     //Update
-    public ResponseEntity<String> update(Long id, LedgerOfExpenditureDTO ledgerOfExpenditureDTO){
+    public ResponseEntity<String> updateLOE(Long id, LedgerOfExpenditureDTO ledgerOfExpenditureDTO) {
         LedgerOfExpenditure ledgerOfExpenditure = ledgerOfExpenditureRepository.findById(id).get();
         ledgerOfExpenditure.setBalance(ledgerOfExpenditureDTO.getBalance());
         ledgerOfExpenditure.setDate(ledgerOfExpenditureDTO.getDate());
