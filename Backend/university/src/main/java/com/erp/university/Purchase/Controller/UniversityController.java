@@ -34,7 +34,7 @@ public class UniversityController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateUniveristy(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody UniversityDTO universityDTO) {
+    public ResponseEntity<String> updateUniversity(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody UniversityDTO universityDTO) {
 
         return universityService.updateUniversity(id, universityDTO);
     }

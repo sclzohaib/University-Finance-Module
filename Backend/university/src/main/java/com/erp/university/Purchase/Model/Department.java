@@ -34,7 +34,7 @@ public class Department {
     private Long telephone;
 
     @NotNull(message = "Department extension No. cannot be null")
-    @Min(value = 2, message = "Department extention No. cannot be less than 2")
+    @Min(value = 2, message = "Department extension No. cannot be less than 2")
     @Max(value = 5, message = "Department extension No. cannot be greater than 5")
     @Column(name = "extension_no", unique = true)
     private Long extensionNo;
