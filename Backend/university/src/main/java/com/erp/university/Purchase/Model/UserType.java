@@ -44,4 +44,12 @@ public class UserType {
     public void setUserType(String userType) {
         this.userType = userType;
     }
+
+    @Override
+    public String toString() {
+        return "UserType{" +
+                "id=" + id +
+                ", userType='" + userType + '\'' +
+                '}';
+    }
 }

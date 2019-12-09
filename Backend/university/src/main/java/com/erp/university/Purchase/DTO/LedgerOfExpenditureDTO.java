@@ -59,4 +59,15 @@ public class LedgerOfExpenditureDTO {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "LedgerOfExpenditureDTO{" +
+                "id=" + id +
+                ", particulars='" + particulars + '\'' +
+                ", debitAmount=" + debitAmount +
+                ", balance=" + balance +
+                ", date=" + date +
+                '}';
+    }
 }

@@ -90,4 +90,15 @@ public class Application {
     public void setAssociatePerson(String associatePerson) {
         this.associatePerson = associatePerson;
     }
+
+    @Override
+    public String toString() {
+        return "Application{" +
+                "id=" + id +
+                ", subject='" + subject + '\'' +
+                ", date=" + date +
+                ", status='" + status + '\'' +
+                ", associatePerson='" + associatePerson + '\'' +
+                '}';
+    }
 }

@@ -27,4 +27,12 @@ public class UserTypeDTO {
     public void setUserType(String userType) {
         this.userType = userType;
     }
+
+    @Override
+    public String toString() {
+        return "UserTypeDTO{" +
+                "id=" + id +
+                ", userType='" + userType + '\'' +
+                '}';
+    }
 }

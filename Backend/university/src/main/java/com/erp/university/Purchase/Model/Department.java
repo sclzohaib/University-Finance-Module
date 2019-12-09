@@ -88,4 +88,15 @@ public class Department {
     public void setExtensionNo(Long extensionNo) {
         this.extensionNo = extensionNo;
     }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", telephone=" + telephone +
+                ", extensionNo=" + extensionNo +
+                '}';
+    }
 }

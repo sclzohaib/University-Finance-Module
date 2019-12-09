@@ -37,4 +37,13 @@ public class MinorHeadDTO {
     public void setCodeNo(Long codeNo) {
         this.codeNo = codeNo;
     }
+
+    @Override
+    public String toString() {
+        return "MinorHeadDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", codeNo=" + codeNo +
+                '}';
+    }
 }

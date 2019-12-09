@@ -59,4 +59,15 @@ public class QuotationDTO {
     public void setTotal(Long total) {
         this.total = total;
     }
+
+    @Override
+    public String toString() {
+        return "QuotationDTO{" +
+                "id=" + id +
+                ", refNo=" + refNo +
+                ", date=" + date +
+                ", termsCondition='" + termsCondition + '\'' +
+                ", total=" + total +
+                '}';
+    }
 }

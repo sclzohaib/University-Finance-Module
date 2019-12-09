@@ -40,4 +40,12 @@ public class AuthorizeSignatory {
     public void setLvlId(Long lvlId) {
         this.lvlId = lvlId;
     }
+
+    @Override
+    public String toString() {
+        return "AuthorizeSignatory{" +
+                "id=" + id +
+                ", lvlId=" + lvlId +
+                '}';
+    }
 }

@@ -114,4 +114,16 @@ public class TenVenDetails {
     public void setVendorNic(Long vendorNic) {
         this.vendorNic = vendorNic;
     }
+
+    @Override
+    public String toString() {
+        return "TenVenDetails{" +
+                "id=" + id +
+                ", quotation='" + quotation + '\'' +
+                ", vendorEmail='" + vendorEmail + '\'' +
+                ", vendorAddress='" + vendorAddress + '\'' +
+                ", venNtn='" + venNtn + '\'' +
+                ", vendorNic=" + vendorNic +
+                '}';
+    }
 }

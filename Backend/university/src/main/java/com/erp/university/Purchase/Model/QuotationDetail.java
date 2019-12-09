@@ -111,4 +111,17 @@ public class QuotationDetail {
     public void setUnitPrice(Long unitPrice) {
         this.unitPrice = unitPrice;
     }
+
+    @Override
+    public String toString() {
+        return "QuotationDetail{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", Brand='" + Brand + '\'' +
+                ", quantity=" + quantity +
+                ", priceWithGst=" + priceWithGst +
+                ", total=" + total +
+                ", unitPrice=" + unitPrice +
+                '}';
+    }
 }

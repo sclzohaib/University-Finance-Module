@@ -40,4 +40,12 @@ public class GST {
     public void setPercent(Double percent) {
         this.percent = percent;
     }
+
+    @Override
+    public String toString() {
+        return "GST{" +
+                "id=" + id +
+                ", percent=" + percent +
+                '}';
+    }
 }

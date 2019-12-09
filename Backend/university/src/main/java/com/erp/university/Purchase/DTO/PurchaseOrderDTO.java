@@ -39,4 +39,13 @@ public class PurchaseOrderDTO {
     public void setPurchaseOrderNo(Long purchaseOrderNo) {
         this.purchaseOrderNo = purchaseOrderNo;
     }
+
+    @Override
+    public String toString() {
+        return "PurchaseOrderDTO{" +
+                "id=" + id +
+                ", date=" + date +
+                ", purchaseOrderNo=" + purchaseOrderNo +
+                '}';
+    }
 }

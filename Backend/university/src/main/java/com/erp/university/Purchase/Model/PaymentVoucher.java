@@ -113,4 +113,17 @@ public class PaymentVoucher {
     public void setAccountDescription(String accountDescription) {
         this.accountDescription = accountDescription;
     }
+
+    @Override
+    public String toString() {
+        return "PaymentVoucher{" +
+                "id=" + id +
+                ", payeeName='" + payeeName + '\'' +
+                ", payeeCode=" + payeeCode +
+                ", paymentVoucherNo=" + paymentVoucherNo +
+                ", date=" + date +
+                ", accountCode=" + accountCode +
+                ", accountDescription='" + accountDescription + '\'' +
+                '}';
+    }
 }

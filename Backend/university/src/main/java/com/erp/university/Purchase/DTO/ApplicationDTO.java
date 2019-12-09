@@ -59,4 +59,15 @@ public class ApplicationDTO {
     public void setAssociatePerson(String associatePerson) {
         this.associatePerson = associatePerson;
     }
+
+    @Override
+    public String toString() {
+        return "ApplicationDTO{" +
+                "id=" + id +
+                ", subject='" + subject + '\'' +
+                ", date=" + date +
+                ", status='" + status + '\'' +
+                ", associatePerson='" + associatePerson + '\'' +
+                '}';
+    }
 }

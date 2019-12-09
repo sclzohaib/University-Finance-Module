@@ -89,4 +89,18 @@ public class BudgetSheetDTO {
     public void setOverExp(Double overExp) {
         this.overExp = overExp;
     }
+
+    @Override
+    public String toString() {
+        return "BudgetSheetDTO{" +
+                "id=" + id +
+                ", date=" + date +
+                ", budgetAllocation=" + budgetAllocation +
+                ", uptoDateExp=" + uptoDateExp +
+                ", billAmount=" + billAmount +
+                ", totalExpense=" + totalExpense +
+                ", balanceAvailable=" + balanceAvailable +
+                ", overExp=" + overExp +
+                '}';
+    }
 }

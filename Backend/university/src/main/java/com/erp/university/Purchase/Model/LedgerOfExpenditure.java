@@ -84,4 +84,15 @@ public class LedgerOfExpenditure {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "LedgerOfExpenditure{" +
+                "id=" + id +
+                ", particulars='" + particulars + '\'' +
+                ", debitAmount=" + debitAmount +
+                ", balance=" + balance +
+                ", date=" + date +
+                '}';
+    }
 }
