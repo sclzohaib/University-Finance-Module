@@ -46,4 +46,12 @@ public class MajorHead {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "MajorHead{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -27,4 +27,12 @@ public class GSTDTO {
     public void setPercent(Double percent) {
         this.percent = percent;
     }
+
+    @Override
+    public String toString() {
+        return "GSTDTO{" +
+                "id=" + id +
+                ", percent=" + percent +
+                '}';
+    }
 }

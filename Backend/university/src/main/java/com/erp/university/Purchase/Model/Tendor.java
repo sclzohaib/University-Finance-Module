@@ -57,4 +57,13 @@ public class Tendor {
     public void settStatus(String tStatus) {
         this.tStatus = tStatus;
     }
+
+    @Override
+    public String toString() {
+        return "Tendor{" +
+                "id=" + id +
+                ", tNo=" + tNo +
+                ", tStatus='" + tStatus + '\'' +
+                '}';
+    }
 }

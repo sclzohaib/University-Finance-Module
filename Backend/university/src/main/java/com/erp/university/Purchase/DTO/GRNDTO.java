@@ -129,4 +129,22 @@ public class GRNDTO {
     public void setDepartmentHead(String departmentHead) {
         this.departmentHead = departmentHead;
     }
+
+    @Override
+    public String toString() {
+        return "GRNDTO{" +
+                "id=" + id +
+                ", GrnNo=" + GrnNo +
+                ", date=" + date +
+                ", purchaseDate=" + purchaseDate +
+                ", status='" + status + '\'' +
+                ", recievedQuantity=" + recievedQuantity +
+                ", totalQuantity=" + totalQuantity +
+                ", reasonForRejection='" + reasonForRejection + '\'' +
+                ", recievedBy='" + recievedBy + '\'' +
+                ", postedBy='" + postedBy + '\'' +
+                ", inspectedBy='" + inspectedBy + '\'' +
+                ", departmentHead='" + departmentHead + '\'' +
+                '}';
+    }
 }

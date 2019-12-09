@@ -28,4 +28,12 @@ public class AuthorizeSignatoryDTO {
     public void setLvlId(Long lvlId) {
         this.lvlId = lvlId;
     }
+
+    @Override
+    public String toString() {
+        return "AuthorizeSignatoryDTO{" +
+                "id=" + id +
+                ", lvlId=" + lvlId +
+                '}';
+    }
 }

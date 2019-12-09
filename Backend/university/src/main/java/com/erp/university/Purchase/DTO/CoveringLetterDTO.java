@@ -17,4 +17,11 @@ public class CoveringLetterDTO {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "CoveringLetterDTO{" +
+                "id=" + id +
+                '}';
+    }
 }

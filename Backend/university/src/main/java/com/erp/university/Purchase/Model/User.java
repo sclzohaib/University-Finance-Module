@@ -119,4 +119,17 @@ public class User {
     public void setContactNo(Long contactNo) {
         this.contactNo = contactNo;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", status='" + status + '\'' +
+                ", address='" + address + '\'' +
+                ", contactNo=" + contactNo +
+                '}';
+    }
 }

@@ -40,4 +40,12 @@ public class AuthorizeLvl {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "AuthorizeLvl{" +
+                "id=" + id +
+                ", lvlNo=" + lvlNo +
+                '}';
+    }
 }

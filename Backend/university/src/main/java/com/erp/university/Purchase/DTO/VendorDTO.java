@@ -69,4 +69,16 @@ public class VendorDTO {
     public void settQuotationAmount(Double tQuotationAmount) {
         this.tQuotationAmount = tQuotationAmount;
     }
+
+    @Override
+    public String toString() {
+        return "VendorDTO{" +
+                "id=" + id +
+                ", vName='" + vName + '\'' +
+                ", tel=" + tel +
+                ", tDate=" + tDate +
+                ", tLastDate=" + tLastDate +
+                ", tQuotationAmount=" + tQuotationAmount +
+                '}';
+    }
 }

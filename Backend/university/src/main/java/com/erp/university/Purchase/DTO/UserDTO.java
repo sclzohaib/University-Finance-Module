@@ -77,5 +77,18 @@ public class UserDTO {
     public void setContactNo(Long contactNo) {
         this.contactNo = contactNo;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", status='" + status + '\'' +
+                ", address='" + address + '\'' +
+                ", contactNo=" + contactNo +
+                '}';
+    }
 }
 

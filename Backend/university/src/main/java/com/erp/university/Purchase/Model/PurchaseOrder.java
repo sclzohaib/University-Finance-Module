@@ -57,4 +57,13 @@ public class PurchaseOrder {
     public void setPurchaseOrderNo(Long purchaseOrderNo) {
         this.purchaseOrderNo = purchaseOrderNo;
     }
+
+    @Override
+    public String toString() {
+        return "PurchaseOrder{" +
+                "id=" + id +
+                ", date=" + date +
+                ", purchaseOrderNo=" + purchaseOrderNo +
+                '}';
+    }
 }

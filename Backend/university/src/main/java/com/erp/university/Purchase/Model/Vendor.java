@@ -99,4 +99,16 @@ public class Vendor {
     public void settQuotationAmount(Double tQuotationAmount) {
         this.tQuotationAmount = tQuotationAmount;
     }
+
+    @Override
+    public String toString() {
+        return "Vendor{" +
+                "id=" + id +
+                ", vName='" + vName + '\'' +
+                ", tel=" + tel +
+                ", tDate=" + tDate +
+                ", tLastDate=" + tLastDate +
+                ", tQuotationAmount=" + tQuotationAmount +
+                '}';
+    }
 }
