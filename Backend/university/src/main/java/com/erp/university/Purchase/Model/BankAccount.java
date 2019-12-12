@@ -1,7 +1,24 @@
 package com.erp.university.Purchase.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+@Table(name = "bankAccount")
 public class BankAccount {
+
+
+    @NotNull(message = "name can not be null")
+    @NotEmpty(message= "name can not be empty")
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
+
+
+
+    @NotNull(message = "Account no. can not be null")
+    @NotEmpty(message= "Account no. can not be empty")
+    @Column(name = "accountNumber", unique = true, nullable = false)
     private String accountNumber;
 
     public BankAccount() {
