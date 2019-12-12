@@ -1,6 +1,6 @@
 package com.erp.university.Purchase.Repository;
 
-import com.erp.university.Purchase.Model.Revenue;
+import com.erp.university.Revenue.Model.Revenue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.erp.university.Purchase.Model;
+package com.erp.university.Revenue.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -6,19 +6,20 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Table (name="Part")
-public class Part {
+@Table(name = "StudentType")
+public class StudentType {
 
-    @NotNull (message = "name can not be null")
-    @NotBlank (message = "name can not be blank")
+
+    @NotNull(message = "name can not be null")
     @NotEmpty (message = "name can not be empty")
-    @Column (name = "name", nullable = false , unique = true)
+    @NotBlank (message = "name can not be blank")
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    public Part() {
+    public StudentType() {
     }
 
-    public Part(String name) {
+    public StudentType(String name) {
         this.name = name;
     }
 

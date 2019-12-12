@@ -1,4 +1,4 @@
-package com.erp.university.Purchase.Model;
+package com.erp.university.Revenue.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Table;

@@ -1,4 +1,4 @@
-package com.erp.university.Purchase.DTO;
+package com.erp.university.Revenue.DTO;
 
 public class PartDTO {
     private String name;
