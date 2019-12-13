@@ -8,33 +8,33 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "admin")
-public class Admin {
+@Table(name = "bank_user")
+public class BankUser {
 
     @NotNull(message = "ID cannot be null")
-    @Column(name = "admin_id",unique = true ,nullable = false)
-    private String adminId;
+    @Column(name = "bank_id",unique = true,nullable = false)
+    private String bankId;
 
     @NotNull(message = "Password cannot be null")
+    @NotBlank(message = "Password cannot be empty")
     @NotEmpty(message = "Password cannot be empty")
-    @NotBlank(message = "Password cannot be blank")
     @Column(name = "password",unique = false,nullable = false)
     private String password;
 
-    public Admin() {
+    public BankUser() {
     }
 
-    public Admin(String adminId, String password) {
-        this.adminId = adminId;
+    public BankUser(String bankId, String password) {
+        this.bankId = bankId;
         this.password = password;
     }
 
-    public String getAdminId() {
-        return adminId;
+    public String getBankId() {
+        return bankId;
     }
 
-    public void setAdminId(String adminId) {
-        this.adminId = adminId;
+    public void setBankId(String bankId) {
+        this.bankId = bankId;
     }
 
     public String getPassword() {
