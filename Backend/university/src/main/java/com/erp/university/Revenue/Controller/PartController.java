@@ -1,7 +1,7 @@
 package com.erp.university.Revenue.Controller;
 
-import com.erp.university.Revenue.DTO.BankAccountDTO;
-import com.erp.university.Revenue.Services.BankAccountService;
+import com.erp.university.Revenue.DTO.PartDTO;
+import com.erp.university.Revenue.Services.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,16 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/api/bankAccount")
-public class BankAccountController {
+@RequestMapping(value = "/api/part")
+public class PartController {
     @Autowired
-    BankAccountService bankAccountService;
-
+    PartService partService;
     //Post
     @RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveBankAccount(@Valid @RequestBody BankAccountDTO bankAccountDTO)
+    public ResponseEntity<String> savePart(@Valid @RequestBody PartDTO partDTO)
     {
-        return bankAccountService.saveBankAccount(bankAccountDTO);
+        return partService.savePart(partDTO);
     }
 
 }
