@@ -1,0 +1,19 @@
+<form nz-form [formGroup]="editForm">
+	<div>
+		<nz-form-item>
+			<nz-form-label fxFlex="30">Student Type</nz-form-label>
+			<nz-form-control fxFlex="70" [nzErrorTip]="codeError">
+				<input nz-input type="text" placeholder="Student Type" formControlName="name">
+				<ng-template #codeError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Already Exists !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Avoid numbers and unnecessary spaces !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+	</div>
+	<div class="button-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+		<button type="button" nz-button (click)="onCancel()">Cancel</button>
+		<button nz-button nzType="primary" (click)="onOk()">OK</button>
+	</div>
+</form>

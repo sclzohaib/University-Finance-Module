@@ -2,6 +2,7 @@ package com.erp.university.Revenue.DTO;
 
 public class AdminDTO {
 
+    private Long id;
     private String adminId;
     private String password;
 
@@ -11,6 +12,20 @@ public class AdminDTO {
     public AdminDTO(String adminId, String password) {
         this.adminId = adminId;
         this.password = password;
+    }
+
+    public AdminDTO(Long id, String adminId, String password) {
+        this.id = id;
+        this.adminId = adminId;
+        this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAdminId() {
