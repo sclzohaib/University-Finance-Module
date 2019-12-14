@@ -1,54 +1,61 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
-    <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-        <h1>Ant Design Of Angular</h1>
-      </a>
-    </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Monitor</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </nz-sider>
-  <nz-layout>
-    <nz-header>
-      <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <i class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></i>
-        </span>
-      </div>
-    </nz-header>
-    <nz-content>
-      <div class="inner-content">
-        <router-outlet></router-outlet>
-      </div>
-    </nz-content>
-  </nz-layout>
+	<nz-sider class="menu-sidebar" *ngIf="true" nzCollapsible nzWidth="220px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+		<div class="sidebar-logo">
+			<img src="./../assets/images/ku.png" alt="logo">
+			<h1>Revenue Manager</h1>
+		</div>
+		<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+			<li nz-submenu nzOpen nzTitle="Audit" nzIcon="audit">
+				<ul>
+					<li nz-menu-item nzMatchRouter>
+						<a routerLink="/admin/revenue/revenue-page">Revenues</a>
+					</li>
+					<li nz-menu-item nzMatchRouter>
+						<a routerLink="/admin/revenue/due-page">Dues</a>
+					</li>
+				</ul>
+			</li>
+			<li nz-submenu nzOpen nzTitle="Controls" nzIcon="control">
+				<ul>
+					<li nz-menu-item nzMatchRouter>
+						<a routerLink="/admin/control/revenue-head">Heads</a>
+					</li>
+					<li nz-menu-item nzMatchRouter>
+						<a routerLink="/admin/control/student-type">Student Types</a>
+					</li>
+					<li nz-menu-item nzMatchRouter>
+						<a routerLink="/admin/control/department">Departments</a>
+					</li>
+					<li nz-menu-item nzMatchRouter>
+						<a routerLink="/admin/control/class">Classes</a>
+					</li>
+					<li nz-menu-item nzMatchRouter>
+						<a routerLink="/admin/control/part">Parts</a>
+					</li>
+					<li nz-menu-item nzMatchRouter>
+						<a routerLink="/admin/control/fee">Fees</a>
+					</li>
+				</ul>
+			</li>
+			<li nz-submenu nzOpen nzTitle="Payments" nzIcon="credit-card">
+				<ul>
+					<li nz-menu-item nzMatchRouter>
+						<a routerLink="/student">Student</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nz-sider>
+	<nz-layout>
+		<nz-header *ngIf="true">
+			<div class="app-header">
+				<span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+					<i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+				</span>
+			</div>
+		</nz-header>
+		<nz-content>
+			<router-outlet></router-outlet>
+		</nz-content>
+	</nz-layout>
 </nz-layout>

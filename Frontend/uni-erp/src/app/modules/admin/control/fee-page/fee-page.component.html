@@ -1,0 +1,35 @@
+<button nz-button [nzType]="'primary'" nzSize="large" (click)="onAdd()"><i nz-icon nzType="plus"></i>Add Fee Type</button>
+<nz-table #feeTypeTable nzBordered [nzData]="feeTypes">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Fee Type</th>
+			<th>Revenue Head</th>
+			<th>Student Type(s)</th>
+			<th>Class(es)</th>
+			<th>Part(s)</th>
+			<th>Amount</th>
+			<th nzWidth="120px">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let data of feeTypeTable.data; let i = index;">
+			<td>{{i + 1}}</td>
+			<td>{{data.feetype}}</td>
+			<td>{{data.revenueHead}}</td>
+			<td>{{data.studentTypes.length ? (data.studentTypes | commaSpacer) : 'All'}}</td>
+			<td>{{data.classes.length ? (data.classes | commaSpacer) : 'All'}}</td>
+			<td>{{data.parts.length ? (data.parts | commaSpacer) : 'All'}}</td>
+			<td>Rs. {{data.amount}}</td>
+			<td>
+				<div class="table-last-column" fxLayout="row" fxLayoutAlign="space-around center">
+					<a nz-tooltip nzTitle="View" nzPlacement="bottom" (click)="onView(data)"><i class="table-icon" nz-icon nzType="eye"></i></a>
+					<nz-divider nzType="vertical"></nz-divider>
+					<a nz-tooltip nzTitle="Edit" nzPlacement="bottom" (click)="onEdit(i, data)"><i class="table-icon" nz-icon nzType="edit"></i></a>
+					<nz-divider nzType="vertical"></nz-divider>
+					<a nz-popconfirm nzTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.feetype)" nz-tooltip nzPlacement="bottom"><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</nz-table>

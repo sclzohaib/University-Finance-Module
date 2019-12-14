@@ -1,0 +1,55 @@
+<button nz-button nzType="primary" (click)="showModal()">
+	<span>Fee Waive</span>
+</button>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Fee Waive Details" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="isOkLoading">
+	<form nz-form>
+		<nz-form-item>
+			<nz-form-label [nzSm]="6">CNIC</nz-form-label>
+			<nz-form-control [nzSm]="16">
+				<input placeholder="Enter student's CNIC number" nz-input />
+			</nz-form-control>
+		</nz-form-item>
+		<nz-form-item>
+			<nz-form-label [nzSm]="6">Seat No. </nz-form-label>
+			<nz-form-control [nzSm]="16">
+				<input placeholder="Enter student's seat number" nz-input />
+			</nz-form-control>
+		</nz-form-item>
+
+		<nz-row [nzGutter]=3>
+			<nz-col nzSpan=3><label><strong> Waive By</strong> </label></nz-col>
+			<nz-col nzSpan="15">
+				<nz-slider [nzMarks]="marks" [(ngModel)]="value" [ngModelOptions]="{standalone: true}" (ngModelChange)=sliderMove()></nz-slider>
+			</nz-col>
+			<div nz-col nzSpan="2">
+				<nz-input-number [ngStyle]="{ marginLeft: '16px' }" [(ngModel)]="waiveAmount" [ngModelOptions]="{standalone: true}" (ngModelChange)="inputValueChange()"></nz-input-number>
+			</div>
+
+		</nz-row>
+		<br>
+		<nz-row [nzGutter]="16">
+			<nz-col [nzSpan]="12">
+				<nz-statistic [nzValue]="actualFee" [nzSuffix]="'RS'" [nzTitle]="'Actual Fee'"></nz-statistic>
+			</nz-col>
+			<nz-col [nzSpan]="12">
+				<nz-statistic [nzValue]="actualFee-waiveAmount" [nzSuffix]="'RS'" [nzTitle]="'After Waive'"></nz-statistic>
+			</nz-col>
+		</nz-row>
+	</form>
+</nz-modal>
+<nz-table #basicTable [nzData]="listOfData">
+	<thead>
+		<tr>
+			<th nzwidth="30%">Student CNIC</th>
+			<th nzwidth="30%">Particular Name</th>
+			<th>Fee Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let data of basicTable.data">
+			<td>{{ data.CNIC }}</td>
+			<td>{{ data.parName }}</td>
+			<td>{{data.Amount}}</td>
+		</tr>
+	</tbody>
+</nz-table>

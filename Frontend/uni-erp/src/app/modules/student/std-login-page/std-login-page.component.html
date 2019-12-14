@@ -1,0 +1,148 @@
+<div class="page" fxLayout="column" fxLayoutAlign="center center">
+	<div class="logo">
+		<img src="./../assets/images/ku.png" alt="logo">
+	</div>
+	<div class="radioSelector">
+		<nz-radio-group [(ngModel)]="radioValue" nzButtonStyle="solid" nzSize="large">
+			<label nz-radio-button nzValue="A">Log-in</label>
+			<label nz-radio-button nzValue="B">Register</label>
+		</nz-radio-group>
+	</div>
+</div>
+<div class="main" fxLayout="row">
+	<div *ngIf="radioValue=='A'" class="leftSide" fxFlex="300px">
+		<form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please enter your CNIC!">
+					<nz-input-group [nzSize]="'large'" nzPrefixIcon="idcard">
+						<input type="text" nz-input formControlName="cnic" placeholder="CNIC" />
+					</nz-input-group>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please enter your Password!">
+					<nz-input-group [nzSize]="'large'" nzPrefixIcon="lock">
+						<input type="password" nz-input formControlName="password" placeholder="Password" />
+					</nz-input-group>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item>
+				<nz-form-control>
+					<div fxLayout="row" fxLayoutAlign="space-between start">
+						<label nz-checkbox formControlName="remember">
+							<span>Remember me</span>
+						</label>
+						<a>Forgot password</a>
+					</div>
+					<button nz-button nzType="primary" nzSize="large" nzBlock>Log in</button>
+
+				</nz-form-control>
+			</nz-form-item>
+		</form>
+
+	</div>
+	<div *ngIf="radioValue=='B'" class="rightSide" fxFlex="400px" fxFlex.lt-md="300px">
+		<nz-steps [nzCurrent]="index - 1">
+			<nz-step nzTitle="Step1" [fxHide.lt-md]="index !== 1"></nz-step>
+			<nz-step nzTitle="Step2" [fxHide.lt-md]="index !== 2"></nz-step>
+			<nz-step nzTitle="Step3" [fxHide.lt-md]="index !== 3"></nz-step>
+		</nz-steps>
+
+		<div class="steps-content">
+			<form nz-form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+				<div id="step1" *ngIf="index===1">
+					<nz-form-item>
+
+						<nz-form-control [nzXs]="24" nzErrorTip="The input is not valid CNIC number">
+							<input nzSize="large" nz-input formControlName="cnic" placeholder="CNIC" />
+						</nz-form-control>
+					</nz-form-item>
+					<nz-form-item>
+
+						<nz-form-control [nzXs]="24" nzErrorTip="Please input your password!">
+							<input [nzSize]="'large'" nz-input type="password" placeholder="Password" formControlName="password" (ngModelChange)="updateConfirmValidator()" />
+						</nz-form-control>
+					</nz-form-item>
+					<nz-form-item>
+
+						<nz-form-control [nzXs]="24" [nzErrorTip]="errorTpl">
+							<input nzSize="large" nz-input type="password" formControlName="checkPassword" placeholder="Check Password" />
+							<ng-template #errorTpl let-control>
+								<ng-container *ngIf="control.hasError('required')">
+									Please confirm your password!
+								</ng-container>
+								<ng-container *ngIf="control.hasError('confirm')">
+									Two passwords that you enter is inconsistent!
+								</ng-container>
+							</ng-template>
+						</nz-form-control>
+					</nz-form-item>
+				</div>
+				<div id="step2" *ngIf="index===2">
+					<nz-form-item>
+
+						<nz-form-control [nzXs]="24" nzErrorTip="Please input your name!">
+							<input nzSize="large" nz-input placeholder="Name" formControlName="name" />
+						</nz-form-control>
+					</nz-form-item>
+					<nz-form-item>
+
+						<nz-form-control [nzXs]="24" nzErrorTip="Please input your father name!">
+							<input nzSize="large" nz-input placeholder="Father Name" formControlName="fatherName" />
+						</nz-form-control>
+					</nz-form-item>
+					<nz-form-item>
+
+						<nz-form-control [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+							<input nzSize="large" nz-input formControlName="email" placeholder="Email" />
+						</nz-form-control>
+					</nz-form-item>
+
+				</div>
+				<div id="step3" *ngIf="index===3">
+					<nz-form-item>
+
+						<nz-form-control [nzXs]="24" nzErrorTip="Please input your enrolment number!">
+							<input nzSize="large" nz-input placeholder="Enrolment Number" formControlName="enrolNumber" />
+						</nz-form-control>
+					</nz-form-item>
+					<nz-form-item>
+
+						<nz-form-control [nzXs]="24" nzErrorTip="Please input your seat number!">
+							<input nzSize="large" nz-input placeholder="Seat Number" formControlName="seatNumber" />
+						</nz-form-control>
+					</nz-form-item>
+					<nz-form-item>
+
+						<nz-form-control [nzXs]="24" [nzValidateStatus]="registerForm.controls['phoneNumber']" nzErrorTip="Please input your phone number!">
+							<nz-input-group nzSize="large" [nzAddOnBefore]="addOnBeforeTemplate">
+								<ng-template #addOnBeforeTemplate>
+									<nz-select formControlName="phoneNumberPrefix" class="phone-select">
+										<nz-option nzLabel="+92" nzValue="+92"></nz-option>
+									</nz-select>
+								</ng-template>
+								<input formControlName="phoneNumber" placeholder="'Phone Number'" nz-input />
+							</nz-input-group>
+						</nz-form-control>
+					</nz-form-item>
+				</div>
+			</form>
+
+		</div>
+		<div class="steps-action" fxLayout="row" fxLayoutGap="8px">
+			<button nz-button nzType="default" (click)="pre()" *ngIf="index > 1">
+				<span>Previous</span>
+			</button>
+			<button nz-button nzType="default" (click)="next()" *ngIf="index < 3">
+				<span>Next</span>
+			</button>
+			<button nz-button nzType="primary" (click)="done()" *ngIf="index === 3">
+				<span>Done</span>
+			</button>
+		</div>
+	</div>
+</div>
+<nz-divider nzText="OR" nzOrientation="center" style="min-width: 300px; width: 300px; margin: 16px auto"></nz-divider>
+<div fxLayout="row" fxLayoutAlign="center start">
+	<button nz-button nzType="primary" nzSize="large" (click)="printVoucher()" style="width: 300px;">Print Voucher</button>
+</div>

@@ -1,0 +1,30 @@
+<form nz-form [formGroup]="editForm">
+	<div>
+		<nz-form-item>
+			<nz-form-label fxFlex="30" fxFlexAlign="start">Department Code</nz-form-label>
+			<nz-form-control fxFlex="70" [nzErrorTip]="codeError">
+				<input nz-input type="text" placeholder="Code" formControlName="code">
+				<ng-template #codeError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Department with this Code is already present !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Numbers Only !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Code !</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+		<nz-form-item>
+			<nz-form-label fxFlex="30">Department Name</nz-form-label>
+			<nz-form-control fxFlex="70" [nzErrorTip]="nameError">
+				<input nz-input type="text" placeholder="Name of Department" formControlName="name">
+				<ng-template #nameError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Department with this Name is already present !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Avoid Spaces and Numbers !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+	</div>
+	<div class="button-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+		<button type="button" nz-button (click)="onCancel()">Cancel</button>
+		<button nz-button nzType="primary" (click)="onOk()">OK</button>
+	</div>
+</form>
