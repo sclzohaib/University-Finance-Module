@@ -1,6 +1,7 @@
 package com.erp.university.Revenue.DTO;
 
 public class BankUserDTO {
+    private Long id;
     private String bankId;
     private String password;
 
@@ -10,6 +11,20 @@ public class BankUserDTO {
     public BankUserDTO(String bankId, String password) {
         this.bankId = bankId;
         this.password = password;
+    }
+
+    public BankUserDTO(Long id, String bankId, String password) {
+        this.id = id;
+        this.bankId = bankId;
+        this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getBankId() {
@@ -26,5 +41,14 @@ public class BankUserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "BankUserDTO{" +
+                "id=" + id +
+                ", bankId='" + bankId + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
