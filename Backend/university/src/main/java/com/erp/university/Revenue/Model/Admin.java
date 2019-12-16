@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "admin")
+@Table(name = "admin")
 public class Admin {
 
     @Id
@@ -19,13 +19,13 @@ public class Admin {
     @NotNull(message = "Admin ID cannot be null")
     @NotEmpty(message = "Admin ID cannot be empty")
     @NotBlank(message = "Admin ID cannot be blank")
-    @Column(name = "admin_id",unique = true ,nullable = false)
+    @Column(name = "admin_id", unique = true, nullable = false)
     private String adminId;
 
     @NotNull(message = "Password cannot be null")
     @NotEmpty(message = "Password cannot be empty")
     @NotBlank(message = "Password cannot be blank")
-    @Column(name = "password",nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     public Admin() {
@@ -64,5 +64,14 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", adminId='" + adminId + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

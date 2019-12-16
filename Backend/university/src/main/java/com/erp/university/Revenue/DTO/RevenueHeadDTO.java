@@ -1,13 +1,15 @@
 package com.erp.university.Revenue.DTO;
 
 public class RevenueHeadDTO {
+    private Long id;
     private String name;
-    private Number code;
+    private Long code;
 
     public RevenueHeadDTO() {
     }
 
-    public RevenueHeadDTO(String name, Number code) {
+    public RevenueHeadDTO(Long id, String name, Long code) {
+        this.id = id;
         this.name = name;
         this.code = code;
     }
@@ -20,11 +22,28 @@ public class RevenueHeadDTO {
         this.name = name;
     }
 
-    public Number getCode() {
+    public Long getCode() {
         return code;
     }
 
-    public void setCode(Number code) {
+    public void setCode(Long code) {
         this.code = code;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "RevenueHeadDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code=" + code +
+                '}';
     }
 }
