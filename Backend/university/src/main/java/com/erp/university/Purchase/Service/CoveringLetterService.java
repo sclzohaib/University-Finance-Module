@@ -56,7 +56,7 @@ public class CoveringLetterService {
     //Get By id
     public ResponseEntity<?> getCoveringLetterById(Long id) {
         logger.debug("--------->| Get Covering Letter By ID |<---------");
-        CoveringLetter coveringLetter = null;
+        CoveringLetter coveringLetter;
         try {
             coveringLetter = coveringLetterRepository.findById(id).get();
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package com.erp.university.Revenue.DTO;
 
 public class RevenueDTO {
+    private Long id;
     private String description;
     private String revenueHead;
     private String studentType;
@@ -8,12 +9,13 @@ public class RevenueDTO {
     private String part;
     private Boolean withForm;
     private Boolean isPaid;
-    private Number amount;
+    private Double amount;
 
     public RevenueDTO() {
     }
 
-    public RevenueDTO(String description, String revenueHead, String studentType, String stdClass, String part, Boolean withForm, Boolean isPaid, Number amount) {
+    public RevenueDTO(Long id, String description, String revenueHead, String studentType, String stdClass, String part, Boolean withForm, Boolean isPaid, Double amount) {
+        this.id = id;
         this.description = description;
         this.revenueHead = revenueHead;
         this.studentType = studentType;
@@ -80,11 +82,34 @@ public class RevenueDTO {
         isPaid = paid;
     }
 
-    public Number getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Number amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "RevenueDTO{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", revenueHead='" + revenueHead + '\'' +
+                ", studentType='" + studentType + '\'' +
+                ", stdClass='" + stdClass + '\'' +
+                ", part='" + part + '\'' +
+                ", withForm=" + withForm +
+                ", isPaid=" + isPaid +
+                ", amount=" + amount +
+                '}';
     }
 }
