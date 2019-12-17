@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IconsProviderModule } from './icons-provider.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { PurchaseModule } from './modules/purchase/purchase.module';
+import { BillModule } from './modules/bill/bill.module';
 
 registerLocaleData(en);
 
@@ -26,6 +28,8 @@ registerLocaleData(en);
 		HttpClientModule,
 		BrowserAnimationsModule,
 		FlexLayoutModule,
+		PurchaseModule,
+		BillModule,
 	],
 	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent]
