@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "major_head")
@@ -23,12 +24,24 @@ public class MajorHead {
     @Size(min = 4, max = 50, message = "Major head name must be in between 11 and 13")
     private String name;
 
+    @OneToMany(mappedBy = "majorHead")
+    private List<MinorHead> minorHeads;
+
     public MajorHead() {
     }
 
-    public MajorHead(Long id, String name) {
+    public MajorHead(Long id, String name, List<MinorHead> minorHeads) {
         this.id = id;
         this.name = name;
+        this.minorHeads = minorHeads;
+    }
+
+    public List<MinorHead> getMinorHeads() {
+        return minorHeads;
+    }
+
+    public void setMinorHeads(List<MinorHead> minorHeads) {
+        this.minorHeads = minorHeads;
     }
 
     public Long getId() {
@@ -52,6 +65,7 @@ public class MajorHead {
         return "MajorHead{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", minorHeads=" + minorHeads +
                 '}';
     }
 }

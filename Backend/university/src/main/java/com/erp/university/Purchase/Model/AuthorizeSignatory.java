@@ -1,5 +1,7 @@
 package com.erp.university.Purchase.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -13,16 +15,39 @@ public class AuthorizeSignatory {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @NotNull(message = "Level Id can not be null")
-    @Column(name = "lvl_id", nullable = false)
-    private Long lvlId;
+
+    @NotNull(message = "Authorize Level cannot be null")
+    @ManyToOne
+    @JoinColumn(name = "auth_lvl_id", referencedColumnName = "id", nullable = false)
+    private AuthorizeLvl authorizeLvl;
+
+    @OneToOne(mappedBy = "authorizeSignatory")
+    @JsonBackReference
+    private User user;
 
     public AuthorizeSignatory() {
     }
 
-    public AuthorizeSignatory(Long id, Long lvlId) {
+    public AuthorizeSignatory(Long id, AuthorizeLvl authorizeLvl, User user) {
         this.id = id;
-        this.lvlId = lvlId;
+        this.authorizeLvl = authorizeLvl;
+        this.user = user;
+    }
+
+    public AuthorizeLvl getAuthorizeLvl() {
+        return authorizeLvl;
+    }
+
+    public void setAuthorizeLvl(AuthorizeLvl authorizeLvl) {
+        this.authorizeLvl = authorizeLvl;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -33,19 +58,12 @@ public class AuthorizeSignatory {
         this.id = id;
     }
 
-    public Long getLvlId() {
-        return lvlId;
-    }
-
-    public void setLvlId(Long lvlId) {
-        this.lvlId = lvlId;
-    }
-
     @Override
     public String toString() {
         return "AuthorizeSignatory{" +
                 "id=" + id +
-                ", lvlId=" + lvlId +
+                ", authorizeLvl=" + authorizeLvl +
+                ", user=" + user +
                 '}';
     }
 }

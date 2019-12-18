@@ -16,10 +16,10 @@ import javax.validation.Valid;
 public class PermissionController {
     @Autowired
     PermissionService permissionService;
+
     //Post
-    @RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> savePermission(@Valid @RequestBody PermissionDTO permissionDTO)
-    {
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> savePermission(@Valid @RequestBody PermissionDTO permissionDTO) {
         return permissionService.savePermission(permissionDTO);
     }
 }

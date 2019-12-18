@@ -1,23 +1,23 @@
 package com.erp.university.Purchase.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="TenderDetails")
+@Table(name = "tender_details")
 public class TenderDetails {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "td_id_sequence_g")
+    @SequenceGenerator(name = "td_id_sequence_g", sequenceName = "tender_details_seq")
     @NotNull(message = "tender details ID cannot be null !!")
-    @Column(name = "tenderDEtailsId", nullable = false, unique = true)
-    private Long tenderDetailId;
+    @Column(name = "id", nullable = false, unique = true)
+    private Long id;
 
     @NotNull(message = "Description ID cannot be null !!")
-    @Column(name = "descriptionId" , nullable = false)
+    @Column(name = "description_id", nullable = false)
     private Long descriptionId;
 
     @NotNull(message = "description cannot be null !!")
@@ -27,22 +27,22 @@ public class TenderDetails {
     private String description;
 
     @NotNull(message = "Quantity cannot be null !!")
-    @Column(name = "qty" , nullable = false)
+    @Column(name = "qty", nullable = false)
     private Long qty;
 
     @NotNull(message = "unit price cannot be null !!")
-    @Column(name = "unitPrice", nullable = false)
+    @Column(name = "unit_price", nullable = false)
     private Double unitPrice;
 
     @NotNull(message = "Total price cannot be null !!")
-    @Column(name = "totalPrice", nullable = false)
+    @Column(name = "total_price", nullable = false)
     private Double totalPrice;
 
     public TenderDetails() {
     }
 
-    public TenderDetails(Long tenderDetailId, Long descriptionId, String description, Long qty, Double unitPrice, Double totalPrice) {
-        this.tenderDetailId = tenderDetailId;
+    public TenderDetails(Long id, Long descriptionId, String description, Long qty, Double unitPrice, Double totalPrice) {
+        this.id = id;
         this.descriptionId = descriptionId;
         this.description = description;
         this.qty = qty;
@@ -50,12 +50,12 @@ public class TenderDetails {
         this.totalPrice = totalPrice;
     }
 
-    public Long getTenderDetailId() {
-        return tenderDetailId;
+    public Long getId() {
+        return id;
     }
 
-    public void setTenderDetailId(Long tenderDetailId) {
-        this.tenderDetailId = tenderDetailId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getDescriptionId() {
@@ -96,5 +96,17 @@ public class TenderDetails {
 
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "TenderDetails{" +
+                "id=" + id +
+                ", descriptionId=" + descriptionId +
+                ", description='" + description + '\'' +
+                ", qty=" + qty +
+                ", unitPrice=" + unitPrice +
+                ", totalPrice=" + totalPrice +
+                '}';
     }
 }

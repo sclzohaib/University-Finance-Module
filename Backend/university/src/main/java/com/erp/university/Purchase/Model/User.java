@@ -1,7 +1,10 @@
 package com.erp.university.Purchase.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Entity
 @Table(name = "app_user")
@@ -52,16 +55,64 @@ public class User {
     @Column(name = "contact_no", unique = true, nullable = false)
     private Long contactNo;
 
+    @NotNull(message = "department cannot be null")
+    @ManyToOne
+    @JoinColumn(name = "dept_id", nullable = false)
+    @JsonBackReference
+    private Department department;
+
+    @NotEmpty(message = "roles cannot be empty")
+    @NotNull(message = "roles cannot be null")
+    @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    )
+    private List<Role> roles;
+
+    @NotNull(message = "Authorize Signatory cannot be null")
+    @OneToOne
+    @JoinColumn(name = "auth_signatory_id", referencedColumnName = "id", nullable = false, unique = true)
+    private AuthorizeSignatory authorizeSignatory;
+
     public User() {
     }
 
-    public User(String name, String email, String password, String status, String address, Long contactNo) {
+    public User(String name, String email, String password, String status, String address, Long contactNo, Department department, List<Role> roles, AuthorizeSignatory authorizeSignatories) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.status = status;
         this.address = address;
         this.contactNo = contactNo;
+        this.department = department;
+        this.authorizeSignatory = authorizeSignatories;
+        this.roles = roles;
+    }
+
+    public AuthorizeSignatory getAuthorizeSignatory() {
+        return authorizeSignatory;
+    }
+
+    public void setAuthorizeSignatory(AuthorizeSignatory authorizeSignatory) {
+        this.authorizeSignatory = authorizeSignatory;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Long getId() {
@@ -130,6 +181,9 @@ public class User {
                 ", status='" + status + '\'' +
                 ", address='" + address + '\'' +
                 ", contactNo=" + contactNo +
+                ", department=" + department +
+                ", roles=" + roles +
+                ", authorizeSignatory=" + authorizeSignatory +
                 '}';
     }
 }

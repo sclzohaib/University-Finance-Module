@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "university")
@@ -31,13 +32,26 @@ public class University {
     @Column(name = "location", unique = true, nullable = false)
     private String location;
 
+    @OneToMany(mappedBy = "university")
+    private List<Department> departments;
+
     public University() {
     }
 
-    public University(Long id, String name, String location) {
+    public University(Long id, String name, String location, List<Department> departments) {
         this.id = id;
         this.name = name;
         this.location = location;
+        this.departments = departments;
+    }
+
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 
     public Long getId() {
@@ -70,6 +84,7 @@ public class University {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", location='" + location + '\'' +
+                ", departments=" + departments +
                 '}';
     }
 }

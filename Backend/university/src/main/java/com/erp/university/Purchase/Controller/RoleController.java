@@ -2,7 +2,6 @@ package com.erp.university.Purchase.Controller;
 
 import com.erp.university.Purchase.DTO.RoleDTO;
 import com.erp.university.Purchase.Service.RoleService;
-import org.apache.catalina.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +18,8 @@ public class RoleController {
     RoleService roleService;
 
     //Post
-    @RequestMapping(value = "/" ,method = RequestMethod.POST)
-    public ResponseEntity<String> saveRole(@Valid @RequestBody RoleDTO roleDTO)
-    {
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveRole(@Valid @RequestBody RoleDTO roleDTO) {
         return roleService.saveRole(roleDTO);
     }
 

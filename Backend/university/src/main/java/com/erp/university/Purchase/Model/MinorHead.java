@@ -1,5 +1,7 @@
 package com.erp.university.Purchase.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -27,13 +29,28 @@ public class MinorHead {
     @Column(name = "code_no", unique = true, nullable = false)
     private Long codeNo;
 
+    @NotNull(message = "Major Head cannot be null")
+    @ManyToOne
+    @JoinColumn(name = "major_head_id", nullable = false)
+    @JsonBackReference
+    private MajorHead majorHead;
+
     public MinorHead() {
     }
 
-    public MinorHead(Long id, String name, Long codeNo) {
+    public MinorHead(Long id, String name, Long codeNo, MajorHead majorHead) {
         this.id = id;
         this.name = name;
         this.codeNo = codeNo;
+        this.majorHead = majorHead;
+    }
+
+    public MajorHead getMajorHead() {
+        return majorHead;
+    }
+
+    public void setMajorHead(MajorHead majorHead) {
+        this.majorHead = majorHead;
     }
 
     public Long getId() {
@@ -66,6 +83,7 @@ public class MinorHead {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", codeNo=" + codeNo +
+                ", majorHead=" + majorHead +
                 '}';
     }
 }

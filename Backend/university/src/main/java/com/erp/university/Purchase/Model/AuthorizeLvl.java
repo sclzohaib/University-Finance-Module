@@ -1,7 +1,10 @@
 package com.erp.university.Purchase.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "auth_lvl")
@@ -17,12 +20,28 @@ public class AuthorizeLvl {
     @Column(name = "lvl_no", unique = true, nullable = false)
     private Long lvlNo;
 
+    @OneToMany(mappedBy = "authorizeLvl")
+    @JsonBackReference
+    private List<AuthorizeSignatory> authorizeSignatories;
+
     public AuthorizeLvl() {
     }
 
+    public AuthorizeLvl(Long lvlNo, List<AuthorizeSignatory> authorizeSignatories) {
+        this.lvlNo = lvlNo;
+        this.authorizeSignatories = authorizeSignatories;
+    }
 
     public AuthorizeLvl(Long lvlNo) {
         this.lvlNo = lvlNo;
+    }
+
+    public List<AuthorizeSignatory> getAuthorizeSignatories() {
+        return authorizeSignatories;
+    }
+
+    public void setAuthorizeSignatories(List<AuthorizeSignatory> authorizeSignatories) {
+        this.authorizeSignatories = authorizeSignatories;
     }
 
     public Long getLvlNo() {
@@ -46,6 +65,7 @@ public class AuthorizeLvl {
         return "AuthorizeLvl{" +
                 "id=" + id +
                 ", lvlNo=" + lvlNo +
+                ", authorizeSignatories=" + authorizeSignatories +
                 '}';
     }
 }

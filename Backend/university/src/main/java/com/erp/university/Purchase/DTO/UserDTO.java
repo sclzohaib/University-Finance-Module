@@ -1,5 +1,11 @@
 package com.erp.university.Purchase.DTO;
 
+import com.erp.university.Purchase.Model.AuthorizeSignatory;
+import com.erp.university.Purchase.Model.Department;
+import com.erp.university.Purchase.Model.Role;
+
+import java.util.List;
+
 public class UserDTO {
     private Long id;
     private String name;
@@ -8,6 +14,9 @@ public class UserDTO {
     private String status;
     private String address;
     private Long contactNo;
+    private Department department;
+    private List<Role> roles;
+    private AuthorizeSignatory authorizeSignatory;
 
     public UserDTO() {
     }
@@ -20,6 +29,43 @@ public class UserDTO {
         this.status = status;
         this.address = address;
         this.contactNo = contactNo;
+    }
+
+    public UserDTO(Long id, String name, String email, String password, String status, String address, Long contactNo, Department department, List<Role> roles, AuthorizeSignatory authorizeSignatory) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.address = address;
+        this.contactNo = contactNo;
+        this.department = department;
+        this.roles = roles;
+        this.authorizeSignatory = authorizeSignatory;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public AuthorizeSignatory getAuthorizeSignatory() {
+        return authorizeSignatory;
+    }
+
+    public void setAuthorizeSignatory(AuthorizeSignatory authorizeSignatory) {
+        this.authorizeSignatory = authorizeSignatory;
     }
 
     public Long getId() {

@@ -18,9 +18,8 @@ public class TenderDetailsController {
     TenderDetailsService tenderDetailsService;
 
     //Post
-    @RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity<String> saveTenderDetails(@Valid @RequestBody TenderDetailsDTO tenderDetailsDTO)
-    {
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveTenderDetails(@Valid @RequestBody TenderDetailsDTO tenderDetailsDTO) {
         return tenderDetailsService.saveTenderDetails(tenderDetailsDTO);
     }
 }

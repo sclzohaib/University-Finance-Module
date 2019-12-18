@@ -1,9 +1,12 @@
 package com.erp.university.Purchase.DTO;
 
+import com.erp.university.Purchase.Model.MajorHead;
+
 public class MinorHeadDTO {
     private Long id;
     private String name;
     private Long codeNo;
+    private MajorHead majorHead;
 
     public MinorHeadDTO() {
     }
@@ -12,6 +15,21 @@ public class MinorHeadDTO {
         this.id = id;
         this.name = name;
         this.codeNo = codeNo;
+    }
+
+    public MinorHeadDTO(Long id, String name, Long codeNo, MajorHead majorHead) {
+        this.id = id;
+        this.name = name;
+        this.codeNo = codeNo;
+        this.majorHead = majorHead;
+    }
+
+    public MajorHead getMajorHead() {
+        return majorHead;
+    }
+
+    public void setMajorHead(MajorHead majorHead) {
+        this.majorHead = majorHead;
     }
 
     public Long getId() {

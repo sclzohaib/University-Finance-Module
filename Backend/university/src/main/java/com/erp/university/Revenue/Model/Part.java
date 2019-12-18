@@ -25,6 +25,8 @@ public class Part {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @NotEmpty(message = "Fee Types cannot be empty")
+    @NotNull(message = "Fee Types cannot be null")
     @ManyToMany(mappedBy = "parts")
     @JsonBackReference
     private List<FeeType> feeTypes;

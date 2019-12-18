@@ -29,6 +29,7 @@ public class DepartmentService {
             department.setLocation(departmentDTO.getLocation());
             department.setExtensionNo(departmentDTO.getExtensionNo());
             department.setTelephone(departmentDTO.getTelephone());
+            department.setUniversity(departmentDTO.getUniversity());
             logger.debug("Department (POST): {}", department);
             departmentRepository.save(department);
             logger.debug("--------->| Department Created |<---------");
@@ -84,6 +85,7 @@ public class DepartmentService {
             department.setTelephone(departmentDTO.getTelephone());
             department.setExtensionNo(departmentDTO.getExtensionNo());
             department.setLocation(departmentDTO.getLocation());
+            department.setUniversity(departmentDTO.getUniversity());
             try {
                 logger.debug("Updated Department (Save): {}", department);
                 departmentRepository.save(department);
