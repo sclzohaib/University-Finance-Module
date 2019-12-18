@@ -30,6 +30,9 @@ public class UserService {
             user.setEmail(userDTO.getEmail());
             user.setContactNo(userDTO.getContactNo());
             user.setAddress(userDTO.getAddress());
+            user.setAuthorizeSignatory(userDTO.getAuthorizeSignatory());
+            user.setDepartment(userDTO.getDepartment());
+            user.setRoles(userDTO.getRoles());
             logger.debug("User (POST): {}", user);
             userRepository.save(user);
             logger.debug("--------->| User Created |<---------");
@@ -88,6 +91,9 @@ public class UserService {
             user.setName(userDTO.getName());
             user.setPassword(userDTO.getPassword());
             user.setStatus(userDTO.getStatus());
+            user.setRoles(userDTO.getRoles());
+            user.setDepartment(userDTO.getDepartment());
+            user.setAuthorizeSignatory(userDTO.getAuthorizeSignatory());
             try {
                 logger.debug("Updated User (Save): {}", user);
                 userRepository.save(user);

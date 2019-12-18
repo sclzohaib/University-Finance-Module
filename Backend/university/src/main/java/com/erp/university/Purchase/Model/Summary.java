@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Summary")
+@Table(name = "summary")
 public class Summary {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "summary_id_sequence_g")

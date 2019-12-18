@@ -1,16 +1,41 @@
 package com.erp.university.Purchase.DTO;
 
+import com.erp.university.Purchase.Model.AuthorizeLvl;
+import com.erp.university.Purchase.Model.User;
+
 public class AuthorizeSignatoryDTO {
     private Long id;
-    private Long lvlId;
+    private User user;
+    private AuthorizeLvl authorizeLvl;
 
 
     public AuthorizeSignatoryDTO() {
     }
 
-    public AuthorizeSignatoryDTO(Long id, Long lvlId) {
+    public AuthorizeSignatoryDTO(Long id) {
         this.id = id;
-        this.lvlId = lvlId;
+    }
+
+    public AuthorizeSignatoryDTO(Long id, User user, AuthorizeLvl authorizeLvl) {
+        this.id = id;
+        this.user = user;
+        this.authorizeLvl = authorizeLvl;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public AuthorizeLvl getAuthorizeLvl() {
+        return authorizeLvl;
+    }
+
+    public void setAuthorizeLvl(AuthorizeLvl authorizeLvl) {
+        this.authorizeLvl = authorizeLvl;
     }
 
     public Long getId() {
@@ -21,19 +46,12 @@ public class AuthorizeSignatoryDTO {
         this.id = id;
     }
 
-    public Long getLvlId() {
-        return lvlId;
-    }
-
-    public void setLvlId(Long lvlId) {
-        this.lvlId = lvlId;
-    }
-
     @Override
     public String toString() {
         return "AuthorizeSignatoryDTO{" +
                 "id=" + id +
-                ", lvlId=" + lvlId +
+                ", user=" + user +
+                ", authorizeLvl=" + authorizeLvl +
                 '}';
     }
 }

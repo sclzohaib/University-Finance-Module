@@ -1,7 +1,10 @@
 package com.erp.university.Purchase.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Entity
 @Table(name = "department")
@@ -39,14 +42,41 @@ public class Department {
     @Column(name = "extension_no", unique = true)
     private Long extensionNo;
 
+    @NotNull(message = "university cannot be null")
+    @ManyToOne
+    @JoinColumn(name = "uni_id", nullable = false)
+    @JsonBackReference
+    private University university;
+
+    @OneToMany(mappedBy = "department")
+    private List<User> users;
+
     public Department() {
     }
 
-    public Department(String name, String location, Long telephone, Long extensionNo) {
+    public Department(String name, String location, Long telephone, Long extensionNo, University university, List<User> users) {
         this.name = name;
         this.location = location;
         this.telephone = telephone;
         this.extensionNo = extensionNo;
+        this.university = university;
+        this.users = users;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
     }
 
     public Long getId() {
@@ -97,6 +127,8 @@ public class Department {
                 ", location='" + location + '\'' +
                 ", telephone=" + telephone +
                 ", extensionNo=" + extensionNo +
+                ", university=" + university +
+                ", users=" + users +
                 '}';
     }
 }

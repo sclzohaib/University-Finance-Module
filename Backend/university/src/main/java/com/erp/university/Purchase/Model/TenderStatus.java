@@ -1,17 +1,17 @@
 package com.erp.university.Purchase.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "TenderStatus")
+@Table(name = "tender_status")
 public class TenderStatus {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ts_id_sequence_g")
+    @SequenceGenerator(name = "ts_id_sequence_g", sequenceName = "tender_status_seq")
     @NotNull(message = "id cannot be null !!")
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
@@ -19,7 +19,7 @@ public class TenderStatus {
     @NotNull(message = "name cannot be null !!")
     @NotBlank(message = "name cannot be blank !!")
     @NotEmpty(message = "name cannot be empty")
-    @Column(name = "name", length = 30 , nullable = false)
+    @Column(name = "name", length = 30, nullable = false)
     private String name;
 
     public TenderStatus() {
@@ -44,5 +44,13 @@ public class TenderStatus {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "TenderStatus{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

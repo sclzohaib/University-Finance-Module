@@ -1,9 +1,14 @@
 package com.erp.university.Purchase.DTO;
 
+import com.erp.university.Purchase.Model.Department;
+
+import java.util.List;
+
 public class UniversityDTO {
     private Long id;
     private String name;
     private String location;
+    private List<Department> departments;
 
     public UniversityDTO() {
     }
@@ -12,6 +17,21 @@ public class UniversityDTO {
         this.id = id;
         this.name = name;
         this.location = location;
+    }
+
+    public UniversityDTO(Long id, String name, String location, List<Department> departments) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.departments = departments;
+    }
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 
     public Long getId() {

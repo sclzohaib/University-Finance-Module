@@ -1,11 +1,18 @@
 package com.erp.university.Purchase.DTO;
 
+import com.erp.university.Purchase.Model.University;
+import com.erp.university.Purchase.Model.User;
+
+import java.util.List;
+
 public class DepartmentDTO {
     private Long id;
     private String name;
     private String location;
     private Long telephone;
     private Long extensionNo;
+    private University university;
+    private List<User> users;
 
     public DepartmentDTO() {
     }
@@ -16,6 +23,33 @@ public class DepartmentDTO {
         this.location = location;
         this.telephone = telephone;
         this.extensionNo = extensionNo;
+    }
+
+    public DepartmentDTO(Long id, String name, String location, Long telephone, Long extensionNo, University university, List<User> users) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.telephone = telephone;
+        this.extensionNo = extensionNo;
+        this.university = university;
+        this.users = users;
+    }
+
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public Long getId() {

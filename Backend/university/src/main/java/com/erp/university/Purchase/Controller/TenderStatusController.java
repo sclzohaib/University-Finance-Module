@@ -18,9 +18,8 @@ public class TenderStatusController {
     TenderStatusService tenderStatusService;
 
     //Post
-    @RequestMapping(value = "/" ,method = RequestMethod.POST)
-    public ResponseEntity<String> saveTenderStatus(@Valid @RequestBody TenderStatusDTO tenderStatusDTO)
-    {
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<String> saveTenderStatus(@Valid @RequestBody TenderStatusDTO tenderStatusDTO) {
         return tenderStatusService.saveTenderStatus(tenderStatusDTO);
     }
 }

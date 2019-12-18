@@ -29,7 +29,7 @@ public class FeeType {
     @Column(name = "revenue_head", nullable = false)
     private String revenueHead;
 
-    @NotBlank(message = "Student Type cannot be null")
+
     @NotEmpty(message = "Student Type cannot be empty")
     @NotNull(message = "Student Type cannot be null")
     @ManyToMany
@@ -37,13 +37,15 @@ public class FeeType {
             inverseJoinColumns = @JoinColumn(name = "student_type_id", referencedColumnName = "id", nullable = false))
     private List<StudentType> studentTypes;
 
-    @NotBlank(message = "Classes cannot be null")
+    @NotEmpty(message = "classes cannot be empty")
+    @NotNull(message = "classes cannot be null")
     @ManyToMany
     @JoinTable(name = "feetype_class", joinColumns = @JoinColumn(name = "fee_type_id", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "class_id", referencedColumnName = "id"))
     private List<Class> classes;
 
-    @NotBlank(message = "Parts  cannot be null")
+    @NotEmpty(message = "parts cannot be empty")
+    @NotNull(message = "parts cannot be null")
     @ManyToMany
     @JoinTable(name = "feetype_part", joinColumns = @JoinColumn(name = "fee_type_id", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "part_id", referencedColumnName = "id"))

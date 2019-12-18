@@ -1,8 +1,5 @@
 package com.erp.university.Purchase.DTO;
 
-import javax.persistence.Entity;
-
-
 public class TenderDetailsDTO {
     private Long tenderDetailId;
     private Long descriptionId;

@@ -24,7 +24,7 @@ public class AuthorizeSignatoryService {
         logger.debug("AuthorizeSignatoryDTO: {}", authorizedSignatoryDTO);
         try {
             AuthorizeSignatory authorizeSignatory = new AuthorizeSignatory();
-            authorizeSignatory.setLvlId(authorizedSignatoryDTO.getLvlId());
+            authorizeSignatory.setAuthorizeLvl(authorizedSignatoryDTO.getAuthorizeLvl());
             logger.debug("Authorize Signatory (POST): {}", authorizeSignatory);
             authorizeSignatoryRepository.save(authorizeSignatory);
             logger.debug("--------->| Authorize Signatory Created |<---------");
@@ -77,7 +77,7 @@ public class AuthorizeSignatoryService {
         try {
             AuthorizeSignatory authorizeSignatory = authorizeSignatoryRepository.findById(id).get();
             logger.debug("Old Authorize Signatory: {}", authorizeSignatory);
-            authorizeSignatory.setLvlId(authorizeSignatoryDTO.getLvlId());
+            authorizeSignatory.setAuthorizeLvl(authorizeSignatoryDTO.getAuthorizeLvl());
             try {
                 logger.debug("Updated Authorize Signatory (Save): {}", authorizeSignatory);
                 authorizeSignatoryRepository.save(authorizeSignatory);
