@@ -4,12 +4,10 @@ import com.erp.university.Purchase.DTO.TenderStatusDTO;
 import com.erp.university.Purchase.Service.TenderStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 @RestController
 @RequestMapping(value = "/api/tenderStatus")
@@ -22,4 +20,25 @@ public class TenderStatusController {
     public ResponseEntity<String> saveTenderStatus(@Valid @RequestBody TenderStatusDTO tenderStatusDTO) {
         return tenderStatusService.saveTenderStatus(tenderStatusDTO);
     }
+
+    //Get All
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllTenderStatus() {
+        return tenderStatusService.getAllTenderStatus();
+    }
+
+    //Get By id
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getTenderStatusById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return tenderStatusService.getTenderStatusById(id);
+    }
+
+
+    //Update By id
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<String> updateTenderStatus(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody TenderStatusDTO tenderStatusDTO) {
+        return tenderStatusService.updateTenderStatus(id, tenderStatusDTO);
+    }
+
+
 }
