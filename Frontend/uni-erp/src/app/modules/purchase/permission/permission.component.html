@@ -1,21 +1,23 @@
-<button nz-button [nzType]="'primary'" nzSize="large" (click)="onAdd()"><i nz-icon nzType="plus"></i>Add Part</button>
-<nz-table #partTable nzBordered [nzData]="parts">
+<button nz-button [nzType]="'primary'" nzSize="large" ><i nz-icon nzType="plus"></i>Add Permission</button>
+<nz-table #partTable nzBordered >
 	<thead>
 		<tr>
-			<th nzWidth="100px">ID</th>
+			<!-- <th nzWidth="100px">ID</th> -->
 			<th>Part</th>
 			<th nzWidth="120px">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let data of partTable.data; let i = index">
-			<td>{{i + 1}}</td>
-			<td>{{data.name}}</td>
+		<tr >
+			<tr>
+				<!-- <td>{{i + 1}}</td> -->
+				<!-- {{data.name}} -->
+				<td></td>
 			<td>
 				<div class="table-last-column" fxLayout="row" fxLayoutAlign="space-around center">
-					<a nzTitle="Edit" (click)="onEdit(i, data.name)"><i class="table-icon" nz-icon nzType="edit"></i></a>
+					<a nzTitle="Edit" ><i class="table-icon" nz-icon nzType="edit"></i></a>
 					<nz-divider nzType="vertical"></nz-divider>
-					<a nz-popconfirm nzTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.name)" nz-tooltip><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
+					<a nz-popconfirm nzTitle="Sure to delete?" nz-tooltip><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
 				</div>
 			</td>
 		</tr>
