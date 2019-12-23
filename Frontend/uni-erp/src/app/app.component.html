@@ -1,11 +1,11 @@
 <nz-layout class="app-layout">
-	<nz-sider class="menu-sidebar" *ngIf="true" nzCollapsible nzWidth="220px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+	<nz-sider class="menu-sidebar" *ngIf="true" nzCollapsible nzWidth="200px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
 		<div class="sidebar-logo">
 			<img src="./../assets/images/ku.png" alt="logo">
 			<h1>Revenue Manager</h1>
 		</div>
 		<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-			<li nz-submenu nzOpen nzTitle="Audit" nzIcon="audit">
+			<li nz-submenu nzClose nzTitle="Audit" nzIcon="audit">
 				<ul>
 					<li nz-menu-item nzMatchRouter>
 						<a routerLink="/admin/revenue/revenue-page">Revenues</a>
@@ -15,7 +15,7 @@
 					</li>
 				</ul>
 			</li>
-			<li nz-submenu nzOpen nzTitle="Controls" nzIcon="control">
+			<li nz-submenu nzClose nzTitle="Controls" nzIcon="control">
 				<ul>
 					<li nz-menu-item nzMatchRouter>
 						<a routerLink="/admin/control/revenue-head">Heads</a>
@@ -37,7 +37,7 @@
 					</li>
 				</ul>
 			</li>
-			<li nz-submenu nzOpen nzTitle="Payments" nzIcon="credit-card">
+			<li nz-submenu nzClose nzTitle="Payments" nzIcon="credit-card">
 				<ul>
 					<li nz-menu-item nzMatchRouter>
 						<a routerLink="/student">Student</a>
@@ -46,7 +46,7 @@
 			</li>
 
 			<!--Purchase Section Start-->
-			<li nz-submenu nzOpen nzTitle="Purchase" nzIcon="control">
+			<li nz-submenu nzClose nzTitle="Purchase" nzIcon="control">
 				<ul>
 					<li nz-menu-item nzMatchRouter>
 						<a routerLink="/purchase/authorize-lvl">Authorize Level</a>

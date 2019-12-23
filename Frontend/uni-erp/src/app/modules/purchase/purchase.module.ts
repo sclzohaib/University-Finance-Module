@@ -73,7 +73,24 @@ import { UserEditModalComponent } from './user/components/user-edit-modal/user-e
 	],
 	entryComponents: [
 		AuthLvlAddModalComponent,
-		AuthLvlEditModalComponent
+		AuthLvlEditModalComponent,		AuthSignAddModalComponent,
+		AuthSignEditModalComponent,
+		DepartAddModalComponent,
+		DepartEditModalComponent,
+		GrnAddModalComponent,
+		GrnEditModalComponent,
+		MajorHeadAddModalComponent,
+		MajorHeadEditModalComponent,
+		MinorHeadAddModalComponent,
+		MinorHeadEditModalComponent,
+		PermAddModalComponent,
+		PermEditModalComponent,
+		RoleAddModalComponent,
+		RoleEditModalComponent,
+		UniAddModalComponent,
+		UniEditModalComponent,
+		UserAddModalComponent,
+		UserEditModalComponent
 	]
 })
 export class PurchaseModule { }
