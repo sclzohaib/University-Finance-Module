@@ -1,9 +1,11 @@
 <form nz-form>
 	<div id="form-container">
+
+		<!--GRN NO.-->
 		<nz-form-item>
-			<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
+			<!-- <nz-form-label fxFlex="30">GRN NO.</nz-form-label> -->
 			<nz-form-control [nzErrorTip]="nameError">
-				<input nz-input nzSize="large" type="text" placeholder="What is the Fee About ?" formControlName="name">
+				<input nz-input nzSize="large" type="text" placeholder="GRN NO." formControlName="name">
 				<ng-template #nameError let-control>
 					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
 					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
@@ -12,62 +14,106 @@
 			</nz-form-control>
 		</nz-form-item>
 
+		<!--Status-->
 		<nz-form-item>
-			<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
-			<nz-form-control nzErrorTip="Please Select Revenue Head">
-				<nz-select formControlName="revenueHead" nzSize="large" nzPlaceHolder="Select Revenue Head" nzAllowClear>
-					<nz-option></nz-option>
-				</nz-select>
+			<!-- <nz-form-label fxFlex="30">Status</nz-form-label> -->
+			<nz-form-control [nzErrorTip]="nameError">
+				<input nz-input nzSize="large" type="text" placeholder="Status" formControlName="name">
+				<ng-template #nameError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
 
+		<!--Received Quantity-->
 		<nz-form-item>
-			<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
-			<nz-form-control nzErrorTip="You need to select at least one Student Type">
-				<nz-select formControlName="studentTypes" nzSize="large" nzPlaceHolder="Select Student Type(s)" nzMode="multiple">
-					<nz-option></nz-option>
-				</nz-select>
+			<!-- <nz-form-label fxFlex="30">Received Quantity</nz-form-label> -->
+			<nz-form-control [nzErrorTip]="nameError">
+				<input nz-input nzSize="large" type="text" placeholder="Received Quantity" formControlName="name">
+				<ng-template #nameError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
 
+		<!--Total Quantity-->
 		<nz-form-item>
-			<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
-			<nz-form-control>
-				<nz-input-group [nzAddOnAfter]="classInfoTpl">
-					<nz-select class="select-fullwidth" formControlName="classes" nzSize="large" nzPlaceHolder="Select Class(es)" nzAllowClear nzMode="multiple">
-						<nz-option></nz-option>
-					</nz-select>
-					<ng-template #classInfoTpl>
-						<i nz-icon nzType="info-circle" nz-tooltip nzTitle="Leave Empty to Select All Classes" nzPlacement="right"></i>
-					</ng-template>
-				</nz-input-group>
-			</nz-form-control>
-
-		</nz-form-item>
-
-		<nz-form-item>
-			<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
-			<nz-form-control>
-				<nz-input-group [nzAddOnAfter]="partInfoTpl">
-					<nz-select class="select-fullwidth" formControlName="parts" nzSize="large" nzPlaceHolder="Select Part(s)" nzAllowClear nzMode="multiple">
-						<nz-option></nz-option>
-					</nz-select>
-					<ng-template #partInfoTpl>
-						<i nz-icon nzType="info-circle" nz-tooltip nzTitle="Leave Empty to Select All Parts" nzPlacement="right"></i>
-					</ng-template>
-				</nz-input-group>
+			<!-- <nz-form-label fxFlex="30">Total Quantity</nz-form-label> -->
+			<nz-form-control [nzErrorTip]="nameError">
+				<input nz-input nzSize="large" type="text" placeholder="Total Quantity" formControlName="name">
+				<ng-template #nameError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
 
+		<!--Reason For Rejection-->
 		<nz-form-item>
-			<!-- <nz-form-label>Fee Amount</nz-form-label> -->
-			<nz-form-control [nzErrorTip]="amountError">
-				<nz-input-group nzAddOnBefore="Rs." nzSize="large">
-					<input nz-input type="text" placeholder="Fee Amount" formControlName="amount">
-				</nz-input-group>
-				<ng-template #amountError let-control>
-					<ng-container *ngIf="control.hasError('pattern')">Avoid Spaces and Numbers !</ng-container>
-					<ng-container *ngIf="control.hasError('required')">Please Enter Fee Amount !</ng-container>
+			<!-- <nz-form-label fxFlex="30">Reason For Rejection</nz-form-label> -->
+			<nz-form-control [nzErrorTip]="nameError">
+				<input nz-input nzSize="large" type="text" placeholder="Reason For Rejection" formControlName="name">
+				<ng-template #nameError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+
+		<!--Received By-->
+		<nz-form-item>
+			<!-- <nz-form-label fxFlex="30">Received By</nz-form-label> -->
+			<nz-form-control [nzErrorTip]="nameError">
+				<input nz-input nzSize="large" type="text" placeholder="Received By" formControlName="name">
+				<ng-template #nameError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+
+		<!--Posted By-->
+		<nz-form-item>
+			<!-- <nz-form-label fxFlex="30">Posted By</nz-form-label> -->
+			<nz-form-control [nzErrorTip]="nameError">
+				<input nz-input nzSize="large" type="text" placeholder="Posted By" formControlName="name">
+				<ng-template #nameError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+
+		<!--Inspected By-->
+		<nz-form-item>
+			<!-- <nz-form-label fxFlex="30">Inspected By</nz-form-label> -->
+			<nz-form-control [nzErrorTip]="nameError">
+				<input nz-input nzSize="large" type="text" placeholder="Inspected By" formControlName="name">
+				<ng-template #nameError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+
+		<!--Department Head-->
+		<nz-form-item>
+			<!-- <nz-form-label fxFlex="30">Department Head</nz-form-label> -->
+			<nz-form-control [nzErrorTip]="nameError">
+				<input nz-input nzSize="large" type="text" placeholder="Department Head" formControlName="name">
+				<ng-template #nameError let-control>
+					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
 				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
