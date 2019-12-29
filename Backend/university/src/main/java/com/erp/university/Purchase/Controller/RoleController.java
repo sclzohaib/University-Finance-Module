@@ -22,19 +22,19 @@ public class RoleController {
     }
 
     //Get All
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<?> getAllRole() {
         return roleService.getAllRole();
     }
 
     //Get By id
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getRoleById(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
         return roleService.getRoleById(id);
     }
 
     //Update
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateRole(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody RoleDTO roleDTO) {
         return roleService.updateRole(id, roleDTO);
     }

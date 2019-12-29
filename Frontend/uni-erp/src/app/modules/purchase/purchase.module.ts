@@ -32,6 +32,7 @@ import { UniAddModalComponent } from './university/components/uni-add-modal/uni-
 import { UniEditModalComponent } from './university/components/uni-edit-modal/uni-edit-modal.component';
 import { UserAddModalComponent } from './user/components/user-add-modal/user-add-modal.component';
 import { UserEditModalComponent } from './user/components/user-edit-modal/user-edit-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -67,7 +68,9 @@ import { UserEditModalComponent } from './user/components/user-edit-modal/user-e
 		UserEditModalComponent,
 	],
   imports: [
-    CommonModule,
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
 		PurchaseRoutingModule,
 		NgZorroAntdModule
 	],
