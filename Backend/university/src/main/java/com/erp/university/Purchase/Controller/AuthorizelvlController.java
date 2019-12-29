@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/authorizeLvl")
 public class AuthorizelvlController {
     @Autowired
@@ -17,7 +18,7 @@ public class AuthorizelvlController {
 
     //Post call
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<String> saveAuthorizeLvl(@Valid @RequestBody AuthorizeLvlDTO authorizeLvlDTO) {
+    public ResponseEntity<String> saveAuthorizeLvl(@RequestBody AuthorizeLvlDTO authorizeLvlDTO) {
         return authorizelvlService.saveAuthorizeLvl(authorizeLvlDTO);
     }
 
