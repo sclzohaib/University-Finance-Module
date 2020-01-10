@@ -11,7 +11,7 @@ public class Revenue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rev_id_sequence_g")
-    @SequenceGenerator(name = "rev_id_sequence_g", sequenceName = "revenue_id_seq")
+    @SequenceGenerator(name = "rev_id_sequence_g", sequenceName = "revenue_id_seq",allocationSize=1)
     @NotNull(message = "Id cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

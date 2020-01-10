@@ -29,9 +29,9 @@ public class CoveringLetterService {
             logger.debug("--------->| Covering Letter Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
     //Get All
@@ -42,11 +42,11 @@ public class CoveringLetterService {
             coveringLetters = coveringLetterRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (coveringLetters.isEmpty()) {
             logger.debug("No Covering Letter Record Found");
-            return new ResponseEntity<>("No Covering Letter Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Covering Letter Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Covering Letter Found Successfully |<---------");
             return new ResponseEntity<>(coveringLetters, HttpStatus.FOUND);
@@ -61,7 +61,7 @@ public class CoveringLetterService {
             coveringLetter = coveringLetterRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Covering Letter Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Covering Letter Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Covering Letter Found Successfully |<---------");
         logger.debug("Application (GET): {}", coveringLetter);
@@ -77,11 +77,23 @@ public class CoveringLetterService {
             logger.debug("Old Covering Letter: {}", coveringLetter);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Covering Letter Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Covering Letter Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Covering Letter Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
     }
 
+    //delete by id
+    public ResponseEntity<String> deleteCoveringLetter(Long id) {
+        logger.debug("---------> Delete Covering Letter By ID <---------");
+        try {
+            coveringLetterRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"Covering Letter not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| Covering Letter Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
+    }
 }
 

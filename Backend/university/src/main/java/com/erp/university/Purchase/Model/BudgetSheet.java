@@ -12,7 +12,7 @@ import java.util.Date;
 public class BudgetSheet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bs_id_sequence_g")
-    @SequenceGenerator(name = "bs_id_sequence_g", sequenceName = "bs_seq")
+    @SequenceGenerator(name = "bs_id_sequence_g", sequenceName = "bs_seq",allocationSize=1)
     @NotNull(message = "ID can not be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

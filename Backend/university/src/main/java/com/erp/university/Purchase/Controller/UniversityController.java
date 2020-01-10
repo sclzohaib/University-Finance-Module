@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/university")
 public class UniversityController {
 
@@ -35,5 +36,11 @@ public class UniversityController {
     public ResponseEntity<String> updateUniversity(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody UniversityDTO universityDTO) {
 
         return universityService.updateUniversity(id, universityDTO);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteUniversity(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return universityService.deleteUniversity(id);
     }
 }

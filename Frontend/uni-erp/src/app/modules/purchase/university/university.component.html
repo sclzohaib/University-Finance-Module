@@ -1,5 +1,5 @@
 <button nz-button [nzType]="'primary'" nzSize="large" (click)="onAdd()" ><i nz-icon nzType="plus"></i>Add University</button>
-<nz-table #partTable nzBordered >
+<nz-table nzBordered #rowTableData [nzData]="universities" [nzPageSize]="6" [nzLoading]="loading">
 	<thead>
 		<tr>
 			<!-- <th nzWidth="100px">ID</th> -->
@@ -9,17 +9,17 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr >
-			<tr>
+
+			<tr *ngFor = "let data of rowTableData.data">
 				<!-- <td>{{i + 1}}</td> -->
 				<!-- {{data.name}} -->
-				<td>Name</td>
-				<td>Location</td>
+				<td>{{data.name}}</td>
+				<td>{{data.location}}</td>
 			<td>
 				<div class="table-last-column" fxLayout="row" fxLayoutAlign="space-around center">
-					<a nzTitle="Edit" (click)="onEdit()" ><i class="table-icon" nz-icon nzType="edit"></i></a>
+					<a nzTitle="Edit" (click)="onEdit(data)" ><i class="table-icon" nz-icon nzType="edit"></i></a>
 					<nz-divider nzType="vertical"></nz-divider>
-					<a nz-popconfirm nzTitle="Sure to delete?"  nz-tooltip><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
+					<a nz-popconfirm nzTitle="Sure to delete?"  nz-tooltip (nzOnConfirm)="deleteUniversity(data.id)"><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
 				</div>
 			</td>
 		</tr>

@@ -11,7 +11,7 @@ public class BankUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bu_id_sequence_g")
-    @SequenceGenerator(name = "bu_id_sequence_g", sequenceName = "bu_id_seq")
+    @SequenceGenerator(name = "bu_id_sequence_g", sequenceName = "bu_id_seq",allocationSize=1)
     @NotNull(message = "ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

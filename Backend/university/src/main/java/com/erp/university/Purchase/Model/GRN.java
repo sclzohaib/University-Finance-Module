@@ -11,7 +11,7 @@ import java.util.Date;
 public class GRN {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "grn_id_sequence_g")
-    @SequenceGenerator(name = "grn_id_sequence_g", sequenceName = "grn_seq")
+    @SequenceGenerator(name = "grn_id_sequence_g", sequenceName = "grn_seq",allocationSize=1)
     @NotNull(message = "GRN id cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

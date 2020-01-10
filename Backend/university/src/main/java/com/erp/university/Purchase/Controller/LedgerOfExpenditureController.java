@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/ledgerOfExpenditure")
 public class LedgerOfExpenditureController {
     @Autowired
@@ -37,6 +38,12 @@ public class LedgerOfExpenditureController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateLOE(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody LedgerOfExpenditureDTO ledgerOfExpenditureDTO) {
         return ledgerOfExpenditureService.updateLOE(id, ledgerOfExpenditureDTO);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteLOE(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return ledgerOfExpenditureService.deleteLOE(id);
     }
 }
 

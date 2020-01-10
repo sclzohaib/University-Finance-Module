@@ -5,6 +5,7 @@ import com.erp.university.Purchase.Model.User;
 
 public class AuthorizeSignatoryDTO {
     private Long id;
+    private String name;
     private User user;
     private AuthorizeLvl authorizeLvl;
 
@@ -18,6 +19,13 @@ public class AuthorizeSignatoryDTO {
 
     public AuthorizeSignatoryDTO(Long id, User user, AuthorizeLvl authorizeLvl) {
         this.id = id;
+        this.user = user;
+        this.authorizeLvl = authorizeLvl;
+    }
+
+    public AuthorizeSignatoryDTO(Long id, String name, User user, AuthorizeLvl authorizeLvl) {
+        this.id = id;
+        this.name = name;
         this.user = user;
         this.authorizeLvl = authorizeLvl;
     }
@@ -46,10 +54,19 @@ public class AuthorizeSignatoryDTO {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "AuthorizeSignatoryDTO{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", user=" + user +
                 ", authorizeLvl=" + authorizeLvl +
                 '}';

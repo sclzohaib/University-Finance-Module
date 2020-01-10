@@ -35,9 +35,9 @@ public class TenderDetailsService {
             logger.debug("--------->| Tender Details Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
 
@@ -49,11 +49,11 @@ public class TenderDetailsService {
             tenderDetails = tenderDetailsRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (tenderDetails.isEmpty()) {
             logger.debug("No Tender Detail Record Found");
-            return new ResponseEntity<>("No Tender Detail Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Tender Detail Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Tender Details Found Successfully |<---------");
             return new ResponseEntity<>(tenderDetails, HttpStatus.FOUND);
@@ -68,7 +68,7 @@ public class TenderDetailsService {
             tenderDetails = tenderDetailsRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Tender Details Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Tender Details Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Tender Details Found Successfully |<---------");
         logger.debug("Tender Details (GET): {}", tenderDetails);
@@ -92,15 +92,27 @@ public class TenderDetailsService {
                 tenderDetailsRepository.save(tenderDetails);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Tender Details Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Tender Details Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Tender Details Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
     }
 
+    //delete by id
+    public ResponseEntity<String> deleteTenderDetails(Long id) {
+        logger.debug("---------> Delete Tender Details By ID <---------");
+        try {
+            tenderDetailsRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"Tender Details not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| Tender Details Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
+    }
 
 }

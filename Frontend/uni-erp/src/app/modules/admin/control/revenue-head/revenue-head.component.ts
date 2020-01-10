@@ -26,7 +26,7 @@ export class RevenueHeadComponent implements OnInit, OnDestroy {
 		this.rhSvc.remove(code);
 	}
 
-	onModalCancel() {
+	onModalCancel(){
 
 	}
 

@@ -38,9 +38,9 @@ public class FeeTypeService {
 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added successfully\":1}", HttpStatus.CREATED);
     }
 
     //Get all
@@ -51,11 +51,11 @@ public class FeeTypeService {
             feeTypes = feeTypeRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (feeTypes.isEmpty()) {
             logger.debug("No Fee type Record Found");
-            return new ResponseEntity<>("No Fee type Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Fee type Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Fee types Found Successfully |<---------");
             return new ResponseEntity<>(feeTypes, HttpStatus.FOUND);
@@ -70,7 +70,7 @@ public class FeeTypeService {
             feeType = feeTypeRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Fee type not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Fee type not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Fee type Found Successfully |<---------");
         logger.debug("Fee type (GET): {}", feeType);
@@ -96,14 +96,14 @@ public class FeeTypeService {
                 feeTypeRepository.save(feeType);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Fee type not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Fee type not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Fee Type Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
     }
 
     //Delete by id
@@ -113,9 +113,9 @@ public class FeeTypeService {
             feeTypeRepository.deleteById(id);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Fee type not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Fee type not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Fee Type Deleted Successfully |<---------");
-        return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }

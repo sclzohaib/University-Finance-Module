@@ -15,7 +15,7 @@ public class Permission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "permission_id_sequence_g")
-    @SequenceGenerator(name = "permission_id_sequence_g", sequenceName = "permission_seq")
+    @SequenceGenerator(name = "permission_id_sequence_g", sequenceName = "permission_seq",allocationSize=1)
     @NotNull(message = "id cannot be null !!")
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
@@ -81,13 +81,4 @@ public class Permission {
         this.constName = constName;
     }
 
-    @Override
-    public String toString() {
-        return "Permission{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", constName='" + constName + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
 }

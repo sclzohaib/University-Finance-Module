@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class TenVenDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tv_id_sequence_g")
-    @SequenceGenerator(name = "tv_id_sequence_g", sequenceName = "ten_ven_details_seq")
+    @SequenceGenerator(name = "tv_id_sequence_g", sequenceName = "ten_ven_details_seq",allocationSize=1)
     @NotNull(message = "ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

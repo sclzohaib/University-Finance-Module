@@ -1,5 +1,9 @@
 package com.erp.university.Purchase.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +17,7 @@ public class University {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uni_id_sequence_g")
-    @SequenceGenerator(name = "uni_id_sequence_g", sequenceName = "uni_seq")
+    @SequenceGenerator(name = "uni_id_sequence_g", sequenceName = "university_seq",allocationSize=1)
     @NotNull(message = "University ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
@@ -28,11 +32,14 @@ public class University {
     @NotNull(message = "Location cannot be null")
     @NotBlank(message = "Location cannot be blank !!")
     @NotEmpty(message = "Location cannot be empty")
-    @Size(min = 30, max = 100, message = "Location must be between 30 to 100 characters")
-    @Column(name = "location", unique = true, nullable = false)
+    @Size(min = 10, max = 100, message = "Location must be between 30 to 100 characters")
+    @Column(name = "location", nullable = false)
     private String location;
 
+
     @OneToMany(mappedBy = "university")
+    @JsonBackReference
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Department> departments;
 
     public University() {
@@ -78,13 +85,4 @@ public class University {
         this.location = location;
     }
 
-    @Override
-    public String toString() {
-        return "University{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
-                ", departments=" + departments +
-                '}';
-    }
 }

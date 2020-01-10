@@ -11,7 +11,7 @@ public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "admin_id_sequence_g")
-    @SequenceGenerator(name = "admin_id_sequence_g", sequenceName = "admin_id_seq")
+    @SequenceGenerator(name = "admin_id_sequence_g", sequenceName = "admin_id_seq",allocationSize=1)
     @NotNull(message = "Admin ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

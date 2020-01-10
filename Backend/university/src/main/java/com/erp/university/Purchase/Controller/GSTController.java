@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/gst")
 public class GSTController {
     @Autowired
@@ -37,5 +38,11 @@ public class GSTController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateGst(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody GSTDTO gstdto) {
         return gstService.updateGst(id, gstdto);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteGst(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return gstService.deleteGST(id);
     }
 }

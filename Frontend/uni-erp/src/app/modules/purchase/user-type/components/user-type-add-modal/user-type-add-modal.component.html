@@ -1,0 +1,19 @@
+<form nz-form #myForm="ngForm" (ngSubmit)="saveUserType()">
+	<div id="form-container">
+
+		<nz-form-item>
+			<!-- <nz-form-label fxFlex="30">Level NO.</nz-form-label> -->
+			<nz-form-control nzHasFeedback [nzErrorTip]="userTypeError">
+				<input nz-input nzSize="large" type="text" placeholder="User Type" name="userType" [(ngModel)] = "userType.userType" pattern="[a-zA-Z]+" required />
+				<ng-template #userTypeError let-control>
+					<ng-container *ngIf="control.hasError('pattern')">User Type should be Alphabets only</ng-container>
+					<ng-container *ngIf="control.hasError('required')">User Type is Required</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+	</div>
+	<div class="button-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+		<button type="button" nz-button (click)="onCancel()">Cancel</button>
+		<button nz-button nzType="primary" [disabled]="!myForm.valid">Save</button>
+	</div>
+</form>

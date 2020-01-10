@@ -11,7 +11,7 @@ public class PurchaseOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "po_id_sequence_g")
-    @SequenceGenerator(name = "po_id_sequence_g", sequenceName = "po_seq")
+    @SequenceGenerator(name = "po_id_sequence_g", sequenceName = "po_seq",allocationSize=1)
     @NotNull(message = "Id cannot be null !!")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

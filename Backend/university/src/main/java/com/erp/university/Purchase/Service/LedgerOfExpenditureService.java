@@ -34,9 +34,9 @@ public class LedgerOfExpenditureService {
             logger.debug("--------->| Ledger Of Expenditure Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
     //Get All
@@ -47,11 +47,11 @@ public class LedgerOfExpenditureService {
             ledgerOfExpenditures = ledgerOfExpenditureRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (ledgerOfExpenditures.isEmpty()) {
             logger.debug("No Ledger Of Expenditures Record Found");
-            return new ResponseEntity<>("No Ledger Of Expenditures Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Ledger Of Expenditures Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Ledger Of Expenditures Found Successfully |<---------");
             return new ResponseEntity<>(ledgerOfExpenditures, HttpStatus.FOUND);
@@ -66,7 +66,7 @@ public class LedgerOfExpenditureService {
             ledgerOfExpenditure = ledgerOfExpenditureRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Ledger of Expenditure Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Ledger of Expenditure Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Ledger of Expenditure Found Successfully |<---------");
         logger.debug("Ledger of Expenditure (GET): {}", ledgerOfExpenditure);
@@ -89,13 +89,26 @@ public class LedgerOfExpenditureService {
                 ledgerOfExpenditureRepository.save(ledgerOfExpenditure);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Ledger of Expenditure Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Ledger of Expenditure Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Ledger of Expenditure Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
+    }
+
+    //delete by id
+    public ResponseEntity<String> deleteLOE(Long id) {
+        logger.debug("---------> Delete Ledger of Expenditure By ID <---------");
+        try {
+            ledgerOfExpenditureRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"Ledger of Expenditure not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| Ledger of Expenditure Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }

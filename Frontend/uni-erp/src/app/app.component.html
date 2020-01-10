@@ -1,11 +1,26 @@
+<!-- <router-outlet><p>hello</p></router-outlet> -->
+
 <nz-layout class="app-layout">
-	<nz-sider class="menu-sidebar" *ngIf="true" nzCollapsible nzWidth="200px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+	<nz-sider
+		class="menu-sidebar"
+		*ngIf="currentUser"
+		nzCollapsible
+		nzWidth="200px"
+		nzBreakpoint="md"
+		[(nzCollapsed)]="isCollapsed"
+		[nzTrigger]="null"
+	>
 		<div class="sidebar-logo">
-			<img src="./../assets/images/ku.png" alt="logo">
+			<img src="./../assets/images/ku.png" alt="logo" />
 			<h1>Revenue Manager</h1>
 		</div>
-		<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-			<li nz-submenu nzClose nzTitle="Audit" nzIcon="audit">
+		<ul
+			nz-menu
+			nzTheme="dark"
+			nzMode="inline"
+			[nzInlineCollapsed]="isCollapsed"
+		>
+			<li nz-submenu nzClose nzTitle="Audit" nzIcon="audit" *ngIf="isAdmin">
 				<ul>
 					<li nz-menu-item nzMatchRouter>
 						<a routerLink="/admin/revenue/revenue-page">Revenues</a>
@@ -15,7 +30,13 @@
 					</li>
 				</ul>
 			</li>
-			<li nz-submenu nzClose nzTitle="Controls" nzIcon="control">
+			<li
+				nz-submenu
+				nzClose
+				nzTitle="Controls"
+				nzIcon="control"
+				*ngIf="isAdmin"
+			>
 				<ul>
 					<li nz-menu-item nzMatchRouter>
 						<a routerLink="/admin/control/revenue-head">Heads</a>
@@ -37,7 +58,13 @@
 					</li>
 				</ul>
 			</li>
-			<li nz-submenu nzClose nzTitle="Payments" nzIcon="credit-card">
+			<li
+				nz-submenu
+				nzClose
+				nzTitle="Payments"
+				nzIcon="credit-card"
+				*ngIf="isAdmin"
+			>
 				<ul>
 					<li nz-menu-item nzMatchRouter>
 						<a routerLink="/student">Student</a>
@@ -52,13 +79,15 @@
 						<a routerLink="/purchase/authorize-lvl">Authorize Level</a>
 					</li>
 					<li nz-menu-item nzMatchRouter>
-						<a routerLink="/purchase/authorize-signatory">Authorize Signatory</a>
+						<a routerLink="/purchase/authorize-signatory"
+							>Authorize Signatory</a
+						>
 					</li>
 					<li nz-menu-item nzMatchRouter>
 						<a routerLink="/purchase/department">Department</a>
 					</li>
 					<li nz-menu-item nzMatchRouter>
-						<a routerLink="/purchase/grn">GRN</a>
+						<a routerLink="/purchase/gst">GST</a>
 					</li>
 					<li nz-menu-item nzMatchRouter>
 						<a routerLink="/purchase/major-head">Major Head</a>
@@ -78,22 +107,63 @@
 					<li nz-menu-item nzMatchRouter>
 						<a routerLink="/purchase/user">User</a>
 					</li>
+					<li nz-menu-item nzMatchRouter>
+						<a routerLink="/purchase/user-type">User Type</a>
+					</li>
 				</ul>
 			</li>
 
 			<!--Purchase Section End-->
-
-
 		</ul>
 	</nz-sider>
 	<nz-layout>
-		<nz-header *ngIf="true">
-			<div class="app-header">
-				<span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-					<i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
-				</span>
-			</div>
+		<!-- <nz-affix> -->
+		<nz-header *ngIf="currentUser">
+			<!-- <div class="username">Username: {{currentUser.name}}</div> -->
+				<div class="app-header">
+					<span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+						<i
+							class="trigger"
+							nz-icon
+							[nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+						></i>
+					</span>
+					<span style="padding-left: 90%;">
+						<a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+							<nz-avatar
+								nzIcon="user"
+								nzSize="large"
+								style="background-color:#87d068;"
+							></nz-avatar>
+						</a>
+						<nz-dropdown-menu #menu="nzDropdownMenu">
+							<ul nz-menu>
+								<li nz-menu-item style="text-align: center;cursor: text;">	{{currentUser.name}}</li>
+								<li nz-menu-item style="text-align: center;cursor: text;">	{{currentUser.userType.userType}}</li>
+								<li nz-menu-divider></li>
+								<li nz-menu-item style="text-align: center;"><a (click)="logout()">Sign out</a></li>
+								<!-- <li nz-menu-item>2nd menu item</li>
+					<li nz-menu-divider></li>
+					<li nz-menu-item nzDisabled>disabled menu item</li>
+					<li nz-submenu nzTitle="sub menu">
+						<ul>
+							<li nz-menu-item>3rd menu item</li>
+							<li nz-menu-item>4th menu item</li>
+						</ul>
+					</li>
+					<li nz-submenu nzDisabled nzTitle="disabled sub menu">
+						<ul>
+							<li nz-menu-item>3rd menu item</li>
+							<li nz-menu-item>4th menu item</li>
+						</ul>
+					</li> -->
+							</ul>
+						</nz-dropdown-menu>
+					</span>
+				</div>
+
 		</nz-header>
+	<!-- </nz-affix> -->
 		<nz-content>
 			<router-outlet></router-outlet>
 		</nz-content>

@@ -1,33 +1,41 @@
 <button nz-button [nzType]="'primary'" nzSize="large" (click)="onAdd()" ><i nz-icon nzType="plus"></i>Add User</button>
-<nz-table #partTable nzBordered >
+<nz-table nzBordered #rowTableData [nzData]="users" [nzPageSize]="6" [nzLoading]="loading">
 	<thead>
 		<tr>
 			<!-- <th nzWidth="100px">ID</th> -->
-			<th>Name</th>
-			<th>Email</th>
-			<th>Password</th>
-			<th>Status</th>
-			<th>Address</th>
-			<th>Contact No.</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Status</th>
+				<th>Address</th>
+				<th>Contact No.</th>
+				<th>Department</th>
+				<th>University</th>
+				<th>Authorize Signatory</th>
+				<th>User Type</th>
+				<th>Roles</th>
+
 			<th nzWidth="120px">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr >
-			<tr>
-				<!-- <td>{{i + 1}}</td> -->
-				<!-- {{data.name}} -->
-				<td>Name</td>
-				<td>Email</td>
-				<td>Password</td>
-				<td>Status</td>
-				<td>Address</td>
-				<td>Contact No.</td>
+
+			<tr *ngFor = "let data of rowTableData.data">
+				<!-- *ngFor = "let data of rowTableData.data" -->
+				<td>{{data.name}}</td>
+				<td>{{data.email}}</td>
+				<td>{{data.status}}</td>
+				<td>{{data.address}}</td>
+				<td>{{data.contactNo}}</td>
+				<td>{{data.department.name}}</td>
+				<td>{{data.department.university.name}}</td>
+				<td>{{data.authorizeSignatory.name}}</td>
+				<td>{{data.userType.userType}}</td>
+				<td>{{data.rol}}</td>
 			<td>
 				<div class="table-last-column" fxLayout="row" fxLayoutAlign="space-around center">
-					<a nzTitle="Edit" (click)="onEdit()"><i class="table-icon" nz-icon nzType="edit"></i></a>
+					<a nzTitle="Edit" (click)="onEdit(data)"><i class="table-icon" nz-icon nzType="edit"></i></a>
 					<nz-divider nzType="vertical"></nz-divider>
-					<a nz-popconfirm nzTitle="Sure to delete?"  nz-tooltip><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
+					<a nz-popconfirm nzTitle="Sure to delete?"  nz-tooltip (nzOnConfirm)="deleteUser(data.id)"><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
 				</div>
 			</td>
 		</tr>

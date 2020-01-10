@@ -31,9 +31,9 @@ public class RoleService {
             logger.debug("--------->| Role Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
     //get all
@@ -44,11 +44,11 @@ public class RoleService {
             roles = roleRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (roles.isEmpty()) {
             logger.debug("No Role Record Found");
-            return new ResponseEntity<>("No Role Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Role Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Roles Found Successfully |<---------");
             return new ResponseEntity<>(roles, HttpStatus.FOUND);
@@ -63,7 +63,7 @@ public class RoleService {
             role = roleRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Role Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Role Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Role Found Successfully |<---------");
         logger.debug("Role (GET): {}", role);
@@ -84,14 +84,28 @@ public class RoleService {
                 roleRepository.save(role);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Role Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Role Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Role Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
     }
 
+    //delete by id
+    public ResponseEntity<String> deleteRole(Long id) {
+        logger.debug("---------> Delete Role By ID <---------");
+        try {
+            roleRepository.deleteROLE_PERMISSIONByRoleId(id);
+            roleRepository.deleteROLE_USERSByRoleId(id);
+            roleRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"Role not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| Role Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
+    }
 }

@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class Tendor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tendor_id_sequence_g")
-    @SequenceGenerator(name = "tendor_id_sequence_g", sequenceName = "tendor_seq")
+    @SequenceGenerator(name = "tendor_id_sequence_g", sequenceName = "tendor_seq",allocationSize=1)
     @NotNull(message = "Tendor ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

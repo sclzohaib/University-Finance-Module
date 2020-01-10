@@ -31,9 +31,9 @@ public class TendorService {
             logger.debug("--------->| Tendor Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went Wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went Wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
     //Get all
@@ -44,11 +44,11 @@ public class TendorService {
             tendors = tendorRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went Wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went Wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (tendors.isEmpty()) {
             logger.debug("No Tendor Record Found");
-            return new ResponseEntity<>("No Tendor Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Tendor Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Tendor Found Successfully |<---------");
             return new ResponseEntity<>(tendors, HttpStatus.FOUND);
@@ -63,7 +63,7 @@ public class TendorService {
             tendor = tendorRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Tendor Not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Tendor Not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Tendor Found Successfully |<---------");
         logger.debug("Tendor (GET): {}", tendor);
@@ -84,14 +84,27 @@ public class TendorService {
                 tendorRepository.save(tendor);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went Wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went Wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Tendor not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Tendor not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Tendor Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
+    }
+
+    //delete by id
+    public ResponseEntity<String> deleteTendor(Long id) {
+        logger.debug("---------> Delete Tendor By ID <---------");
+        try {
+            tendorRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"Tendor not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| Tendor Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }
 

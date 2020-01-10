@@ -34,9 +34,9 @@ public class TenVenDetailService {
             logger.debug("--------->| Tendor Vendor Details Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
 
     }
 
@@ -48,11 +48,11 @@ public class TenVenDetailService {
             tenVenDetails = tenVenRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (tenVenDetails.isEmpty()) {
             logger.debug("No Tendor Vendor Details Record Found");
-            return new ResponseEntity<>("No Tendor Vendor Details Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Tendor Vendor Details Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Tendor Vendor Details Found Successfully |<---------");
             return new ResponseEntity<>(tenVenDetails, HttpStatus.FOUND);
@@ -68,7 +68,7 @@ public class TenVenDetailService {
             tenVenDetails = tenVenRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Tendor Vendor Details not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Tendor Vendor Details not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Tendor Vendor Details Found Successfully |<---------");
         logger.debug("Tendor Vendor Details (GET): {}", tenVenDetails);
@@ -92,13 +92,26 @@ public class TenVenDetailService {
                 tenVenRepository.save(tenVenDetails);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Tendor Vendor Details not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Tendor Vendor Details not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Tendor Vendor Details Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
+    }
+
+    //delete by id
+    public ResponseEntity<String> deleteTenVenDetail(Long id) {
+        logger.debug("---------> Delete Tendor Vendor Details By ID <---------");
+        try {
+            tenVenRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"Tendor Vendor Details not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| Tendor Vendor Details Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }

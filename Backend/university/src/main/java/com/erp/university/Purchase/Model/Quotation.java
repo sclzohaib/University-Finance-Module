@@ -13,7 +13,7 @@ public class Quotation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "quotation_id_sequence_g")
-    @SequenceGenerator(name = "quotation_id_sequence_g", sequenceName = "quotation_seq")
+    @SequenceGenerator(name = "quotation_id_sequence_g", sequenceName = "quotation_seq",allocationSize=1)
     @NotNull(message = "Id cannot be null !!")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

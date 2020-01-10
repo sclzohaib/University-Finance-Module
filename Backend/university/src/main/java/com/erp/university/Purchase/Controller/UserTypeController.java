@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/userType")
 public class UserTypeController {
     @Autowired
@@ -37,5 +38,11 @@ public class UserTypeController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateUserType(@PathVariable("id") Long id, @Valid @RequestBody UserTypeDTO userTypeDTO) {
         return userTypeService.updateUserType(id, userTypeDTO);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteUserType(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return userTypeService.deleteUserType(id);
     }
 }

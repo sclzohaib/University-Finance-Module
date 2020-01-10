@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/minorHead")
 public class MinorHeadController {
     @Autowired
@@ -37,5 +38,11 @@ public class MinorHeadController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateMinorHead(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody MinorHeadDTO minorHeadDTO) {
         return minorHeadService.updateMinorHead(id, minorHeadDTO);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteMinorHead(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return minorHeadService.deleteMinorHead(id);
     }
 }

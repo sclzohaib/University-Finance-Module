@@ -1,7 +1,5 @@
 package com.erp.university.Purchase.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +11,7 @@ import javax.validation.constraints.Size;
 public class MinorHead {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "min_h_id_sequence_g")
-    @SequenceGenerator(name = "min_h_id_sequence_g", sequenceName = "minor_head_seq")
+    @SequenceGenerator(name = "min_h_id_sequence_g", sequenceName = "minor_head_seq",allocationSize=1)
     @NotNull(message = "Id cannot be null !!")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
@@ -21,7 +19,7 @@ public class MinorHead {
     @NotNull(message = "Name cannot be null !!")
     @NotBlank(message = "Name cannot be blank !!")
     @NotEmpty(message = "Name cannot be empty")
-    @Size(min = 10, max = 50, message = "Name must be between 10 and 50 characters")
+    @Size(min = 3, max = 50, message = "Name must be between 10 and 50 characters")
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -32,7 +30,7 @@ public class MinorHead {
     @NotNull(message = "Major Head cannot be null")
     @ManyToOne
     @JoinColumn(name = "major_head_id", nullable = false)
-    @JsonBackReference
+
     private MajorHead majorHead;
 
     public MinorHead() {
@@ -77,13 +75,4 @@ public class MinorHead {
         this.codeNo = codeNo;
     }
 
-    @Override
-    public String toString() {
-        return "MinorHead{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", codeNo=" + codeNo +
-                ", majorHead=" + majorHead +
-                '}';
-    }
 }

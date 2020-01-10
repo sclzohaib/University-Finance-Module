@@ -33,9 +33,9 @@ public class ClassService {
 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
     //get all
@@ -46,11 +46,11 @@ public class ClassService {
             classes = classRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (classes.isEmpty()) {
             logger.debug("No Class Record Found");
-            return new ResponseEntity<>("No Class Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Class Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Classes Found Successfully |<---------");
             return new ResponseEntity<>(classes, HttpStatus.FOUND);
@@ -65,7 +65,7 @@ public class ClassService {
             getClass = classRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Class not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Class not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Class Found Successfully |<---------");
         logger.debug("Class (GET): {}", getClass);
@@ -85,14 +85,14 @@ public class ClassService {
                 classRepository.save(getClass);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Class not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Class not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Class Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
     }
 
     //delete by id
@@ -102,10 +102,10 @@ public class ClassService {
             classRepository.deleteById(id);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Class not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Class not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Class Deleted Successfully |<---------");
-        return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 
 }

@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/budgetSheet")
 public class BudgetSheetController {
     @Autowired
@@ -37,5 +38,11 @@ public class BudgetSheetController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateBudgetSheet(@PathVariable("id") @Min(value = 1, message = "Id must be greater than 1") Long id, @Valid @RequestBody BudgetSheetDTO budgetSheetDTO) {
         return budgetSheetService.updateBudgetSheet(id, budgetSheetDTO);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteBudgetSheet(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return budgetSheetService.deleteBudgetSheet(id);
     }
 }

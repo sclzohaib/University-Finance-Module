@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class GST {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gst_id_sequence_g")
-    @SequenceGenerator(name = "gst_id_sequence_g", sequenceName = "gst_seq")
+    @SequenceGenerator(name = "gst_id_sequence_g", sequenceName = "gst_seq",allocationSize=1)
     @NotNull(message = "GST ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

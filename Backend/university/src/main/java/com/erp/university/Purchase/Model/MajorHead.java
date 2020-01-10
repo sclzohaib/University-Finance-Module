@@ -1,5 +1,9 @@
 package com.erp.university.Purchase.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -12,7 +16,7 @@ import java.util.List;
 public class MajorHead {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mh_id_sequence_g")
-    @SequenceGenerator(name = "mh_id_sequence_g", sequenceName = "major_head_seq")
+    @SequenceGenerator(name = "mh_id_sequence_g", sequenceName = "major_head_seq",allocationSize=1)
     @NotNull(message = "Major head ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
@@ -25,6 +29,8 @@ public class MajorHead {
     private String name;
 
     @OneToMany(mappedBy = "majorHead")
+    @JsonBackReference
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<MinorHead> minorHeads;
 
     public MajorHead() {
@@ -60,12 +66,4 @@ public class MajorHead {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "MajorHead{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", minorHeads=" + minorHeads +
-                '}';
-    }
 }

@@ -33,9 +33,9 @@ public class BankUserService {
             logger.debug("--------->| Bank User Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added successfully\":1}", HttpStatus.CREATED);
     }
 
     //Get all
@@ -46,11 +46,11 @@ public class BankUserService {
             bankUsers = bankUserRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (bankUsers.isEmpty()) {
             logger.debug("No Bank User Record Found");
-            return new ResponseEntity<>("No Bank User Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Bank User Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Bank Users Found Successfully |<---------");
             return new ResponseEntity<>(bankUsers, HttpStatus.FOUND);
@@ -65,7 +65,7 @@ public class BankUserService {
             bankUser = bankUserRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Bank User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Bank User not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Bank User Found Successfully |<---------");
         logger.debug("Bank User (GET): {}", bankUser);
@@ -86,14 +86,14 @@ public class BankUserService {
                 bankUserRepository.save(bankUser);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Bank User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Bank User not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Bank User Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
     }
 
     //delete by id
@@ -103,9 +103,9 @@ public class BankUserService {
             bankUserRepository.deleteById(id);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Bank User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Bank User not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Bank User Deleted Successfully |<---------");
-        return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }

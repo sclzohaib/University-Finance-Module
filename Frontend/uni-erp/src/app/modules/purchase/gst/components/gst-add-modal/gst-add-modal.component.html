@@ -1,0 +1,20 @@
+<form nz-form #myForm="ngForm" (ngSubmit)="saveGst()">
+	<div id="form-container">
+
+		<nz-form-item>
+			<!-- <nz-form-label fxFlex="30">Level NO.</nz-form-label> -->
+			<nz-form-control nzHasFeedback [nzErrorTip]="percentError">
+				<input nz-input nzSize="large" type="text" placeholder="GST Percentage" name="percent" [(ngModel)] = "gst.percent" pattern="^(100|[1-9]?[0-9])$" min="1" max="100" required />
+				<ng-template #percentError let-control>
+					<ng-container *ngIf="control.hasError('pattern')">Please Enter Only Numbers</ng-container>
+					<ng-container *ngIf="control.hasError('required')">GST Percentage is Required</ng-container>
+					<ng-container *ngIf="control.hasError('min')">GST Percentage is Required</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+	</div>
+	<div class="button-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+		<button type="button" nz-button (click)="onCancel()">Cancel</button>
+		<button nz-button nzType="primary" [disabled]="!myForm.valid">Save</button>
+	</div>
+</form>

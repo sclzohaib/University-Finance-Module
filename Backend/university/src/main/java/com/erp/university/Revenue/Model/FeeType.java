@@ -12,7 +12,7 @@ public class FeeType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ft_id_sequence_g")
-    @SequenceGenerator(name = "ft_id_sequence_g", sequenceName = "fee_type_id_seq")
+    @SequenceGenerator(name = "ft_id_sequence_g", sequenceName = "fee_type_id_seq",allocationSize=1)
     @NotNull(message = "Id cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

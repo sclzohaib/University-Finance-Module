@@ -1,6 +1,7 @@
 package com.erp.university.Purchase.Service;
 
 import com.erp.university.Purchase.DTO.UserTypeDTO;
+import com.erp.university.Purchase.Model.User;
 import com.erp.university.Purchase.Model.UserType;
 import com.erp.university.Purchase.Repository.UserTypeRepository;
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +19,9 @@ public class UserTypeService {
     @Autowired
     UserTypeRepository userTypeRepository;
 
+    @Autowired
+    UserServiceImpl userService;
+
     //Save
     public ResponseEntity<String> saveUserType(UserTypeDTO userTypeDTO) {
         logger.debug("--------->| Create User Type: |<---------");
@@ -30,9 +34,9 @@ public class UserTypeService {
             logger.debug("--------->| User Type Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
 
     }
 
@@ -44,11 +48,11 @@ public class UserTypeService {
             userTypes = userTypeRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (userTypes.isEmpty()) {
             logger.debug("No User Type Record Found");
-            return new ResponseEntity<>("No User Type Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No User Type Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| User Types Found Successfully |<---------");
             return new ResponseEntity<>(userTypes, HttpStatus.FOUND);
@@ -63,7 +67,7 @@ public class UserTypeService {
             userType = userTypeRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("User Type not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"User Type not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| User Type Found Successfully |<---------");
         logger.debug("User Type (GET): {}", userType);
@@ -83,13 +87,29 @@ public class UserTypeService {
                 userTypeRepository.save(userType);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("User Type not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"User Type not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| User Type Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
+    }
+    //delete by id
+    public ResponseEntity<String> deleteUserType(Long id) {
+        logger.debug("---------> Delete User Type By ID <---------");
+        try {
+            List<User> users = userTypeRepository.findById(id).get().getUsers();
+            users.forEach(user -> {
+                userService.deleteUser(user.getId());
+            });
+            userTypeRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"User Type not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| User Type Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }
