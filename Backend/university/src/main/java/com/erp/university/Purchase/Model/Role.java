@@ -1,6 +1,8 @@
 package com.erp.university.Purchase.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -15,7 +17,7 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_id_sequence_g")
-    @SequenceGenerator(name = "role_id_sequence_g", sequenceName = "role_seq")
+    @SequenceGenerator(name = "role_id_sequence_g", sequenceName = "role_seq",allocationSize=1)
     @NotNull(message = "id cannot be null !!")
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
@@ -35,10 +37,12 @@ public class Role {
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id", nullable = false)
     )
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Permission> permissions;
-
-    @ManyToMany(mappedBy = "roles")
+    //fetch = FetchType.EAGER
+    @ManyToMany
     @JsonBackReference
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<User> users;
 
     public Role() {
@@ -83,13 +87,4 @@ public class Role {
         this.title = title;
     }
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", permissions=" + permissions +
-                ", users=" + users +
-                '}';
-    }
 }

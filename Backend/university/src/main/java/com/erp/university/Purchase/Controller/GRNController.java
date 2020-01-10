@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/grn")
 public class GRNController {
     @Autowired
@@ -41,4 +42,9 @@ public class GRNController {
         return grnService.updateGRN(id, grndto);
     }
 
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteGRN(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return grnService.deleteGRN(id);
+    }
 }

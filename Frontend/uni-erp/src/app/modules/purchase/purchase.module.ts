@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
@@ -33,6 +34,12 @@ import { UniEditModalComponent } from './university/components/uni-edit-modal/un
 import { UserAddModalComponent } from './user/components/user-add-modal/user-add-modal.component';
 import { UserEditModalComponent } from './user/components/user-edit-modal/user-edit-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GstComponent } from './gst/gst.component';
+import { GstAddModalComponent } from './gst/components/gst-add-modal/gst-add-modal.component';
+import { GstEditModalComponent } from './gst/components/gst-edit-modal/gst-edit-modal.component';
+import { UserTypeComponent } from './user-type/user-type.component';
+import { UserTypeAddModalComponent } from './user-type/components/user-type-add-modal/user-type-add-modal.component';
+import { UserTypeEditModalComponent } from './user-type/components/user-type-edit-modal/user-type-edit-modal.component';
 
 
 @NgModule({
@@ -66,13 +73,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		UniEditModalComponent,
 		UserAddModalComponent,
 		UserEditModalComponent,
+		GstComponent,
+		GstAddModalComponent,
+		GstEditModalComponent,
+		UserTypeComponent,
+		UserTypeAddModalComponent,
+		UserTypeEditModalComponent,
 	],
   imports: [
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
 		PurchaseRoutingModule,
-		NgZorroAntdModule
+		NgZorroAntdModule,
+		FlexLayoutModule
 	],
 	entryComponents: [
 		AuthLvlAddModalComponent,
@@ -93,7 +107,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		UniAddModalComponent,
 		UniEditModalComponent,
 		UserAddModalComponent,
-		UserEditModalComponent
+		UserEditModalComponent,
+		GstAddModalComponent,
+		GstEditModalComponent,
+		UserTypeAddModalComponent,
+		UserTypeEditModalComponent
 	]
 })
 export class PurchaseModule { }

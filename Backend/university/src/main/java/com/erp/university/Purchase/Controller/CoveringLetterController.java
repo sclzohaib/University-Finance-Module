@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/coveringLetter")
 public class CoveringLetterController {
     @Autowired
@@ -37,5 +38,11 @@ public class CoveringLetterController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateCoveringLetter(@PathVariable("id") @Min(value = 1, message = "Id must be greater than 1") Long id, @Valid @RequestBody CoveringLetterDTO coveringLetterDTO) {
         return coveringLetterService.updateCoveringLetter(id, coveringLetterDTO);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteCoveringLetter(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return coveringLetterService.deleteCoveringLetter(id);
     }
 }

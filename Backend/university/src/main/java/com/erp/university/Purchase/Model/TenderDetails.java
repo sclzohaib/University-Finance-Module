@@ -11,7 +11,7 @@ public class TenderDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "td_id_sequence_g")
-    @SequenceGenerator(name = "td_id_sequence_g", sequenceName = "tender_details_seq")
+    @SequenceGenerator(name = "td_id_sequence_g", sequenceName = "tender_details_seq",allocationSize=1)
     @NotNull(message = "tender details ID cannot be null !!")
     @Column(name = "id", nullable = false, unique = true)
     private Long id;

@@ -39,9 +39,9 @@ public class RevenueService {
             logger.debug("--------->| Revenue Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added successfully\":1}", HttpStatus.CREATED);
     }
 
     //get all
@@ -52,11 +52,11 @@ public class RevenueService {
             revenues = revenueRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (revenues.isEmpty()) {
             logger.debug("No Revenue Record Found");
-            return new ResponseEntity<>("No Revenue Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Revenue Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Revenues Found Successfully |<---------");
             return new ResponseEntity<>(revenues, HttpStatus.FOUND);
@@ -71,7 +71,7 @@ public class RevenueService {
             revenue = revenueRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Revenue not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Revenue not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Revenue Found Successfully |<---------");
         logger.debug("Revenue (GET): {}", revenue);
@@ -98,14 +98,14 @@ public class RevenueService {
                 revenueRepository.save(revenue);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Revenue not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Revenue not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Revenue Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
     }
 
 
@@ -116,10 +116,10 @@ public class RevenueService {
             revenueRepository.deleteById(id);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Revenue not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Revenue not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Revenue Deleted Successfully |<---------");
-        return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 
 

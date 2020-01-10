@@ -29,9 +29,9 @@ public class SummaryService {
             logger.debug("--------->| Summary Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went Wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went Wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
     //Get all
@@ -42,11 +42,11 @@ public class SummaryService {
             summaries = summaryRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went Wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went Wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (summaries.isEmpty()) {
             logger.debug("No Summary Record Found");
-            return new ResponseEntity<>("No Summary Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Summary Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Summaries Found Successfully |<---------");
             return new ResponseEntity<>(summaries, HttpStatus.FOUND);
@@ -61,7 +61,7 @@ public class SummaryService {
             summary = summaryRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Summary Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Summary Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Summary Found Successfully |<---------");
         logger.debug("Summary (GET): {}", summary);
@@ -80,13 +80,26 @@ public class SummaryService {
                 summaryRepository.save(summary);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went Wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went Wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Summary Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Summary Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Summary Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
+    }
+
+    //delete by id
+    public ResponseEntity<String> deleteSummary(Long id) {
+        logger.debug("---------> Delete Summary By ID <---------");
+        try {
+            summaryRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"Summary not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| Summary Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }

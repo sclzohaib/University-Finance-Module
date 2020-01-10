@@ -1,6 +1,8 @@
 package com.erp.university.Purchase.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,7 +13,7 @@ import java.util.List;
 public class AuthorizeLvl {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "al_id_sequence_g")
-    @SequenceGenerator(name = "al_id_sequence_g", sequenceName = "auth_lvl_seq")
+    @SequenceGenerator(name = "al_id_sequence_g", sequenceName = "auth_lvl_seq", allocationSize=1)
     @NotNull(message = "ID can not be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
@@ -22,6 +24,7 @@ public class AuthorizeLvl {
 
     @OneToMany(mappedBy = "authorizeLvl")
     @JsonBackReference
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<AuthorizeSignatory> authorizeSignatories;
 
     public AuthorizeLvl() {
@@ -60,12 +63,4 @@ public class AuthorizeLvl {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "AuthorizeLvl{" +
-                "id=" + id +
-                ", lvlNo=" + lvlNo +
-                ", authorizeSignatories=" + authorizeSignatories +
-                '}';
-    }
 }

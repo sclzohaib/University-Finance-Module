@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/department")
 public class DepartmentController {
     @Autowired
@@ -38,6 +39,12 @@ public class DepartmentController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateDepartment(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody DepartmentDTO departmentDTO) {
         return departmentService.updateDepartment(id, departmentDTO);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteDepartment(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return departmentService.deleteDepartment(id);
     }
 
 }

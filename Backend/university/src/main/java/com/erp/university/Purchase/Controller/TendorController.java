@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/tendor")
 public class TendorController {
     @Autowired
@@ -37,5 +38,11 @@ public class TendorController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateTendor(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody TendorDTO tendorDTO) {
         return tendorService.updateTendor(id, tendorDTO);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteTendor(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return tendorService.deleteTendor(id);
     }
 }

@@ -9,7 +9,7 @@ import java.util.Date;
 public class PaymentVoucher {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pv_id_sequence_g")
-    @SequenceGenerator(name = "pv_id_sequence_g", sequenceName = "pv_seq")
+    @SequenceGenerator(name = "pv_id_sequence_g", sequenceName = "pv_seq",allocationSize=1)
     @NotNull(message = "Id cannot be null !!")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

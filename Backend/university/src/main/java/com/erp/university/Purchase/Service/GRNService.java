@@ -39,9 +39,9 @@ public class GRNService {
             logger.debug("--------->| GRN Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
     //GET ALL GRN
@@ -53,11 +53,11 @@ public class GRNService {
             grns = grnRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (grns.isEmpty()) {
             logger.debug("No GRN Record Found");
-            return new ResponseEntity<>("No GRN Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No GRN Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| GRN Found Successfully |<---------");
             return new ResponseEntity<>(grns, HttpStatus.FOUND);
@@ -73,7 +73,7 @@ public class GRNService {
             grn = grnRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("GRN Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"GRN Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| GRN Found Successfully |<---------");
         logger.debug("GRN (GET): {}", grn);
@@ -103,15 +103,27 @@ public class GRNService {
                 grnRepository.save(grn);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("GRN Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"GRN Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| GRN Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
     }
 
 
+    //delete by id
+    public ResponseEntity<String> deleteGRN(Long id) {
+        logger.debug("---------> Delete GRN By ID <---------");
+        try {
+            grnRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"GRN not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| GRN Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
+    }
 }

@@ -12,7 +12,7 @@ import java.util.Date;
 public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "app_id_sequence_g")
-    @SequenceGenerator(name = "app_id_sequence_g", sequenceName = "app_seq")
+    @SequenceGenerator(name = "app_id_sequence_g", sequenceName = "app_seq",allocationSize=1)
     @NotNull(message = "Application ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

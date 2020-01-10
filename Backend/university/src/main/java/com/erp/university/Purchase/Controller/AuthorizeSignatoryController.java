@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/authorizeSignatory")
 public class AuthorizeSignatoryController {
     @Autowired
@@ -38,5 +39,11 @@ public class AuthorizeSignatoryController {
     public ResponseEntity<String> updateAuthorizeSignatory(@PathVariable("id") @Min(value = 1, message = "Id must be greater than 1") Long id, @Valid @RequestBody AuthorizeSignatoryDTO authorizeSignatoryDTO) {
         return authorizeSignatoryService.updateAuthorizeSignatory(id, authorizeSignatoryDTO);
 
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteAuthorizeSignatory(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return authorizeSignatoryService.deleteAuthorizeSignatory(id);
     }
 }

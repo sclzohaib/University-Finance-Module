@@ -1,3 +1,5 @@
+import { UserTypeComponent } from './user-type/user-type.component';
+import { GstComponent } from './gst/gst.component';
 import { UserComponent } from './user/user.component';
 import { UniversityComponent } from './university/university.component';
 import { RoleComponent } from './role/role.component';
@@ -61,6 +63,16 @@ const routes: Routes = [
 	{
 		path: 'user',
 		component: UserComponent,
+		pathMatch: 'full'
+	},
+	{
+		path: 'gst',
+		component: GstComponent,
+		pathMatch: 'full'
+	},
+	{
+		path: 'user-type',
+		component: UserTypeComponent,
 		pathMatch: 'full'
 	}
 ];

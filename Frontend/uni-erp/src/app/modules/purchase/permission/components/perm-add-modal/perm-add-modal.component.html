@@ -1,16 +1,17 @@
-<form nz-form>
+<form nz-form #myForm="ngForm" (ngSubmit)="savePermission()">
 	<div id="form-container">
 
 		<!-- Title -->
 
 		<nz-form-item>
 			<!-- <nz-form-label fxFlex="30">Title</nz-form-label> -->
-			<nz-form-control [nzErrorTip]="nameError">
-				<input nz-input nzSize="large" type="text" placeholder="Title" formControlName="name">
-				<ng-template #nameError let-control>
-					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
-					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
-					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+			<nz-form-control nzHasFeedback [nzErrorTip]="titleError">
+				<input nz-input nzSize="large" type="text" placeholder="Title" name="title" [(ngModel)] = "permission.title" minlength="1" maxlength="30" pattern="[a-zA-Z]+" required />
+				<ng-template #titleError let-control>
+					<ng-container *ngIf="control.hasError('pattern')">Title should be Alphabets only</ng-container>
+					<ng-container *ngIf="control.hasError('maxlength')">Title cannot exceed 30 characters</ng-container>
+           			 <ng-container *ngIf="control.hasError('minlength')">Title atleast should be 1 character Long</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Title is Required</ng-container>
 				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
@@ -19,18 +20,19 @@
 
 		<nz-form-item>
 			<!-- <nz-form-label fxFlex="30">Const Name</nz-form-label> -->
-			<nz-form-control [nzErrorTip]="nameError">
-				<input nz-input nzSize="large" type="text" placeholder="Const Name" formControlName="name">
-				<ng-template #nameError let-control>
-					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
-					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
-					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+			<nz-form-control nzHasFeedback [nzErrorTip]="constError">
+				<input nz-input nzSize="large" type="text" placeholder="Const Name" name="constName" [(ngModel)] = "permission.constName" minlength="1" maxlength="30" pattern="[a-zA-Z]+" required />
+				<ng-template #constError let-control>
+					<ng-container *ngIf="control.hasError('pattern')">Const Name should be Alphabets only</ng-container>
+					<ng-container *ngIf="control.hasError('maxlength')">Const Name cannot exceed 30 characters</ng-container>
+           			 <ng-container *ngIf="control.hasError('minlength')">Const Name atleast should be 1 character Long</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Const Name is Required</ng-container>
 				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
 	</div>
 	<div class="button-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
-		<button type="button" nz-button>Cancel</button>
-		<button nz-button nzType="primary">OK</button>
+		<button type="button" nz-button (click)="onCancel()">Cancel</button>
+		<button nz-button nzType="primary" [disabled]="!myForm.valid">Save</button>
 	</div>
 </form>

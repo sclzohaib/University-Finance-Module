@@ -11,7 +11,7 @@ import java.util.Date;
 public class LedgerOfExpenditure {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loe_id_sequence_g")
-    @SequenceGenerator(name = "loe_id_sequence_g", sequenceName = "loe_seq")
+    @SequenceGenerator(name = "loe_id_sequence_g", sequenceName = "loe_seq",allocationSize=1)
     @NotNull(message = "Ledger of expendidure ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

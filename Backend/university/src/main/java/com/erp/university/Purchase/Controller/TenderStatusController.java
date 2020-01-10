@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/tenderStatus")
 public class TenderStatusController {
     @Autowired
@@ -40,5 +41,10 @@ public class TenderStatusController {
         return tenderStatusService.updateTenderStatus(id, tenderStatusDTO);
     }
 
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteTenderStatus(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return tenderStatusService.deleteTenderStatus(id);
+    }
 
 }

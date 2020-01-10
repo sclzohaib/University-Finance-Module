@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/quotation")
 public class QuotationController {
     @Autowired
@@ -38,5 +39,11 @@ public class QuotationController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateQuotation(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody QuotationDTO quotationDTO) {
         return quotationService.updateQuotation(id, quotationDTO);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteQuotation(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return quotationService.deleteQuotation(id);
     }
 }

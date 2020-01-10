@@ -1,19 +1,18 @@
-<form nz-form>
+<form nz-form #myForm="ngForm" (ngSubmit)="updateAuthLvl()">
 	<div id="form-container">
 		<nz-form-item>
 			<!-- <nz-form-label fxFlex="30">Level NO.</nz-form-label> -->
-			<nz-form-control [nzErrorTip]="nameError">
-				<input nz-input nzSize="large" type="text" placeholder="Level NO." formControlName="name">
-				<ng-template #nameError let-control>
-					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
-					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
-					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+			<nz-form-control nzHasFeedback [nzErrorTip]="lvlNoError">
+				<input nz-input nzSize="large" type="text" placeholder="Level NO." name="lvlNo" [(ngModel)]="authLvl.lvlNo" pattern="[1-9]+" required>
+				<ng-template #lvlNoError let-control>
+					<ng-container *ngIf="control.hasError('pattern')">Please Enter Only +ve Numbers (Except Zero)</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Level No is Required</ng-container>
 				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
 	</div>
 	<div class="button-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
-		<button type="button" nz-button >Cancel</button>
-		<button nz-button nzType="primary">OK</button>
+		<button type="button" nz-button (click)="onCancel()">Cancel</button>
+		<button nz-button nzType="primary" [disabled]="!myForm.valid">Save</button>
 	</div>
 </form>

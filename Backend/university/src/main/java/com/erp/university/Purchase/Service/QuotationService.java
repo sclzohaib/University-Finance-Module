@@ -34,9 +34,9 @@ public class QuotationService {
             logger.debug("--------->| Quotation Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
     //Get all Quotations
@@ -47,11 +47,11 @@ public class QuotationService {
             quotations = quotationRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (quotations.isEmpty()) {
             logger.debug("No Quotation Record Found");
-            return new ResponseEntity<>("No Quotation Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Quotation Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Quotation Found Successfully |<---------");
             return new ResponseEntity<>(quotations, HttpStatus.FOUND);
@@ -66,7 +66,7 @@ public class QuotationService {
             quotation = quotationRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Quotation Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Quotation Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Quotation Found Successfully |<---------");
         logger.debug("Quotation (GET): {}", quotation);
@@ -89,13 +89,26 @@ public class QuotationService {
                 quotationRepository.save(quotation);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Quotation Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Quotation Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Quotation Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
+    }
+
+    //delete by id
+    public ResponseEntity<String> deleteQuotation(Long id) {
+        logger.debug("---------> Delete Quotation By ID <---------");
+        try {
+            quotationRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"Quotation not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| Quotation Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }

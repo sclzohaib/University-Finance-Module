@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CnicFormatterPipe } from 'src/app/core/pipes/cnic-formatter.pipe';
 
-
 @NgModule({
 	declarations: [RevenuePageComponent, DuesPageComponent, CnicFormatterPipe],
 	imports: [

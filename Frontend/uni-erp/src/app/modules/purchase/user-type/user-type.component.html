@@ -1,0 +1,24 @@
+<button nz-button [nzType]="'primary'" nzSize="large" (click)="onAdd()"><i nz-icon nzType="plus"></i>Add User Type</button>
+
+<nz-table nzBordered #rowTableData [nzData]="userTypes" [nzPageSize]="6" [nzLoading]="loading">
+	<thead>
+		<tr>
+			<!-- <th nzWidth="100px">ID</th> -->
+			<th>User Type</th>
+			<th nzWidth="120px">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor = "let data of rowTableData.data">
+
+			<td>{{data.userType}}</td>
+			<td>
+				<div class="table-last-column" fxLayout="row" fxLayoutAlign="space-around center">
+					<a nzTitle="Edit" (click)="onEdit(data)"><i class="table-icon" nz-icon nzType="edit"></i></a>
+					<nz-divider nzType="vertical"></nz-divider>
+					<a nz-popconfirm nzTitle="Sure to delete?"  nz-tooltip (nzOnConfirm)="deleteUserType(data.id)"><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</nz-table>

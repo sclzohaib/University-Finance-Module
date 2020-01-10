@@ -1,0 +1,42 @@
+<div  fxLayout="column" fxFill fxLayoutAlign="center center">
+	<div class="logo">
+			<img src="./../assets/images/ku.png" alt="logo">
+	</div>
+
+<div id="formBorder">
+<form nz-form  class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<nz-form-item>
+	<nz-form-control [nzErrorTip]="userNameError">
+		<nz-input-group [nzSize]="'large'" nzPrefixIcon="user">
+			<input type="text" nz-input  placeholder="Username" formControlName="username"  >
+		</nz-input-group>
+		<ng-template #userNameError let-control>
+
+			<ng-container *ngIf="control.hasError('required')">Username is Required</ng-container>
+		</ng-template>
+	</nz-form-control>
+</nz-form-item>
+<nz-form-item>
+	<nz-form-control [nzErrorTip]="passwordError">
+		<nz-input-group [nzSize]="'large'" nzPrefixIcon="lock">
+			<input type="password" nz-input  placeholder="Password" formControlName="password" >
+		</nz-input-group>
+		<ng-template #passwordError let-control>
+
+			<ng-container *ngIf="control.hasError('required')">Password is Required</ng-container>
+		</ng-template>
+	</nz-form-control>
+</nz-form-item>
+<nz-form-item>
+	<nz-form-control>
+		<label nz-checkbox  formControlName="remember">
+			<span>Remember me</span>
+		</label>
+		<a class="login-form-forgot" class="login-form-forgot">Forgot password</a>
+		<button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+
+	</nz-form-control>
+</nz-form-item>
+</form>
+</div>
+</div>

@@ -14,7 +14,7 @@ public class StudentType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "st_id_sequence_g")
-    @SequenceGenerator(name = "st_id_sequence_g", sequenceName = "student_type_id_seq")
+    @SequenceGenerator(name = "st_id_sequence_g", sequenceName = "student_type_id_seq",allocationSize=1)
     @NotNull(message = "Id cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

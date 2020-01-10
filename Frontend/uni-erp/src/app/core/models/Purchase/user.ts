@@ -1,6 +1,7 @@
-import { Department } from '../department.model';
+import { UserType } from './user-type';
 import { Role } from './role';
 import { AuthorizeSignatory } from './authorize-signatory';
+import { Department } from './department';
 
 export class User {
 	id: number;
@@ -13,4 +14,6 @@ export class User {
     department: Department;
     roles: Array<Role>;
     authorizeSignatory: AuthorizeSignatory ;
+		userType: UserType;
+		token?: string;
 }

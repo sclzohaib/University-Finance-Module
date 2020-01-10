@@ -33,9 +33,9 @@ public class RevenueHeadService {
             logger.debug("--------->| Revenue Head Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
     //get all
@@ -46,11 +46,11 @@ public class RevenueHeadService {
             revenueHeads = revenueHeadRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (revenueHeads.isEmpty()) {
             logger.debug("No Revenue Head Record Found");
-            return new ResponseEntity<>("No Revenue Head Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Revenue Head Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Revenue Heads Found Successfully |<---------");
             return new ResponseEntity<>(revenueHeads, HttpStatus.FOUND);
@@ -65,7 +65,7 @@ public class RevenueHeadService {
             revenueHead = revenueHeadRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Revenue Head not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Revenue Head not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Revenue Head Found Successfully |<---------");
         logger.debug("Revenue Head (GET): {}", revenueHead);
@@ -86,14 +86,14 @@ public class RevenueHeadService {
                 revenueHeadRepository.save(revenueHead);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Revenue Head not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Revenue Head not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Revenue Head Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
     }
 
     //delete by id
@@ -103,10 +103,10 @@ public class RevenueHeadService {
             revenueHeadRepository.deleteById(id);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Revenue Head not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Revenue Head not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Revenue Head Deleted Successfully |<---------");
-        return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 
 }

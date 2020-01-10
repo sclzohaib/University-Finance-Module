@@ -1,16 +1,17 @@
-<form nz-form>
+<form nz-form #myForm="ngForm" (ngSubmit)="updateMinorHead()">
 	<div id="form-container">
-		
+
 		<!-- Name -->
 
 		<nz-form-item>
 			<!-- <nz-form-label fxFlex="30">Name</nz-form-label> -->
-			<nz-form-control [nzErrorTip]="nameError">
-				<input nz-input nzSize="large" type="text" placeholder="Name" formControlName="name">
+			<nz-form-control nzHasFeedback [nzErrorTip]="nameError">
+				<input nz-input nzSize="large" type="text" placeholder="Name" name="name" [(ngModel)]="minorHd.name" minlength="3" maxlength="50" pattern="[a-zA-Z]+" required />
 				<ng-template #nameError let-control>
-					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
-					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
-					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Name should be Alphabets only</ng-container>
+					<ng-container *ngIf="control.hasError('maxlength')">Name cannot exceed 50 characters</ng-container>
+           			 <ng-container *ngIf="control.hasError('minlength')">Name atleast should be 3 character Long</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Name is Required</ng-container>
 				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
@@ -19,19 +20,32 @@
 
 		<nz-form-item>
 			<!-- <nz-form-label fxFlex="30">Code No.</nz-form-label> -->
-			<nz-form-control [nzErrorTip]="nameError">
-				<input nz-input nzSize="large" type="text" placeholder="Code No." formControlName="name">
-				<ng-template #nameError let-control>
-					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
-					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
-					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+			<nz-form-control nzHasFeedback [nzErrorTip]="codeNoError">
+				<input nz-input nzSize="large" type="text" placeholder="Code No." name="codeNo" [(ngModel)]="minorHd.codeNo" pattern="^[1-9][0-9]*$" required />
+				<ng-template #codeNoError let-control>
+					<ng-container *ngIf="control.hasError('pattern')">Code No. should be in Number Only! (Except Zero)</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Code. Number is Required!</ng-container>
 				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
-		
+
+
+		<nz-form-item>
+			<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
+			<nz-form-control nzHasFeedback [nzErrorTip]="mhError">
+				<nz-select nzSize="large" nzPlaceHolder="Major Head" nzAllowClear name="majorHead" [(ngModel)]="minorHd.majorHead" required>
+					<nz-option [nzLabel]="minorHd.majorHead.name" [nzValue]="minorHd.majorHead" nzHide></nz-option>
+					<nz-option *ngFor="let item of majorHeads" [nzLabel]="item.name" [nzValue]="item"></nz-option>
+				</nz-select>
+				<ng-template #mhError let-control>
+					<ng-container *ngIf="control.hasError('required')">Major Head is Required</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+
 	</div>
 	<div class="button-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
-		<button type="button" nz-button >Cancel</button>
-		<button nz-button nzType="primary">OK</button>
+		<button type="button" nz-button (click)="onCancel()">Cancel</button>
+		<button nz-button nzType="primary" [disabled]="!myForm.valid">Save</button>
 	</div>
 </form>

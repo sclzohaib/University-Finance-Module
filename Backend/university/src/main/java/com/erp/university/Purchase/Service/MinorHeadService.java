@@ -26,14 +26,15 @@ public class MinorHeadService {
             MinorHead minorHead = new MinorHead();
             minorHead.setCodeNo(minorHeadDTO.getCodeNo());
             minorHead.setName(minorHeadDTO.getName());
+            minorHead.setMajorHead(minorHeadDTO.getMajorHead());
             logger.debug("Minor Head (POST): {}", minorHead);
             minorHeadRepository.save(minorHead);
             logger.debug("--------->| Minor Head Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Succesfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Succesfully\":1}", HttpStatus.CREATED);
 
     }
 
@@ -45,11 +46,11 @@ public class MinorHeadService {
             minorHeads = minorHeadRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (minorHeads.isEmpty()) {
             logger.debug("No Minor Head Record Found");
-            return new ResponseEntity<>("No Minor Head Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Minor Head Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Minor Head Found Successfully |<---------");
             return new ResponseEntity<>(minorHeads, HttpStatus.FOUND);
@@ -64,7 +65,7 @@ public class MinorHeadService {
             minorHead = minorHeadRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Minor Head Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Minor Head Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Minor Head Found Successfully |<---------");
         logger.debug("Minor Head (GET): {}", minorHead);
@@ -86,13 +87,26 @@ public class MinorHeadService {
                 minorHeadRepository.save(minorHead);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Minor Head Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Minor Head Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Minor Head Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.FOUND);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
+    }
+
+    //delete by id
+    public ResponseEntity<String> deleteMinorHead(Long id) {
+        logger.debug("---------> Delete Minor Head By ID <---------");
+        try {
+            minorHeadRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"Minor Head not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| Minor Head Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }

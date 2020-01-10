@@ -14,7 +14,7 @@ public class Part {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "part_id_sequence_g")
-    @SequenceGenerator(name = "part_id_sequence_g", sequenceName = "part_id_seq")
+    @SequenceGenerator(name = "part_id_sequence_g", sequenceName = "part_id_seq",allocationSize=1)
     @NotNull(message = "Id cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

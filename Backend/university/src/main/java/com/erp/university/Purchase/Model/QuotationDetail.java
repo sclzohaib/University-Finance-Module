@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class QuotationDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "qd_id_sequence_g")
-    @SequenceGenerator(name = "qd_id_sequence_g", sequenceName = "qd_sequence")
+    @SequenceGenerator(name = "qd_id_sequence_g", sequenceName = "qd_sequence",allocationSize=1)
     @NotNull(message = "ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

@@ -35,9 +35,9 @@ public class QuotationDetailService {
             logger.debug("--------->| Quotation Detail Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added successfully\":1}", HttpStatus.CREATED);
 
 
     }
@@ -50,11 +50,11 @@ public class QuotationDetailService {
             quotationDetails = quotationDetailRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (quotationDetails.isEmpty()) {
             logger.debug("No Quotation Detail Record Found");
-            return new ResponseEntity<>("No Quotation Detail Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Quotation Detail Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Quotation Detail Found Successfully |<---------");
             return new ResponseEntity<>(quotationDetails, HttpStatus.FOUND);
@@ -69,7 +69,7 @@ public class QuotationDetailService {
             quotationDetail = quotationDetailRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Quotation Detail Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Quotation Detail Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Quotation Detail Found Successfully |<---------");
         logger.debug("Quotation Detail (GET): {}", quotationDetail);
@@ -95,13 +95,26 @@ public class QuotationDetailService {
                 quotationDetailRepository.save(quotationDetail);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Quotation Detail Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Quotation Detail Not Found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Quotation Detail Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
+    }
+
+    //delete by id
+    public ResponseEntity<String> deleteQuotationDetail(Long id) {
+        logger.debug("---------> Delete Quotation Detail By ID <---------");
+        try {
+            quotationDetailRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"Quotation Detail not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| Quotation Detail Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }

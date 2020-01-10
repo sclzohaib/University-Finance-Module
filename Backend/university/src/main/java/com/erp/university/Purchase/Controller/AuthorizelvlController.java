@@ -42,4 +42,9 @@ public class AuthorizelvlController {
         return authorizelvlService.updateAuthorizeLvl(id, authorizeLvlDTO);
     }
 
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteAuthorizeLvl(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return authorizelvlService.deleteAuthorizeLvl(id);
+    }
 }

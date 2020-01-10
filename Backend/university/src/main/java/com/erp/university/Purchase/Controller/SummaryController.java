@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/summary")
 public class SummaryController {
     @Autowired
@@ -37,5 +38,11 @@ public class SummaryController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateSummary(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id, @Valid @RequestBody SummaryDTO summaryDTO) {
         return summaryService.updateSummary(id, summaryDTO);
+    }
+
+    //delete by id
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteSummary(@PathVariable("id") @Min(value = 1, message = "ID must be greater than 1") Long id) {
+        return summaryService.deleteSummary(id);
     }
 }

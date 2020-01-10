@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class CoveringLetter {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cl_id_sequence_g")
-    @SequenceGenerator(name = "cl_id_sequence_g", sequenceName = "cl_seq")
+    @SequenceGenerator(name = "cl_id_sequence_g", sequenceName = "cl_seq",allocationSize=1)
     @NotNull(message = "ID can not be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

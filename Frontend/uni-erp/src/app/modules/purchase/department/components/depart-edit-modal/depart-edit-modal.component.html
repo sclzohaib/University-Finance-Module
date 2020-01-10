@@ -1,16 +1,17 @@
-<form nz-form>
+<form nz-form #myForm="ngForm" (ngSubmit)="updateDepartment()">
 	<div id="form-container">
 
 			<!-- Department Name -->
 
 		<nz-form-item>
 			<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
-			<nz-form-control [nzErrorTip]="nameError">
-				<input nz-input nzSize="large" type="text" placeholder="Department Name" formControlName="name">
+			<nz-form-control nzHasFeedback [nzErrorTip]="nameError">
+				<input nz-input nzSize="large" type="text" placeholder="Department Name" name="name" [(ngModel)]="dept.name" minlength="4" maxlength="30" pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" required />
 				<ng-template #nameError let-control>
-					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
-					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
-					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+					<ng-container *ngIf="control.hasError('pattern')">Department Name should be Alphabets only</ng-container>
+					<ng-container *ngIf="control.hasError('maxlength')">Department Name cannot exceed 30 characters</ng-container>
+      				<ng-container *ngIf="control.hasError('minlength')">Department Name should be atleast 4 character Long</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Department Name is Required</ng-container>
 				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
@@ -19,12 +20,13 @@
 
 						<nz-form-item>
 							<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
-							<nz-form-control [nzErrorTip]="nameError">
-								<input nz-input nzSize="large" type="text" placeholder="Location" formControlName="name">
-								<ng-template #nameError let-control>
-									<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
-									<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
-									<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+							<nz-form-control nzHasFeedback [nzErrorTip]="locationError">
+								<input nz-input nzSize="large" type="text" placeholder="Location" name="location" [(ngModel)]="dept.location" minlength="10" maxlength="100" required />
+								<ng-template #locationError let-control>
+									<ng-container *ngIf="control.hasError('pattern')">Location should be Alphabets only</ng-container>
+									<ng-container *ngIf="control.hasError('maxlength')">Location cannot exceed 100 characters</ng-container>
+									<ng-container *ngIf="control.hasError('minlength')">Location should be atleast 10 character Long</ng-container>
+									<ng-container *ngIf="control.hasError('required')">Location is Required</ng-container>
 								</ng-template>
 							</nz-form-control>
 						</nz-form-item>
@@ -33,12 +35,13 @@
 
 				<nz-form-item>
 					<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
-					<nz-form-control [nzErrorTip]="nameError">
-						<input nz-input nzSize="large" type="text" placeholder="Telephone" formControlName="name">
-						<ng-template #nameError let-control>
-							<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
-							<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
-							<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+					<nz-form-control nzHasFeedback [nzErrorTip]="telephoneError">
+						<input nz-input nzSize="large" type="text" placeholder="Telephone" name="telephone" [(ngModel)]="dept.telephone" minlength="11" maxlength="11" pattern="[0-9]+" required />
+						<ng-template #telephoneError let-control>
+							<ng-container *ngIf="control.hasError('pattern')">Telephone should be Numbers only</ng-container>
+							<ng-container *ngIf="control.hasError('required')">Telephone is Required</ng-container>
+							<ng-container *ngIf="control.hasError('maxlength')">Telephone cannot exceed 11 Numbers</ng-container>
+							<ng-container *ngIf="control.hasError('minlength')">Telephone should be 11 Numbers</ng-container>
 						</ng-template>
 					</nz-form-control>
 				</nz-form-item>
@@ -47,12 +50,13 @@
 
 		<nz-form-item>
 			<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
-			<nz-form-control [nzErrorTip]="nameError">
-				<input nz-input nzSize="large" type="text" placeholder="Extension NO." formControlName="name">
-				<ng-template #nameError let-control>
-					<ng-container *ngIf="control.hasError('duplicate')">Fee with this Name is already present !</ng-container>
-					<ng-container *ngIf="control.hasError('pattern')">Avoid Punctuation !</ng-container>
-					<ng-container *ngIf="control.hasError('required')">Please Enter Name !</ng-container>
+			<nz-form-control nzHasFeedback [nzErrorTip]="extNoError">
+				<input nz-input nzSize="large" type="text" placeholder="Extension NO." name="extensionNo" [(ngModel)]="dept.extensionNo" minlength="1" maxlength="7" pattern="[0-9]+" required />
+				<ng-template #extNoError let-control>
+					<ng-container *ngIf="control.hasError('pattern')">Extension NO. should be Numbers only</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Extension NO. is Required</ng-container>
+					<ng-container *ngIf="control.hasError('maxlength')">Extension NO. cannot exceed 7 Numbers</ng-container>
+					<ng-container *ngIf="control.hasError('minlength')">Extension NO. should be atleast 1 Number</ng-container>
 				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
@@ -61,17 +65,19 @@
 
 		<nz-form-item>
 			<!-- <nz-form-label fxFlex="30">Department Name</nz-form-label> -->
-			<nz-form-control nzErrorTip="Please Select Revenue Head">
-				<nz-select formControlName="revenueHead" nzSize="large" nzPlaceHolder="University" nzAllowClear>
-					<nz-option>Karachi University</nz-option>
-					<nz-option>NED University</nz-option>
-					<nz-option>Iqra University</nz-option>
+			<nz-form-control nzHasFeedback [nzErrorTip]="universityError">
+				<nz-select nzSize="large" nzPlaceHolder="University" name="university" [(ngModel)]="dept.university" required>
+					<nz-option [nzLabel]="dept.university.name" [nzValue]="dept.university" nzHide></nz-option>
+					<nz-option *ngFor="let item of universities" [nzLabel]="item.name" [nzValue]="item"></nz-option>
 				</nz-select>
+				<ng-template #universityError let-control>
+					<ng-container *ngIf="control.hasError('required')">University is Required</ng-container>
+				</ng-template>
 			</nz-form-control>
 		</nz-form-item>
 	</div>
 	<div class="button-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
-		<button type="button" nz-button>Cancel</button>
-		<button nz-button nzType="primary">OK</button>
+		<button type="button" nz-button (click)="onCancel()">Cancel</button>
+		<button nz-button nzType="primary" [disabled]="!myForm.valid">Save</button>
 	</div>
 </form>

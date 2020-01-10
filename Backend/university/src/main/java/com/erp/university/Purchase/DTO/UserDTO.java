@@ -3,6 +3,7 @@ package com.erp.university.Purchase.DTO;
 import com.erp.university.Purchase.Model.AuthorizeSignatory;
 import com.erp.university.Purchase.Model.Department;
 import com.erp.university.Purchase.Model.Role;
+import com.erp.university.Purchase.Model.UserType;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class UserDTO {
     private Department department;
     private List<Role> roles;
     private AuthorizeSignatory authorizeSignatory;
+    private UserType userType;
 
     public UserDTO() {
     }
@@ -42,6 +44,20 @@ public class UserDTO {
         this.department = department;
         this.roles = roles;
         this.authorizeSignatory = authorizeSignatory;
+    }
+
+    public UserDTO(Long id, String name, String email, String password, String status, String address, Long contactNo, Department department, List<Role> roles, AuthorizeSignatory authorizeSignatory, UserType userType) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.address = address;
+        this.contactNo = contactNo;
+        this.department = department;
+        this.roles = roles;
+        this.authorizeSignatory = authorizeSignatory;
+        this.userType = userType;
     }
 
     public Department getDepartment() {
@@ -124,6 +140,14 @@ public class UserDTO {
         this.contactNo = contactNo;
     }
 
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
@@ -134,6 +158,10 @@ public class UserDTO {
                 ", status='" + status + '\'' +
                 ", address='" + address + '\'' +
                 ", contactNo=" + contactNo +
+                ", department=" + department +
+                ", roles=" + roles +
+                ", authorizeSignatory=" + authorizeSignatory +
+                ", userType=" + userType +
                 '}';
     }
 }

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class Summary {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "summary_id_sequence_g")
-    @SequenceGenerator(name = "summary_id_sequence_g", sequenceName = "summary_seq")
+    @SequenceGenerator(name = "summary_id_sequence_g", sequenceName = "summary_seq",allocationSize=1)
     @NotNull(message = "Summary ID cannot be null")
     @Column(name = "id", unique = true, nullable = false)
     private Long id;

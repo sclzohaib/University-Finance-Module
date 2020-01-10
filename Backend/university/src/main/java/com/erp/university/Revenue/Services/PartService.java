@@ -32,9 +32,9 @@ public class PartService {
             logger.debug("--------->| Part Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
     }
 
     //get all
@@ -45,11 +45,11 @@ public class PartService {
             parts = partRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (parts.isEmpty()) {
             logger.debug("No Part Record Found");
-            return new ResponseEntity<>("No Part Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No Part Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Parts Found Successfully |<---------");
             return new ResponseEntity<>(parts, HttpStatus.FOUND);
@@ -64,7 +64,7 @@ public class PartService {
             part = partRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Part not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Part not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Part Found Successfully |<---------");
         logger.debug("Part (GET): {}", part);
@@ -84,14 +84,14 @@ public class PartService {
                 partRepository.save(part);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Part not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Part not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Part Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
     }
 
     //delete by id
@@ -101,9 +101,9 @@ public class PartService {
             partRepository.deleteById(id);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Part not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Part not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| Part Deleted Successfully |<---------");
-        return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
     }
 }

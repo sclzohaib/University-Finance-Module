@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service(value = "appuserService")
 public class UserService {
     private static final Logger logger = LogManager.getLogger(UserService.class);
     @Autowired
@@ -24,7 +24,7 @@ public class UserService {
         logger.debug("UserDTO: {}", userDTO);
         try {
             User user = new User();
-            user.setStatus("Active");
+            user.setStatus("ACTIVE");
             user.setPassword(userDTO.getPassword());
             user.setName(userDTO.getName());
             user.setEmail(userDTO.getEmail());
@@ -32,15 +32,16 @@ public class UserService {
             user.setAddress(userDTO.getAddress());
             user.setAuthorizeSignatory(userDTO.getAuthorizeSignatory());
             user.setDepartment(userDTO.getDepartment());
+            user.setUserType(userDTO.getUserType());
             user.setRoles(userDTO.getRoles());
             logger.debug("User (POST): {}", user);
             userRepository.save(user);
             logger.debug("--------->| User Created |<---------");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>("Added Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("{\"Added Successfully\":1}", HttpStatus.CREATED);
 
     }
 
@@ -52,11 +53,11 @@ public class UserService {
             users = userRepository.findAll();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("Something went wrong", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.NOT_FOUND);
         }
         if (users.isEmpty()) {
             logger.debug("No User Record Found");
-            return new ResponseEntity<>("No User Record Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"No User Record Found\":1}", HttpStatus.NOT_FOUND);
         } else {
             logger.debug("--------->| Users Found Successfully |<---------");
             return new ResponseEntity<>(users, HttpStatus.FOUND);
@@ -71,7 +72,7 @@ public class UserService {
             user = userRepository.findById(id).get();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"User not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| User Found Successfully |<---------");
         logger.debug("User (GET): {}", user);
@@ -93,22 +94,36 @@ public class UserService {
             user.setStatus(userDTO.getStatus());
             user.setRoles(userDTO.getRoles());
             user.setDepartment(userDTO.getDepartment());
+            user.setUserType(userDTO.getUserType());
             user.setAuthorizeSignatory(userDTO.getAuthorizeSignatory());
             try {
                 logger.debug("Updated User (Save): {}", user);
                 userRepository.save(user);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
-                return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("{\"Something went wrong\":1}", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("{\"User not found\":1}", HttpStatus.NOT_FOUND);
         }
         logger.debug("--------->| User Updated Successfully |<---------");
-        return new ResponseEntity<>("Updated Successfully", HttpStatus.FOUND);
+        return new ResponseEntity<>("{\"Updated Successfully\":1}", HttpStatus.OK);
 
     }
 
+    //delete by id
+    public ResponseEntity<String> deleteUser(Long id) {
+        logger.debug("---------> Delete User By ID <---------");
+        try {
+            userRepository.deleteROLE_USERSByUsersId(id);
+            userRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new ResponseEntity<>("{\"User not found\":1}", HttpStatus.NOT_FOUND);
+        }
+        logger.debug("--------->| User Deleted Successfully |<---------");
+        return new ResponseEntity<>("{\"Deleted Successfully\":1}", HttpStatus.OK);
+    }
 
 }
