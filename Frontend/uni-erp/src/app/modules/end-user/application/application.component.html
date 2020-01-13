@@ -1,0 +1,38 @@
+<button nz-button [nzType]="'primary'" nzSize="large" (click)="onAdd()" ><i nz-icon nzType="plus"></i>Add Application</button>
+<nz-table nzBordered>
+	<thead>
+		<tr>
+			<!-- <th nzWidth="100px">ID</th> -->
+				<th>Subject</th>
+				<th>Date</th>
+				<th>Status</th>
+				<th>Associate Person</th>
+				<th>Department</th>
+				<th>University</th>
+				<th>User</th>
+
+
+			<th nzWidth="120px">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+
+			<tr>
+				<!-- *ngFor = "let data of rowTableData.data" -->
+				<td>Subject</td>
+				<td>Date</td>
+				<td>Status</td>
+				<td>Associate Person</td>
+				<td>Department</td>
+				<td>University</td>
+				<td>User</td>
+			<td>
+				<div class="table-last-column" fxLayout="row" fxLayoutAlign="space-around center">
+					<a nzTitle="Edit" (click)="onEdit()"><i class="table-icon" nz-icon nzType="edit"></i></a>
+					<nz-divider nzType="vertical"></nz-divider>
+					<a nz-popconfirm nzTitle="Sure to delete?"  nz-tooltip ><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</nz-table>

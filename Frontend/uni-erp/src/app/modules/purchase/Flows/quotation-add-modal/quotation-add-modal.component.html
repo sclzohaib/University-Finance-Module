@@ -1,0 +1,85 @@
+<form nz-form >
+	<div id="form-container">
+
+		<!-- Name -->
+		<nz-form-item>
+			<!-- <nz-form-label fxFlex="30">Name</nz-form-label> -->
+			<nz-form-control nzHasFeedback [nzErrorTip]="nameError">
+				<input nz-input nzSize="default" type="text" placeholder="Reference No." name="subject"  />
+				<ng-template #nameError let-control>
+					<ng-container *ngIf="control.hasError('pattern')">Name should be Alphabets only</ng-container>
+					<ng-container *ngIf="control.hasError('maxlength')">Name cannot exceed 30 characters</ng-container>
+         <ng-container *ngIf="control.hasError('minlength')">Name should be atleast 6 character Long</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Name is Required</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+
+		<!-- Email -->
+		<nz-form-item>
+			<!-- <nz-form-label fxFlex="30">Email</nz-form-label> -->
+			<nz-form-control nzHasFeedback [nzErrorTip]="emailError">
+				<input nz-input nzSize="default" type="text" placeholder="Total" name="associatePerson"  />
+				<ng-template #emailError let-control>
+					<ng-container *ngIf="control.hasError('email')">Email should be valid</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Email is Required</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+
+		<nz-form-item>
+			<!-- <nz-form-label fxFlex="30">Email</nz-form-label> -->
+			<nz-form-control nzHasFeedback [nzErrorTip]="emailError">
+				<textarea nz-input placeholder="Terms and Conditions" nzAutosize></textarea>
+				<ng-template #emailError let-control>
+					<ng-container *ngIf="control.hasError('email')">Email should be valid</ng-container>
+					<ng-container *ngIf="control.hasError('required')">Email is Required</ng-container>
+				</ng-template>
+			</nz-form-control>
+		</nz-form-item>
+
+
+
+		<button nz-button (click)="addRow()" nzType="primary">Add</button>
+    <nz-table #editRowTable nzBordered [nzData]="listOfData" [nzPageSize]="2">
+      <thead>
+        <tr>
+					<th>SNO.</th>
+          <th>Description</th>
+          <th>Brand</th>
+          <th>Quantity</th>
+					<th>Price with GST</th>
+					<th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of editRowTable.data" class="editable-row">
+					<td> {{ data.id }}</td>
+          <td>
+            <div class="editable-cell" *ngIf="editId !== data.id; else editTpl">
+              <div class="editable-cell-value-wrap" (click)="startEdit(data.id, $event)">
+                {{ data.name }}
+              </div>
+            </div>
+            <ng-template #editTpl>
+              <input type="text" nz-input [(ngModel)]="data.name" />
+            </ng-template>
+          </td>
+          <td>{{ data.age }}</td>
+					<td>{{ data.address }}</td>
+					<td>Price with GST</td>
+          <td>
+            <a nz-popconfirm nzTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data.id)">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+
+
+	</div>
+	<div class="button-container" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+		<button type="button" nz-button (click)="onCancel()">Cancel</button>
+		<button nz-button nzType="primary" >Save</button>
+	</div>
+</form>

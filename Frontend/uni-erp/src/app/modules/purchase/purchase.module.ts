@@ -40,6 +40,7 @@ import { GstEditModalComponent } from './gst/components/gst-edit-modal/gst-edit-
 import { UserTypeComponent } from './user-type/user-type.component';
 import { UserTypeAddModalComponent } from './user-type/components/user-type-add-modal/user-type-add-modal.component';
 import { UserTypeEditModalComponent } from './user-type/components/user-type-edit-modal/user-type-edit-modal.component';
+import { QuotationAddModalComponent } from './Flows/quotation-add-modal/quotation-add-modal.component';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { UserTypeEditModalComponent } from './user-type/components/user-type-edi
 		UserTypeComponent,
 		UserTypeAddModalComponent,
 		UserTypeEditModalComponent,
+		QuotationAddModalComponent,
 	],
   imports: [
 		CommonModule,
@@ -111,7 +113,8 @@ import { UserTypeEditModalComponent } from './user-type/components/user-type-edi
 		GstAddModalComponent,
 		GstEditModalComponent,
 		UserTypeAddModalComponent,
-		UserTypeEditModalComponent
+		UserTypeEditModalComponent,
+		QuotationAddModalComponent
 	]
 })
 export class PurchaseModule { }

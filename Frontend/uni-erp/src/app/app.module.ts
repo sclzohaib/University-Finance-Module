@@ -17,6 +17,7 @@ import { BillModule } from './modules/bill/bill.module';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { JwtInterceptor } from './Authentication/helpers/jwt.interceptor';
 import { ErrorInterceptor } from './Authentication/helpers/error.interceptor';
+import { EndUserModule } from './modules/end-user/end-user.module';
 
 registerLocaleData(en);
 
@@ -38,6 +39,7 @@ registerLocaleData(en);
 		FlexLayoutModule,
 		PurchaseModule,
 		BillModule,
+		EndUserModule,
 	],
 	providers: [{ provide: NZ_I18N, useValue: en_US },
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
