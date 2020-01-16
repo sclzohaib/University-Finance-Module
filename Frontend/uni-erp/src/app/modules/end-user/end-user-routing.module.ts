@@ -1,13 +1,18 @@
 import { ApplicationComponent } from './application/application.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DetailsPageComponent } from './application/components/details-page/details-page.component';
 
 
 const routes: Routes = [
 	{
-		path: 'application',
+		path: '',
 		component: ApplicationComponent,
-		pathMatch: 'full'
+		pathMatch: "full"
+	},
+	{
+		path: 'detail/:id',
+		component: DetailsPageComponent,
 	}
 ];
 
