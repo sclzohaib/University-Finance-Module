@@ -1,36 +1,35 @@
-<button nz-button [nzType]="'primary'" nzSize="large" (click)="onAdd()" ><i nz-icon nzType="plus"></i>Add Application</button>
-<nz-table nzBordered>
+<button nz-button [nzType]="'primary'" nzSize="large" (click)="onAdd()"><i nz-icon nzType="plus"></i>Add Application</button>
+<nz-table #appTable nzBordered [nzData]="applications">
 	<thead>
 		<tr>
 			<!-- <th nzWidth="100px">ID</th> -->
-				<th>Subject</th>
-				<th>Date</th>
-				<th>Status</th>
-				<th>Associate Person</th>
-				<th>Department</th>
-				<th>University</th>
-				<th>User</th>
-
-
+			<th>Subject</th>
+			<th>Date</th>
+			<th>Associate Person</th>
+			<th>Department</th>
+			<th>University</th>
+			<!-- <th>User</th> -->
+			<th>Status</th>
 			<th nzWidth="120px">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 
-			<tr>
-				<!-- *ngFor = "let data of rowTableData.data" -->
-				<td>Subject</td>
-				<td>Date</td>
-				<td>Status</td>
-				<td>Associate Person</td>
-				<td>Department</td>
-				<td>University</td>
-				<td>User</td>
+		<tr *ngFor="let row of appTable.data; let i = index">
+			<td>{{row.subject}}</td>
+			<td>{{row.date | date}}</td>
+			<td>{{row.associatePerson}}</td>
+			<td>{{row.department}}</td>
+			<td>{{row.university}}</td>
+			<td>{{row.status}}</td>
+			<!-- <td>{{row.user}}</td> -->
 			<td>
 				<div class="table-last-column" fxLayout="row" fxLayoutAlign="space-around center">
+					<a nzTitle="View" [routerLink]="[ 'detail', i ]"><i class="table-icon" nz-icon nzType="eye"></i></a>
+					<nz-divider nzType="vertical"></nz-divider>
 					<a nzTitle="Edit" (click)="onEdit()"><i class="table-icon" nz-icon nzType="edit"></i></a>
 					<nz-divider nzType="vertical"></nz-divider>
-					<a nz-popconfirm nzTitle="Sure to delete?"  nz-tooltip ><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
+					<a nz-popconfirm nzTitle="Sure to delete?" nz-tooltip><i class="table-icon delete-icon" nz-icon nzType="delete"></i></a>
 				</div>
 			</td>
 		</tr>

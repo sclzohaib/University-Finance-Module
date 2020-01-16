@@ -1,0 +1,43 @@
+<div class="container">
+	<nz-tabset style="height:500px;" nzTabPosition="left">
+		<nz-tab nzTitle="Application">
+			<nz-descriptions nzTitle='' nzBordered>
+				<nz-descriptions-item nzTitle="Subject">{{application.subject}}</nz-descriptions-item>
+				<nz-descriptions-item nzTitle="Date">{{application.date | date}}</nz-descriptions-item>
+				<nz-descriptions-item nzTitle="Status">{{application.status}}</nz-descriptions-item>
+				<nz-descriptions-item nzTitle="Associate Person">{{application.associatePerson}}</nz-descriptions-item>
+				<nz-descriptions-item nzTitle="Department">{{application.department}}</nz-descriptions-item>
+				<nz-descriptions-item nzTitle="University">{{application.university}}</nz-descriptions-item>
+			</nz-descriptions>
+		</nz-tab>
+		<nz-tab nzTitle="Quotations">
+			<nz-collapse>
+				<nz-collapse-panel *ngFor="let quo of application['quotation']; let i = index" [nzHeader]="'Quotation' + i">
+				</nz-collapse-panel>
+			</nz-collapse>
+			<button nz-button nzType="primary" style="display: block; margin: 12px auto;"><i nz-icon nzType="plus"></i>Add Quotation</button>
+		</nz-tab>
+		<nz-tab nzTitle="Budget Sheet">
+			
+		</nz-tab>
+		<nz-tab nzTitle="Purchase Order">
+			
+		</nz-tab>
+		<nz-tab nzTitle="Goods Received Note">
+			
+		</nz-tab>
+		<nz-tab nzTitle="Covering Letter">
+			
+		</nz-tab>
+		<nz-tab nzTitle="Summary">
+			
+		</nz-tab>
+		<nz-tab nzTitle="Ledger of Expenditure">
+			
+		</nz-tab>
+		<nz-tab nzTitle="Payment Voucher">
+			
+		</nz-tab>
+	</nz-tabset>
+</div>
+

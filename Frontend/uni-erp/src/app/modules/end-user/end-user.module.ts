@@ -8,10 +8,11 @@ import { ApplicationViewModalComponent } from './application/components/applicat
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DetailsPageComponent } from './application/components/details-page/details-page.component';
 
 
 @NgModule({
-  declarations: [ApplicationComponent, ApplicationAddModalComponent, ApplicationViewModalComponent],
+  declarations: [ApplicationComponent, ApplicationAddModalComponent, ApplicationViewModalComponent, DetailsPageComponent],
   imports: [
     CommonModule,
 		EndUserRoutingModule,
