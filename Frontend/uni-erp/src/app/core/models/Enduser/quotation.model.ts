@@ -7,7 +7,7 @@ export class Quotation {
 	termsAndConditions: string;
 	vendor: Vendor;
 	items: Array<QuotationItem>;
-	totalAmount: string;
+	totalAmount: number;
 	isApproved?: boolean = false;
 	subject: string;
 }
