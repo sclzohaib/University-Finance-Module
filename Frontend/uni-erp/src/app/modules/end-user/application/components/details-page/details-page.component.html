@@ -13,9 +13,11 @@
 		<nz-tab nzTitle="Quotations">
 			<nz-collapse>
 				<nz-collapse-panel *ngFor="let quo of application['quotation']; let i = index" [nzHeader]="'Quotation' + i">
+
+					// Quotation Description here (use nz-description for subject and terms and use table for quotation items)
 				</nz-collapse-panel>
 			</nz-collapse>
-			<button nz-button nzType="primary" style="display: block; margin: 12px auto;"><i nz-icon nzType="plus"></i>Add Quotation</button>
+			<button nz-button nzType="primary" style="display: block; margin: 12px auto;" (click)="onAddQuotation()"><i nz-icon nzType="plus"></i>Add Quotation</button>
 		</nz-tab>
 		<nz-tab nzTitle="Budget Sheet">
 			

@@ -9,10 +9,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DetailsPageComponent } from './application/components/details-page/details-page.component';
+import { QuotationAddModalComponent } from './application/components/quotation-add-modal/quotation-add-modal.component';
 
 
 @NgModule({
-  declarations: [ApplicationComponent, ApplicationAddModalComponent, ApplicationViewModalComponent, DetailsPageComponent],
+  declarations: [ApplicationComponent, ApplicationAddModalComponent, ApplicationViewModalComponent, DetailsPageComponent, QuotationAddModalComponent],
   imports: [
     CommonModule,
 		EndUserRoutingModule,
@@ -22,7 +23,8 @@ import { DetailsPageComponent } from './application/components/details-page/deta
 		FlexLayoutModule
 	],
 	entryComponents: [
-		ApplicationAddModalComponent, ApplicationViewModalComponent
+		ApplicationAddModalComponent, ApplicationViewModalComponent,
+		QuotationAddModalComponent
 	]
 })
 export class EndUserModule { }
